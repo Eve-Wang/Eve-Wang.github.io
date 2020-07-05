@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Matplotlib | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="echarts.baidu.com(这个网站提供很多前端框架，当我们把数据处理好之后，可以直接把这些数据放到框架中得到很多炫酷的展示,模仿MATLAB 构建，主要做数据可视化图表。 折线图实例1（10到12点的温度变化图）123456789101112131415161718192021222324from matplotlib import pyplot as plt #plt用来绘折线图#以下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matplotlib">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/Matplotlib/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="echarts.baidu.com(这个网站提供很多前端框架，当我们把数据处理好之后，可以直接把这些数据放到框架中得到很多炫酷的展示,模仿MATLAB 构建，主要做数据可视化图表。 折线图实例1（10到12点的温度变化图）123456789101112131415161718192021222324from matplotlib import pyplot as plt #plt用来绘折线图#以下">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/9.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Matplotlib/15.png">
+<meta property="article:published_time" content="2020-07-05T15:00:10.000Z">
+<meta property="article:modified_time" content="2020-07-05T15:02:19.134Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/05/Matplotlib/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Matplotlib" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/05/Matplotlib/" class="article-date">
+  <time datetime="2020-07-05T15:00:10.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Matplotlib
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>echarts.baidu.com(这个网站提供很多前端框架，当我们把数据处理好之后，可以直接把这些数据放到框架中得到很多炫酷的展示,模仿MATLAB 构建，主要做数据可视化图表。</p>
+<h2 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h2><h3 id="实例1（10到12点的温度变化图）"><a href="#实例1（10到12点的温度变化图）" class="headerlink" title="实例1（10到12点的温度变化图）"></a>实例1（10到12点的温度变化图）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt <span class="comment">#plt用来绘折线图</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#以下代码为绘制一天内每隔2小时显示当前的气温图</span></span><br><span class="line"></span><br><span class="line">x=range(<span class="number">2</span>,<span class="number">26</span>,<span class="number">2</span>)</span><br><span class="line">y=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">plt.figure(figsize=(<span class="number">20</span>,<span class="number">8</span>),dpi=<span class="number">80</span>) <span class="comment">#设置图片大小，如果没有这行，则为默认大小，dpi指像素</span></span><br><span class="line">plt.plot(x,y) <span class="comment">#绘图</span></span><br><span class="line">plt.xticks(x) <span class="string">'''设置x轴为刚才x的格式（从2到24，每间隔2），若不设置则为默认的样式。也可按自己的要求设置如plt.xticks(range(2,25)) '''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#若要实现x轴每隔0.5取一个呢？则应该这样：i=[i/2 for i in range(4,49)],plt.xticks(i);另一种方式可以用while循环。</span></span><br><span class="line">plt.yticks(range(min(y),max(y)+<span class="number">1</span>)) <span class="comment">#设置y轴的刻度范围</span></span><br><span class="line"><span class="string">''' plt.savefig('C:/Users/Administrator/t1.png') #保存图片到指定路径</span></span><br><span class="line"><span class="string">plt.savefig('C:/Users/Administrator/sig_size.png') #指以矢量图的形式保存图片到指定路径，矢量图放大不会有锯齿 ??此行代码有问题  '''</span></span><br><span class="line">plt.show() <span class="comment">#展示图形,jupyter notebook中只用plt.plot()就可显示出图</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#实现10-12点显示这120分钟的温度</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">b=[random.randint(<span class="number">20</span>,<span class="number">35</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">120</span>)]</span><br><span class="line">a=range(<span class="number">120</span>)</span><br><span class="line">plt.figure(figsize=(<span class="number">20</span>,<span class="number">8</span>),dpi=<span class="number">80</span>)</span><br><span class="line">plt.plot(a,b)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#如下图所示</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/1.png" alt></p>
+<p>#但我们希望x轴的刻度能以时钟的形式展示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#调整x轴的刻度，这里先让x轴以字符串形式标记</span><br><span class="line">_x&#x3D;a</span><br><span class="line">_xtick_labels &#x3D; [&#39;hello,&#123;&#125;&#39;.format(i) for i in _x]</span><br><span class="line">plt.xticks(_x,_xtick_labels) #将传入的x（数字）和字符串一一对应。实现x轴坐标以字符串的方式显示</span><br><span class="line">plt.plot(_x,b) </span><br><span class="line">#如下图所示，x轴的坐标点名会变为hello，0  hello,1 hello,2 ...hello,119,但太过密集，我们用以下方式调</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/2.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_x&#x3D;list(a)[::10] #将a转换成列表型，让之前x轴上的点每隔10个取一个，达到放大的目的。</span><br><span class="line">_xtick_labels &#x3D; [&#39;hello,&#123;&#125;&#39;.format(i) for i in _x]</span><br><span class="line">plt.xticks(_x,_xtick_labels) #将传入的x（数字）和字符串一一对应。实现x轴坐标以字符串的方式显示</span><br><span class="line">plt.plot(_x,b) </span><br><span class="line">#如下图所示，x轴的坐标点名会变为hello,0  hello,10 hello,20 ...hello,110,共12个点</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/3.png" alt></p>
+<p>#现在我们想把横坐标以小时分钟的形式表示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">20</span>,<span class="number">8</span>),dpi=<span class="number">80</span>)</span><br><span class="line">plt.plot(a,y)</span><br><span class="line">_x=list(a)[::<span class="number">4</span>]</span><br><span class="line">_xtick_labels = [<span class="string">'10点&#123;&#125;分'</span>.format(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">60</span>)]</span><br><span class="line">_xtick_labels += [<span class="string">'11点&#123;&#125;分'</span>.format(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">60</span>)]</span><br><span class="line">plt.xticks(_x,_xtick_labels[::<span class="number">4</span>])</span><br><span class="line">plt.savefig(<span class="string">'C:/Users/Administrator/Desktop/计算机学习note/Matplotlib/4.png'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/4.png" alt></p>
+<p>现在 我们将x轴的表达式旋转90度，使得能够看清楚。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#直接在刚刚设置x轴的代码中添加rotation</span></span><br><span class="line"></span><br><span class="line">plt.xticks(_x,_xtick_labels[::<span class="number">4</span>],rotation=<span class="number">90</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/5.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#对我们的图添加描述信息，图的标题，x，y轴的标签。在刚才的代码中加入三行：</span><br><span class="line">plt.xticks(_x,_xtick_labels[::4],rotation&#x3D;90)</span><br><span class="line">plt.xlabel(&#39;时间&#39;)</span><br><span class="line">plt.ylabel(&#39;温度，摄氏度&#39;)</span><br><span class="line">plt.title(&#39;10点到12点每分钟温度的变化情况&#39;)</span><br><span class="line">#plt.savefig(&#39;C:&#x2F;Users&#x2F;Administrator&#x2F;Desktop&#x2F;计算机学习note&#x2F;Matplotlib&#x2F;6.png&#39;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/6.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.grid(alpha=<span class="number">0.1</span>) <span class="string">'''增加网格，alpha指网格透明度，值从0-1，以改变x,y轴的疏密来改变网格的疏密,还可传入linestyle等'''</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="实例2（从11到30岁自己和同桌的恋爱次数变化图）"><a href="#实例2（从11到30岁自己和同桌的恋爱次数变化图）" class="headerlink" title="实例2（从11到30岁自己和同桌的恋爱次数变化图）"></a>实例2（从11到30岁自己和同桌的恋爱次数变化图）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">x=range(<span class="number">11</span>,<span class="number">31</span>)</span><br><span class="line">y_1=[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">y_2=[<span class="number">1</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">plt.figure(figsize=(<span class="number">20</span>,<span class="number">8</span>),dpi=<span class="number">80</span>)</span><br><span class="line">plt.grid(alpha=<span class="number">0.1</span>)<span class="comment">#增加网格，alpha指网格透明度</span></span><br><span class="line">plt.xlabel(<span class="string">'年龄'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'恋爱次数'</span>)</span><br><span class="line">plt.xticks(x)</span><br><span class="line">plt.plot(x,y_1,label=<span class="string">'自己'</span>)<span class="comment">#在这里还可以设置线条的颜色；如用linestyle==‘--’设置线条风格，用linewidth=5设置线条粗细，用alpha=0.5设置透明度</span></span><br><span class="line">plt.plot(x,y_2,label=<span class="string">'同桌'</span>,color=<span class="string">'pink'</span>)</span><br><span class="line">plt.legend() <span class="comment">#前两行中的label和legend联合使用，添加图例，实现图中右上的效果。可传入参数log改变位置</span></span><br><span class="line"><span class="comment">#plt.savefig('C:/Users/Administrator\Desktop/计算机学习note/Matplotlib/7.png')</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/7.png" alt></p>
+<h3 id="思维导图（折线图）"><a href="#思维导图（折线图）" class="headerlink" title="思维导图（折线图）"></a>思维导图（折线图）</h3><p><img src="/2020/07/05/Matplotlib/8.jpg" alt></p>
+<p><img src="/2020/07/05/Matplotlib/9.jpg" alt></p>
+<h2 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h2><p>技术要点：plt.scatter(x,y)</p>
+<h3 id="实例1（3月与10月每天的气温散点图）"><a href="#实例1（3月与10月每天的气温散点图）" class="headerlink" title="实例1（3月与10月每天的气温散点图）"></a>实例1（3月与10月每天的气温散点图）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">x_3=range(<span class="number">1</span>,<span class="number">32</span>)</span><br><span class="line">x_10=range(<span class="number">51</span>,<span class="number">82</span>)</span><br><span class="line">y_3=[<span class="number">11</span>,<span class="number">17</span>,<span class="number">16</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">12</span>,<span class="number">15</span>,<span class="number">14</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">21</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">20</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="number">19</span>,<span class="number">21</span>,<span class="number">22</span>,<span class="number">22</span>,<span class="number">23</span>,<span class="number">23</span>,<span class="number">24</span>,<span class="number">25</span>]</span><br><span class="line">y_10=[<span class="number">26</span>,<span class="number">26</span>,<span class="number">28</span>,<span class="number">19</span>,<span class="number">21</span>,<span class="number">17</span>,<span class="number">16</span>,<span class="number">19</span>,<span class="number">18</span>,<span class="number">20</span>,<span class="number">20</span>,<span class="number">19</span>,<span class="number">22</span>,<span class="number">23</span>,<span class="number">17</span>,<span class="number">20</span>,<span class="number">21</span>,<span class="number">20</span>,<span class="number">22</span>,<span class="number">15</span>,<span class="number">11</span>,<span class="number">15</span>,<span class="number">5</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">10</span>,<span class="number">9</span>]</span><br><span class="line"><span class="comment">#设置图片大小</span></span><br><span class="line">plt.figure(figsize=(<span class="number">20</span>,<span class="number">8</span>),dpi=<span class="number">80</span>)</span><br><span class="line"><span class="comment">#设置网格</span></span><br><span class="line">plt.grid(alpha=<span class="number">0.5</span>)</span><br><span class="line"><span class="comment">#生成散点图</span></span><br><span class="line">plt.scatter(x_3,y_3,label=<span class="string">'三月份'</span>)</span><br><span class="line">plt.scatter(x_10,y_10,label=<span class="string">'五月份'</span>)</span><br><span class="line"><span class="comment">#调整x轴的刻度</span></span><br><span class="line">_x=list(x_3)+list(x_10)</span><br><span class="line">_xtick_labels=[<span class="string">'3月&#123;&#125;号'</span>.format(i) <span class="keyword">for</span> i <span class="keyword">in</span> x_3]</span><br><span class="line">_xtick_labels+=[<span class="string">'10月&#123;&#125;号'</span>.format(i<span class="number">-50</span>) <span class="keyword">for</span> i <span class="keyword">in</span> x_10]</span><br><span class="line">plt.xticks(_x,_xtick_labels,rotation=<span class="number">45</span>)</span><br><span class="line"><span class="comment">#调整y轴的刻度</span></span><br><span class="line">_y=range(min(y_3),max(y_10)+<span class="number">1</span>)</span><br><span class="line">plt.yticks(_y)</span><br><span class="line"><span class="comment">#添加图例</span></span><br><span class="line">plt.legend()</span><br><span class="line"><span class="comment">#添加描述信息</span></span><br><span class="line">plt.xlabel(<span class="string">'日期'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'温度（摄氏度）'</span>)</span><br><span class="line"><span class="comment">#保存此散点图</span></span><br><span class="line">plt.savefig(<span class="string">'C:\\Users\\Administrator\\Desktop\\计算机学习note\\Matplotlib\\10.png'</span>)</span><br><span class="line"><span class="comment">#展示</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/10.png" alt></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>除了在绘制散点图时我们用plt.scatter()进行绘制，其他方法与折线图没有任何区别。</p>
+<h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2><h3 id="实例1（某日的电影票房）"><a href="#实例1（某日的电影票房）" class="headerlink" title="实例1（某日的电影票房）"></a>实例1（某日的电影票房）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">y=[<span class="number">2.91</span>,<span class="number">7.88</span>,<span class="number">11.97</span>,<span class="number">11.72</span>,<span class="number">0.1</span>,<span class="number">3.5</span>]</span><br><span class="line">x=[<span class="string">'雷霆沙赞！'</span>,<span class="string">'反贪风暴4'</span>,<span class="string">'误杀'</span>,<span class="string">'叶问4'</span>,<span class="string">'士兵顺溜：兵王争锋'</span>,<span class="string">'老师·好'</span>]</span><br><span class="line">plt.bar(range(len(x)),y,width=<span class="number">0.3</span>)<span class="comment">#width表示柱子的宽度</span></span><br><span class="line">plt.xticks(range(len(x)),x,rotation=<span class="number">45</span>)</span><br><span class="line">plt.ylabel(<span class="string">'票房（亿）'</span>)</span><br><span class="line"><span class="comment">#plt.savefig('C:\\Users\\Administrator\\Desktop\\计算机学习note\\Matplotlib\\11.png')</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/11.png" alt></p>
+<p>此时我们发现x轴坐标显示不完全，我们可以用plt.barh()将柱子横过来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">y=[<span class="number">2.91</span>,<span class="number">7.88</span>,<span class="number">11.97</span>,<span class="number">11.72</span>,<span class="number">0.1</span>,<span class="number">3.5</span>]</span><br><span class="line">x=[<span class="string">'雷霆沙赞！'</span>,<span class="string">'反贪风暴4'</span>,<span class="string">'误杀'</span>,<span class="string">'叶问4'</span>,<span class="string">'士兵顺溜：兵王争锋'</span>,<span class="string">'老师·好'</span>]</span><br><span class="line">plt.barh(range(len(x)),y,height=<span class="number">0.3</span>,color=<span class="string">'orange'</span>)<span class="comment">#由于柱子是横着的，要用height表示柱子的宽度</span></span><br><span class="line">plt.yticks(range(len(x)),x)<span class="comment">#之前的x变成y；</span></span><br><span class="line">plt.xlabel(<span class="string">'票房（亿）'</span>)<span class="comment">#之前的x变成y</span></span><br><span class="line"><span class="comment">#plt.savefig('C:\\Users\\Administrator\\Desktop\\计算机学习note\\Matplotlib\\12.png')</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/12.png" alt></p>
+<h3 id="实例2–绘制多次条形图（某三天的4部电影票房）"><a href="#实例2–绘制多次条形图（某三天的4部电影票房）" class="headerlink" title="实例2–绘制多次条形图（某三天的4部电影票房）"></a>实例2–绘制多次条形图（某三天的4部电影票房）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>,<span class="number">8</span>),dpi=<span class="number">80</span>)</span><br><span class="line">y_14=[<span class="number">2358</span>,<span class="number">399</span>,<span class="number">2358</span>,<span class="number">362</span>]</span><br><span class="line">y_15=[<span class="number">12357</span>,<span class="number">156</span>,<span class="number">2045</span>,<span class="number">168</span>]</span><br><span class="line">y_16=[<span class="number">15746</span>,<span class="number">312</span>,<span class="number">4497</span>,<span class="number">319</span>]</span><br><span class="line">x=[<span class="string">'猩球崛起3：终极之战'</span>,<span class="string">'敦刻尔克'</span>,<span class="string">'蜘蛛侠：英雄归来'</span>,<span class="string">'战狼2'</span>]</span><br><span class="line"><span class="comment">#我们将15号的x轴坐标的后移一个柱子宽度0.2，将16号的x轴坐标的后移2个柱子宽度0.2，就可以将这三天的票房信息都放在一张表里</span></span><br><span class="line">bar_width=<span class="number">0.2</span></span><br><span class="line">x_14=list(range(len(x)))</span><br><span class="line">x_15=[i+bar_width <span class="keyword">for</span> i <span class="keyword">in</span> x_14]</span><br><span class="line">x_16=[i+bar_width*<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> x_14]</span><br><span class="line">plt.bar(range(len(x)),y_14,width=bar_width,label=<span class="string">'14号'</span>)</span><br><span class="line">plt.bar(x_15,y_15,width=bar_width,label=<span class="string">'15号'</span>)</span><br><span class="line">plt.bar(x_16,y_16,width=bar_width,label=<span class="string">'16号'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.grid()</span><br><span class="line">plt.xticks(x_15,x)<span class="comment">#我们将电影名放到三个柱子中间，所以是x_15,更美观</span></span><br><span class="line">plt.ylabel(<span class="string">'票房（万）'</span>)</span><br><span class="line">plt.savefig(<span class="string">'C:\\Users\\Administrator\\Desktop\\计算机学习note\\Matplotlib\\13.png'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/13.png" alt></p>
+<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><h3 id="实例1（根据电影时长统计电影频数）"><a href="#实例1（根据电影时长统计电影频数）" class="headerlink" title="实例1（根据电影时长统计电影频数）"></a>实例1（根据电影时长统计电影频数）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#a为250部电影的时长集合</span></span><br><span class="line">a=[<span class="number">131</span>,  <span class="number">98</span>, <span class="number">125</span>, <span class="number">131</span>, <span class="number">124</span>, <span class="number">139</span>, <span class="number">131</span>, <span class="number">117</span>, <span class="number">128</span>, <span class="number">108</span>, <span class="number">135</span>, <span class="number">138</span>, <span class="number">131</span>, <span class="number">102</span>, <span class="number">107</span>, <span class="number">114</span>, <span class="number">119</span>, <span class="number">128</span>, <span class="number">121</span>, <span class="number">142</span>, <span class="number">127</span>, <span class="number">130</span>, <span class="number">124</span>, <span class="number">101</span>, <span class="number">110</span>, <span class="number">116</span>, <span class="number">117</span>, <span class="number">110</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="number">115</span>,  <span class="number">99</span>, <span class="number">136</span>, <span class="number">126</span>, <span class="number">134</span>,  <span class="number">95</span>, <span class="number">138</span>, <span class="number">117</span>, <span class="number">111</span>,<span class="number">78</span>, <span class="number">132</span>, <span class="number">124</span>, <span class="number">113</span>, <span class="number">150</span>, <span class="number">110</span>, <span class="number">117</span>,  <span class="number">86</span>,  <span class="number">95</span>, <span class="number">144</span>, <span class="number">105</span>, <span class="number">126</span>, <span class="number">130</span>,<span class="number">126</span>, <span class="number">130</span>, <span class="number">126</span>, <span class="number">116</span>, <span class="number">123</span>, <span class="number">106</span>, <span class="number">112</span>, <span class="number">138</span>, <span class="number">123</span>,  <span class="number">86</span>, <span class="number">101</span>,  <span class="number">99</span>, <span class="number">136</span>,<span class="number">123</span>, <span class="number">117</span>, <span class="number">119</span>, <span class="number">105</span>, <span class="number">137</span>, <span class="number">123</span>, <span class="number">128</span>, <span class="number">125</span>, <span class="number">104</span>, <span class="number">109</span>, <span class="number">134</span>, <span class="number">125</span>, <span class="number">127</span>,<span class="number">105</span>, <span class="number">120</span>, <span class="number">107</span>, <span class="number">129</span>, <span class="number">116</span>, <span class="number">108</span>, <span class="number">132</span>, <span class="number">103</span>, <span class="number">136</span>, <span class="number">118</span>, <span class="number">102</span>, <span class="number">120</span>, <span class="number">114</span>,<span class="number">105</span>, <span class="number">115</span>, <span class="number">132</span>, <span class="number">145</span>, <span class="number">119</span>, <span class="number">121</span>, <span class="number">112</span>, <span class="number">139</span>, <span class="number">125</span>, <span class="number">138</span>, <span class="number">109</span>, <span class="number">132</span>, <span class="number">134</span>,<span class="number">156</span>, <span class="number">106</span>, <span class="number">117</span>, <span class="number">127</span>, <span class="number">144</span>, <span class="number">139</span>, <span class="number">139</span>, <span class="number">119</span>, <span class="number">140</span>,  <span class="number">83</span>, <span class="number">110</span>, <span class="number">102</span>,<span class="number">123</span>,<span class="number">107</span>, <span class="number">143</span>, <span class="number">115</span>, <span class="number">136</span>, <span class="number">118</span>, <span class="number">139</span>, <span class="number">123</span>, <span class="number">112</span>, <span class="number">118</span>, <span class="number">125</span>, <span class="number">109</span>, <span class="number">119</span>, <span class="number">133</span>,<span class="number">112</span>, <span class="number">114</span>, <span class="number">122</span>, <span class="number">109</span>, <span class="number">106</span>, <span class="number">123</span>, <span class="number">116</span>, <span class="number">131</span>, <span class="number">127</span>, <span class="number">115</span>, <span class="number">118</span>, <span class="number">112</span>, <span class="number">135</span>,<span class="number">115</span>, <span class="number">146</span>, <span class="number">137</span>, <span class="number">116</span>, <span class="number">103</span>, <span class="number">144</span>,  <span class="number">83</span>, <span class="number">123</span>, <span class="number">111</span>, <span class="number">110</span>, <span class="number">111</span>, <span class="number">100</span>, <span class="number">154</span>,<span class="number">136</span>, <span class="number">100</span>, <span class="number">118</span>, <span class="number">119</span>, <span class="number">133</span>, <span class="number">134</span>, <span class="number">106</span>, <span class="number">129</span>, <span class="number">126</span>, <span class="number">110</span>, <span class="number">111</span>, <span class="number">109</span>, <span class="number">141</span>,<span class="number">120</span>, <span class="number">117</span>, <span class="number">106</span>, <span class="number">149</span>, <span class="number">122</span>, <span class="number">122</span>, <span class="number">110</span>, <span class="number">118</span>, <span class="number">127</span>, <span class="number">121</span>, <span class="number">114</span>, <span class="number">125</span>, <span class="number">126</span>,<span class="number">114</span>, <span class="number">140</span>, <span class="number">103</span>, <span class="number">130</span>, <span class="number">141</span>, <span class="number">117</span>, <span class="number">106</span>, <span class="number">114</span>, <span class="number">121</span>, <span class="number">114</span>, <span class="number">133</span>, <span class="number">137</span>,  <span class="number">92</span>,<span class="number">121</span>, <span class="number">112</span>, <span class="number">146</span>,  <span class="number">97</span>, <span class="number">137</span>, <span class="number">105</span>,  <span class="number">98</span>, <span class="number">117</span>, <span class="number">112</span>,  <span class="number">81</span>,  <span class="number">97</span>, <span class="number">139</span>, <span class="number">113</span>,<span class="number">134</span>, <span class="number">106</span>, <span class="number">144</span>, <span class="number">110</span>, <span class="number">137</span>, <span class="number">137</span>, <span class="number">111</span>, <span class="number">104</span>, <span class="number">117</span>, <span class="number">100</span>, <span class="number">111</span>, <span class="number">101</span>, <span class="number">110</span>,<span class="number">105</span>, <span class="number">129</span>, <span class="number">137</span>, <span class="number">112</span>, <span class="number">120</span>, <span class="number">113</span>, <span class="number">133</span>, <span class="number">112</span>,  <span class="number">83</span>,  <span class="number">94</span>, <span class="number">146</span>, <span class="number">133</span>, <span class="number">101</span>,<span class="number">131</span>, <span class="number">116</span>, <span class="number">111</span>,  <span class="number">84</span>, <span class="number">137</span>, <span class="number">115</span>, <span class="number">122</span>, <span class="number">106</span>, <span class="number">144</span>, <span class="number">109</span>, <span class="number">123</span>, <span class="number">116</span>, <span class="number">111</span>,<span class="number">111</span>, <span class="number">133</span>, <span class="number">150</span>]</span><br><span class="line">d=max(a)-min(a)</span><br><span class="line">print(d)<span class="comment">#我们算出极差是78，能被78整除的数有2，3...我们这里取3作为组距，并把x轴相邻坐标也设置为3的间距，与组距一致，方便观察</span></span><br><span class="line">num_bins=int(d/<span class="number">3</span>)<span class="comment">#组数</span></span><br><span class="line">plt.figure(figsize=(<span class="number">20</span>,<span class="number">8</span>),dpi=<span class="number">120</span>)</span><br><span class="line">plt.hist(a,num_bins)<span class="comment">#生成直方图，传入组数</span></span><br><span class="line">plt.xticks(range(min(a),max(a)+<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">plt.ylabel(<span class="string">'电影个数）'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'电影时长（分钟）'</span>)</span><br><span class="line">plt.grid()</span><br><span class="line">plt.savefig(<span class="string">'C:\\Users\\Administrator\\Desktop\\计算机学习note\\Matplotlib\\14.png'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/14.png" alt></p>
+<p>如果我们想要不同组别的频率而不是频数，直接修改上述代码中的一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.hist(a,num_bins,density&#x3D;True)#传入density&#x3D;True</span><br></pre></td></tr></table></figure>
+
+<p>同时把y的标签改成电影频率：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.ylabel(&#39;电影频率&#39;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Matplotlib/15.png" alt></p>
+<p>一般来说plt.hist()的使用对象是没有进行统计过的数据。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/05/Matplotlib/" data-id="ckc97jc740002wsvt5l3z0bru" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/05/Mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mysql</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C/">Linux操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Matplotlib/">Matplotlib</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Mysql/">Mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Numpy/">Numpy</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Pandas/">Pandas</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

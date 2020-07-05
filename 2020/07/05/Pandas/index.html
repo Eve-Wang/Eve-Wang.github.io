@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Pandas | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="numpy能够帮我们处理数值，但pandas除了处理数值之外（基于numpy),还能帮助我们处理其他类型如字符串，时间序列等。 pandas的常用数据类型： 1.Series一维，带标签数组。 2.DataFrame二维，Series容器。 1.pandas的常用操作（Series）pandas之series创建1.直接创建1234567import pandas as pdt&#x3D;pd.Series">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandas">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/Pandas/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="numpy能够帮我们处理数值，但pandas除了处理数值之外（基于numpy),还能帮助我们处理其他类型如字符串，时间序列等。 pandas的常用数据类型： 1.Series一维，带标签数组。 2.DataFrame二维，Series容器。 1.pandas的常用操作（Series）pandas之series创建1.直接创建1234567import pandas as pdt&#x3D;pd.Series">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/D:%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5Cpandas%5C3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/D:%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5Cpandas%5C13.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/D:%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5Cpandas%5C14.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/15.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/16.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/17.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas/18.jpg">
+<meta property="article:published_time" content="2020-07-05T14:51:48.000Z">
+<meta property="article:modified_time" content="2020-07-05T14:54:00.086Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/05/Pandas/1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Pandas" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/05/Pandas/" class="article-date">
+  <time datetime="2020-07-05T14:51:48.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Pandas
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>numpy能够帮我们处理数值，但pandas除了处理数值之外（基于numpy),还能帮助我们处理其他类型如字符串，时间序列等。</p>
+<p>pandas的常用数据类型：</p>
+<p>1.Series一维，带标签数组。</p>
+<p>2.DataFrame二维，Series容器。</p>
+<h2 id="1-pandas的常用操作（Series）"><a href="#1-pandas的常用操作（Series）" class="headerlink" title="1.pandas的常用操作（Series）"></a>1.pandas的常用操作（Series）</h2><h3 id="pandas之series创建"><a href="#pandas之series创建" class="headerlink" title="pandas之series创建"></a>pandas之series创建</h3><h4 id="1-直接创建"><a href="#1-直接创建" class="headerlink" title="1.直接创建"></a>1.直接创建</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">t=pd.Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">32</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">79</span>])<span class="comment">#创建Series一维，带标签数组。默认标签</span></span><br><span class="line"></span><br><span class="line">type(t)<span class="comment">#**pandas.core.series.Series**</span></span><br><span class="line"></span><br><span class="line">t2=pd.Series([<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">54</span>,<span class="number">6</span>],index=list(<span class="string">'abcde'</span>)) <span class="comment">#指定标签 </span></span><br><span class="line">a=t2.astype(<span class="string">'float'</span>)<span class="comment">#修改数据类型，与numpy操作一样</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-通过字典创建"><a href="#2-通过字典创建" class="headerlink" title="2.通过字典创建"></a>2.通过字典创建</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp_dict=&#123;<span class="string">'name'</span>:<span class="string">'xiaohong'</span>,<span class="string">'age'</span>:<span class="number">30</span>,<span class="string">'tel'</span>:<span class="number">10010</span>&#125; </span><br><span class="line">t3=pd.Series(temp_dict)<span class="comment">#通过字典创建带标签数组</span></span><br><span class="line">t3.dtype <span class="comment">#**dtype('O') **O表示object，里面有字符串</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="pandas之series切片与索引"><a href="#pandas之series切片与索引" class="headerlink" title="pandas之series切片与索引"></a>pandas之series切片与索引</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t3[<span class="string">'name'</span>]<span class="comment">#与字典操作一样，通过索引来取。</span></span><br><span class="line">t3[[<span class="string">'name'</span>,<span class="string">'age'</span>]]<span class="comment">#用多个索引来取</span></span><br><span class="line">t3[<span class="number">0</span>]<span class="comment">#通过位置来取</span></span><br><span class="line">t3[:<span class="number">2</span>]<span class="comment">#取第一二行（连续</span></span><br><span class="line">t3[[<span class="number">1</span>,<span class="number">2</span>]]<span class="comment">#取第二三行（非连续</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="bool索引"><a href="#bool索引" class="headerlink" title="bool索引"></a>bool索引</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t4=pd.Series(range(<span class="number">10</span>),index=list(<span class="string">'ABCDEFGHIJ'</span>))</span><br><span class="line">t4[t4&gt;<span class="number">5</span>]<span class="comment">#bool索引</span></span><br><span class="line">t4[<span class="number">0</span>:<span class="number">5</span>:<span class="number">2</span>]<span class="comment">#隔一个取到第五位</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Pandas之Series的索引与值"><a href="#Pandas之Series的索引与值" class="headerlink" title="Pandas之Series的索引与值"></a>Pandas之Series的索引与值</h3><p>Series对象本质上由两个数组构成：</p>
+<p>一个数组构成对象的键（index，索引），一个数组构成对象的值（values）。</p>
+<p>ndarray的很多方法都可以用于series类型，比如argmax，clip。where方法与ndarray的太相同。</p>
+<h4 id="1-index"><a href="#1-index" class="headerlink" title="1.index"></a>1.index</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t4.index</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> t4.index:</span><br><span class="line">    print(i)<span class="comment">#获取index的数据，意味着index是可以遍历的。</span></span><br><span class="line">print(len(t4.index))<span class="comment">#获取index的长度</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-values"><a href="#2-values" class="headerlink" title="2.values"></a>2.values</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t4.values</span><br><span class="line">list(t4.values)[:<span class="number">2</span>]<span class="comment">#与index一样，也可以对值进行切片或者是遍历操作</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-pandas之读取外部数据"><a href="#2-pandas之读取外部数据" class="headerlink" title="2.pandas之读取外部数据"></a>2.pandas之读取外部数据</h2><p>pd.read#tab补全可看到各种读取的方法。可以读取CSV,MYSQL,mangodb等的数据。</p>
+<h2 id="3-pandas的常用操作（DataFrame）"><a href="#3-pandas的常用操作（DataFrame）" class="headerlink" title="3.pandas的常用操作（DataFrame）"></a>3.pandas的常用操作（DataFrame）</h2><h3 id="DataFrame的创建"><a href="#DataFrame的创建" class="headerlink" title=".DataFrame的创建"></a>.DataFrame的创建</h3><p>DataFrame对象既有行索引，又有列索引。</p>
+<p>行索引，表明不同行，横向索引，叫做index，0轴，axis=0</p>
+<p>列索引，表明不同列，纵向索引，叫做columns，1轴，axis=1</p>
+<h4 id="1-直接创建-1"><a href="#1-直接创建-1" class="headerlink" title="1.直接创建"></a>1.直接创建</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pd.DataFrame(np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>,<span class="number">4</span>))<span class="comment">#创建DataFrame对象</span></span><br><span class="line">pd.DataFrame(np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>,<span class="number">4</span>),index=list(<span class="string">'abc'</span>),columns=list(<span class="string">'defg'</span>))</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line">pd.DataFrame(np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>,<span class="number">4</span>),index=list(string.ascii_uppercase[<span class="number">0</span>:<span class="number">3</span>]),columns=list(string.ascii_uppercase[<span class="number">-4</span>:]))<span class="comment">#索引取大写字母表的前三位和后四位。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-通过字典创建-1"><a href="#2-通过字典创建-1" class="headerlink" title="2.通过字典创建"></a>2.通过字典创建</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a=&#123;<span class="string">'name'</span>:[<span class="string">'xiaohong'</span>,<span class="string">'xiaoming'</span>],<span class="string">'age'</span>:[<span class="number">22</span>,<span class="number">23</span>],<span class="string">'tel'</span>:[<span class="number">10010</span>,<span class="number">10086</span>]&#125;</span><br><span class="line">pd.DataFrame(a)</span><br><span class="line"></span><br><span class="line">|      |     name |  age |   tel |</span><br><span class="line">| ---: | -------: | ---: | ----: |</span><br><span class="line">|    <span class="number">0</span> | xiaohong |   <span class="number">22</span> | <span class="number">10010</span> |</span><br><span class="line">|    <span class="number">1</span> | xiaoming |   <span class="number">23</span> | <span class="number">10086</span> |</span><br><span class="line"></span><br><span class="line">a2=[&#123;<span class="string">'name'</span>:<span class="string">'xiaohong'</span>,<span class="string">'age'</span>:<span class="number">22</span>,<span class="string">'tel'</span>:<span class="number">10010</span>&#125;,&#123;<span class="string">'name'</span>:<span class="string">'xiaoming'</span>,<span class="string">'age'</span>:<span class="number">23</span>,<span class="string">'tel'</span>:<span class="number">10086</span>&#125;]<span class="comment">#列表中放字典</span></span><br><span class="line">pd.DataFrame(a2)</span><br><span class="line">     name	    age	  tel</span><br><span class="line"><span class="number">0</span>	xiaohong	<span class="number">22</span>	<span class="number">10010</span></span><br><span class="line"><span class="number">1</span>	xiaoming	<span class="number">23</span>	<span class="number">10086</span></span><br><span class="line">a3=pd.DataFrame(a2)</span><br></pre></td></tr></table></figure>
+
+<h3 id="DataFrame的基础属性操作"><a href="#DataFrame的基础属性操作" class="headerlink" title=".DataFrame的基础属性操作"></a>.DataFrame的基础属性操作</h3><p>A.index#行索引<br>A.columns#列索引<br>A.values#对象值，二维ndarray数组<br>A.shape#几行几列<br>A.dtypes#每一列的数据类型（int,object…）<br>A.ndim#维度</p>
+<h3 id="排序操作"><a href="#排序操作" class="headerlink" title="排序操作"></a>排序操作</h3><p>A.sort_value(by=’某一列索引名’，ascending=False)#按照某一列索引进行降序排序，ascending默认为True(升序)</p>
+<h3 id="DataFrame切片与索引"><a href="#DataFrame切片与索引" class="headerlink" title=".DataFrame切片与索引"></a>.DataFrame切片与索引</h3><p>a3[:2]#取前两行</p>
+<p>a3[‘age’]#取age这一列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a3[:2][&#39;age&#39;]#取前两行第age列</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-通过标签索引行数据-loc"><a href="#1-通过标签索引行数据-loc" class="headerlink" title="1.通过标签索引行数据 .loc"></a>1.通过标签索引行数据 .loc</h4><p>a3.loc[0,’age’]#用A.loc()方法可以行列一起取，这里我们用行索引和列索引取。</p>
+<p>a3.loc[0,’age’]#取第一行第age列</p>
+<p>a3.loc[1,’name’:’age’]#取第二行，第name到第age列<br><strong>a3.loc[:1,[‘name’,’age’]]#取前两行，第name，age列</strong></p>
+<p><strong>！注意，loc中：后的数据也会取到。</strong></p>
+<h4 id="2-通过位置索引-iloc"><a href="#2-通过位置索引-iloc" class="headerlink" title="2.通过位置索引 .iloc"></a>2.通过位置索引 .iloc</h4><p>a3.iloc[0,1],[1,2]]#取位置为第一行第二行，第二列第三列的数据</p>
+<p>a3.iloc[]#取位置为第一行第二行，第二列第三列的数据</p>
+<h4 id="3-更改数据"><a href="#3-更改数据" class="headerlink" title="3.更改数据"></a>3.更改数据</h4><p>A.log[‘a’,’age’]=50#将第a行age列的值更改为50。</p>
+<p>A.ilog[‘1’,’2’]=50#将第2行3列的值更改为50。</p>
+<p>A.ilog[‘1’,’2’]=np.nan#将第2行3列的值更改为nan。与numpy不同，这里不会报错，因为DataFrame会自动转换数据类型为float型。</p>
+<h4 id="4-bool布尔索引"><a href="#4-bool布尔索引" class="headerlink" title="4.bool布尔索引"></a>4.bool布尔索引</h4><p>a3[a3[‘age’]&gt;20]#取a3对象中age&gt;20的行。</p>
+<p>a3[(a3[‘age’]&gt;20)&amp;(a3[‘age’]&lt;30)]#取a3对象中30&gt;age&gt;20的行。</p>
+<h3 id="DataFrame整体情况查询操作"><a href="#DataFrame整体情况查询操作" class="headerlink" title=".DataFrame整体情况查询操作"></a>.DataFrame整体情况查询操作</h3><p>A.head()#默认显示前五行<br>A.tail()#默认显示后五行<br>A.info()#相关信息概览：行数，列数，列索引，列非空值个数，行类型，列类型，内存占用<br>A.describe()#显示有数字的那些列的最大值，最小值，均值，25%中位数等</p>
+<p>A.count()#统计每列的个数</p>
+<h3 id="DataFrame中缺失数据的处理"><a href="#DataFrame中缺失数据的处理" class="headerlink" title=".DataFrame中缺失数据的处理"></a>.DataFrame中缺失数据的处理</h3><p>1.用pd.isnull(A)或pd.notnull(A)判断A中有没有nan。</p>
+<p>2.若有nan：</p>
+<p>处理方式1：删除nan所在的行/列：A.dropna(axis=0,how=’any’,inplace=False)#any意为某行只要有一个nan就会被删除，inplace=Ture以为A会被永久性修改。A也可以只是某一列。</p>
+<p>处理方式2：填充nan：</p>
+<p>A.fillna(A.mean())#用每列的均值填充每一列的nan；A[‘age’].fillna(A[‘age’].mean())#只填充age这一列的nan。</p>
+<p>处理为0的数据：A[A==0]=np.nan</p>
+<p>当然并不是每次为0的数据都需要处理。计算平均值等时，nan不参与计算，但0会。</p>
+<h3 id="DataFrame中数据的合并和分组聚合"><a href="#DataFrame中数据的合并和分组聚合" class="headerlink" title=".DataFrame中数据的合并和分组聚合"></a>.DataFrame中数据的合并和分组聚合</h3><h4 id="1-实例1（特征提取）"><a href="#1-实例1（特征提取）" class="headerlink" title="1.实例1（特征提取）"></a>1.实例1（特征提取）</h4><p>对于一组电影数据(其中包含了name，genre，director等列），如果要统计电影分类(genre)这一列的情况：</p>
+<p>思路—重新构造一个全为0的数组，列名为genre，如果某一条数据中某分类（如comedy）出现过，则让0变为1。</p>
+<p><img src="/2020/07/05/Pandas/1.jpg" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">a=pd.read_excel(<span class="string">r"C:/Users/YI/Desktop/movie.xlsx"</span>)</span><br><span class="line">print(a[<span class="string">'genre'</span>])</span><br><span class="line"><span class="comment">#统计分类的列表</span></span><br><span class="line">temp_a=a[<span class="string">'genre'</span>].str.split(<span class="string">','</span>).tolist() <span class="comment">#用.str.split(',')才能将genre中每一行的类别分开变成一个个单独的字符串，此时类型仍为series型,要用.tolist()转化为列表类型。对象类型为temp_a是一个大列表中嵌套着7个（行数）小列表。[[],[],...] '''</span></span><br><span class="line">print(<span class="string">'*'</span>*<span class="number">100</span>)</span><br><span class="line">print(temp_a)</span><br><span class="line"><span class="string">'''o=[]</span></span><br><span class="line"><span class="string">for j in temp_a:</span></span><br><span class="line"><span class="string">    for i in j:</span></span><br><span class="line"><span class="string">        o.append(i)</span></span><br><span class="line"><span class="string">print(list(set(o)))'''</span></span><br><span class="line">genre_a=list(set([i <span class="keyword">for</span> j <span class="keyword">in</span> temp_a <span class="keyword">for</span> i <span class="keyword">in</span> j]))</span><br><span class="line">print(genre_a)</span><br><span class="line"><span class="comment">#构造全为0的数组</span></span><br><span class="line">zero_a=pd.DataFrame(np.zeros((a.shape[<span class="number">0</span>],len(genre_a))),columns=genre_a)</span><br><span class="line">print(zero_a)</span><br><span class="line"><span class="comment">#给每个电影出现分类的的位置赋值1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(a.shape[<span class="number">0</span>]): <span class="comment">#遍历每一行</span></span><br><span class="line">    zero_a.loc[i,temp_a[i]]=<span class="number">1</span> <span class="comment">#temp_a[i]就选择了i行的所有类型，我们再用loc[]筛选赋值1</span></span><br><span class="line">genre_count=zero_a.sum(axis=<span class="number">0</span>)<span class="comment">#逐行相加，也就是把每列加起来</span></span><br><span class="line">print(genre_count)</span><br><span class="line"><span class="comment">#降序排序</span></span><br><span class="line">final=genre_count.sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">print(final)</span><br><span class="line"><span class="comment">#画图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">4</span>),dpi=<span class="number">80</span>)</span><br><span class="line">plt.bar(final.index,final.values,width=<span class="number">0.4</span>,color=<span class="string">'orange'</span>)<span class="comment">#可以将索引和值直接作为x，y轴。</span></span><br><span class="line">plt.grid()</span><br><span class="line">plt.savefig(<span class="string">'D:\\计算机学习note\\计算机学习note\\pandas\\2.jpg'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>OUT:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">a[&#39;genre&#39;]:</span><br><span class="line">0     Action,Adventure,Sci-Fi</span><br><span class="line">1             Horror,Thriller</span><br><span class="line">2          Comedy,Drama,Music</span><br><span class="line">3                      Comedy</span><br><span class="line">4    Action,Adventure,Fantasy</span><br><span class="line">5         Action,Comedy,Drama</span><br><span class="line">6                    Thriller</span><br><span class="line">Name: genre, dtype: object</span><br><span class="line">temp_a:</span><br><span class="line">[[&#39;Action&#39;, &#39;Adventure&#39;, &#39;Sci-Fi&#39;], [&#39;Horror&#39;, &#39;Thriller&#39;], [&#39;Comedy&#39;, &#39;Drama&#39;, &#39;Music&#39;], [&#39;Comedy&#39;], [&#39;Action&#39;, &#39;Adventure&#39;, &#39;Fantasy&#39;], [&#39;Action&#39;, &#39;Comedy&#39;, &#39;Drama&#39;], [&#39;Thriller&#39;]]</span><br><span class="line">genre_a:</span><br><span class="line">[&#39;Adventure&#39;, &#39;Action&#39;, &#39;Music&#39;, &#39;Fantasy&#39;, &#39;Comedy&#39;, &#39;Thriller&#39;, &#39;Drama&#39;, &#39;Sci-Fi&#39;, &#39;Horror&#39;]</span><br><span class="line">zero_a:</span><br><span class="line">   Adventure  Action  Music  Fantasy  Comedy  Thriller  Drama  Sci-Fi  Horror</span><br><span class="line">0        0.0     0.0    0.0      0.0     0.0       0.0    0.0     0.0     0.0</span><br><span class="line">1        0.0     0.0    0.0      0.0     0.0       0.0    0.0     0.0     0.0</span><br><span class="line">2        0.0     0.0    0.0      0.0     0.0       0.0    0.0     0.0     0.0</span><br><span class="line">3        0.0     0.0    0.0      0.0     0.0       0.0    0.0     0.0     0.0</span><br><span class="line">4        0.0     0.0    0.0      0.0     0.0       0.0    0.0     0.0     0.0</span><br><span class="line">5        0.0     0.0    0.0      0.0     0.0       0.0    0.0     0.0     0.0</span><br><span class="line">6        0.0     0.0    0.0      0.0     0.0       0.0    0.0     0.0     0.0</span><br><span class="line">genre_count:</span><br><span class="line">Adventure    2.0</span><br><span class="line">Action       3.0</span><br><span class="line">Music        1.0</span><br><span class="line">Fantasy      1.0</span><br><span class="line">Comedy       3.0</span><br><span class="line">Thriller     2.0</span><br><span class="line">Drama        2.0</span><br><span class="line">Sci-Fi       1.0</span><br><span class="line">Horror       1.0</span><br><span class="line">dtype: float64</span><br><span class="line">****************************************************************************************************</span><br><span class="line">final:</span><br><span class="line">Comedy       3.0</span><br><span class="line">Action       3.0</span><br><span class="line">Drama        2.0</span><br><span class="line">Thriller     2.0</span><br><span class="line">Adventure    2.0</span><br><span class="line">Horror       1.0</span><br><span class="line">Sci-Fi       1.0</span><br><span class="line">Fantasy      1.0</span><br><span class="line">Music        1.0</span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/2.jpg" alt></p>
+<p>#用pandas的另一种方法.value_counts()<br>print(a[‘genre’].value_counts()) #结果并不是我们想要的，因为没办法把每一行中的类型分开统计。<br>#用pandas的另一种方法pd.get_dummies()<br>print(pd.get_dummies(a.genre))#结果也并不是我们想要的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Action,Comedy,Drama         1</span><br><span class="line">Action,Adventure,Fantasy    1</span><br><span class="line">Horror,Thriller             1</span><br><span class="line">Comedy                      1</span><br><span class="line">Action,Adventure,Sci-Fi     1</span><br><span class="line">Thriller                    1</span><br><span class="line">Comedy,Drama,Music          1</span><br><span class="line">Name: genre, dtype: int64</span><br><span class="line">   Action,Adventure,Fantasy  Action,Adventure,Sci-Fi  Action,Comedy,Drama  \</span><br><span class="line">0                         0                        1                    0   </span><br><span class="line">1                         0                        0                    0   </span><br><span class="line">2                         0                        0                    0   </span><br><span class="line">3                         0                        0                    0   </span><br><span class="line">4                         1                        0                    0   </span><br><span class="line">5                         0                        0                    1   </span><br><span class="line">6                         0                        0                    0   </span><br><span class="line">  Comedy  Comedy,Drama,Music  Horror,Thriller Thriller  </span><br><span class="line">0       0                   0                0         0  </span><br><span class="line">1       0                   0                1         0  </span><br><span class="line">2       0                   1                0         0  </span><br><span class="line">3       1                   0                0         0  </span><br><span class="line">4       0                   0                0         0  </span><br><span class="line">5       0                   0                0         0  </span><br><span class="line">6       0                   0                0         1</span><br></pre></td></tr></table></figure>
+
+<h4 id="实例2（用三种方法进行特征提取）"><a href="#实例2（用三种方法进行特征提取）" class="headerlink" title="实例2（用三种方法进行特征提取）"></a>实例2（用三种方法进行特征提取）</h4><p>以下数据是某几年911紧急电话的数量，现在我们要统计出不同类型的紧急情况的次数。数据来源<a href="https://www.kaggle.com/mchirico/montcoalert/data" target="_blank" rel="noopener">https://www.kaggle.com/mchirico/montcoalert/data</a></p>
+<h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data_path=<span class="string">'D:/csv file/911.csv'</span></span><br><span class="line">pd.read_csv(data_path)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/6.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data=pd.read_csv(data_path)</span><br><span class="line">data[<span class="string">'title'</span>].str.split(<span class="string">':'</span>).tolist() <span class="comment">#把title列中的紧急情况分割出来。结果如下图</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/7.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp_list=data[<span class="string">'title'</span>].str.split(<span class="string">':'</span>).tolist()</span><br><span class="line">cate_list=list(set(i[<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> temp_list)) <span class="comment">#把所有的紧急情况取出来</span></span><br><span class="line">cate_list<span class="comment">#如下</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/8.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#构造全为0的数组</span></span><br><span class="line">zeros_data=pd.DataFrame(np.zeros((data.shape[<span class="number">0</span>],len(cate_list))),columns=cate_list)</span><br><span class="line"><span class="comment">#赋值</span></span><br><span class="line"><span class="keyword">for</span> cate <span class="keyword">in</span> cate_list:</span><br><span class="line">    zeros_data[cate][data[<span class="string">'title'</span>].str.contains(cate)]=<span class="number">1</span> <span class="comment">#[data['title'].str.contains(cate)]是一个布尔索引，可以挑选出title列中有cate的那些行</span></span><br><span class="line">print(zeros_data) </span><br><span class="line">zeros_data.sum() <span class="comment">#结果如下，得到了我们想要的结果</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/9.png" alt></p>
+<h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h5><p>如实例1，我们也可以用for循环遍历每一行，对全零dataframe赋值1，来得到每种情况的个数。但for循环遍历要比在pandas中遍历慢很多，这个表有几十万条数据，因此我们不推荐这种方法。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(data.shape[<span class="number">0</span>]):</span><br><span class="line">    zeros_data.loc[i,temp_list[i][<span class="number">0</span>]]=<span class="number">1</span></span><br><span class="line">print(zeros_data)</span><br></pre></td></tr></table></figure>
+
+<p>方法三</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=[i[<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> temp_list]</span><br><span class="line">data[<span class="string">'cate'</span>]=pd.DataFrame(np.array(a).reshape(data.shape[<span class="number">0</span>],<span class="number">1</span>))<span class="comment">#np.array()将列表list或元组tuple转换为 ndarray 数组</span></span><br><span class="line"><span class="comment">#在数据中添加一列cate，这一列是去掉原本title列中多余信息后的不同类型的紧急情况。然后再用groupby分组就可以得到。</span></span><br><span class="line">data.groupby(by=<span class="string">'cate'</span>).count()[<span class="string">'title'</span>]<span class="comment">#结果如下</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/10.png" alt></p>
+<h4 id="2-数据合并之join"><a href="#2-数据合并之join" class="headerlink" title="2.数据合并之join"></a>2.数据合并之join</h4><p>默认情况下会将行索引相同的数据合并到一起。</p>
+<p>print(a)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    E   F   G   H   I</span><br><span class="line">A   0   1   2   3   4</span><br><span class="line">B   5   6   7   8   9</span><br><span class="line">C  10  11  12  13  14</span><br><span class="line">D  15  16  17  18  19</span><br></pre></td></tr></table></figure>
+
+<p>print(b)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     0    1    2</span><br><span class="line">A  0.0  0.0  0.0</span><br><span class="line">B  0.0  0.0  0.0</span><br></pre></td></tr></table></figure>
+
+<p>a.join(b)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   E   F   G   H   I    0    1    2</span><br><span class="line">A   0   1   2   3   4  0.0  0.0  0.0</span><br><span class="line">B   5   6   7   8   9  0.0  0.0  0.0</span><br><span class="line">C  10  11  12  13  14  NaN  NaN  NaN</span><br><span class="line">D  15  16  17  18  19  NaN  NaN  NaN</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-数据合并之merge"><a href="#3-数据合并之merge" class="headerlink" title="3.数据合并之merge"></a>3.数据合并之merge</h4><p>pandas中的merge()函数类似于SQL中join的用法，可以将不同数据集依照某些字段（属性）进行合并操作，得到一个新的数据集。</p>
+<h5 id="1-用法"><a href="#1-用法" class="headerlink" title="1.用法"></a>1.用法</h5><p>DataFrame1.merge(DataFrame2, how=‘inner’, on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False, suffixes=(’_x’, ‘_y’))</p>
+<h5 id="2-参数说明"><a href="#2-参数说明" class="headerlink" title="2.参数说明"></a>2.参数说明</h5><p><img src="/2020/07/05/Pandas/D:%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5Cpandas%5C3.png" alt></p>
+<h5 id="3-代码展示"><a href="#3-代码展示" class="headerlink" title="3.代码展示"></a>3.代码展示</h5><p>print(a)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    E   F   G   H   I</span><br><span class="line">A   0   1   2   3   4</span><br><span class="line">B   5   6   7   8   9</span><br><span class="line">C  10  11  12  13  14</span><br><span class="line">D  15  16  17  18  19</span><br></pre></td></tr></table></figure>
+
+<p>print(c)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   E  Y</span><br><span class="line">A  0  1</span><br><span class="line">B  2  3</span><br></pre></td></tr></table></figure>
+
+<p>print(a.merge(c,on=’E’))#若未指定on,则默认以a和c列名的交集作为连接键。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   E  F  G  H  I  Y</span><br><span class="line">0  0  1  2  3  4  1</span><br></pre></td></tr></table></figure>
+
+<p>print(a.merge(c,on=’E’,how=’outer’))#全链接(Outer)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    E     F     G     H     I    Y</span><br><span class="line">0   0   1.0   2.0   3.0   4.0  1.0</span><br><span class="line">1   5   6.0   7.0   8.0   9.0  NaN</span><br><span class="line">2  10  11.0  12.0  13.0  14.0  NaN</span><br><span class="line">3  15  16.0  17.0  18.0  19.0  NaN</span><br><span class="line">4   2   NaN   NaN   NaN   NaN  3.0</span><br></pre></td></tr></table></figure>
+
+<p>print(a.merge(c,on=’E’,how=’left’))#左链接(left）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    E   F   G   H   I    Y</span><br><span class="line">0   0   1   2   3   4  1.0</span><br><span class="line">1   5   6   7   8   9  NaN</span><br><span class="line">2  10  11  12  13  14  NaN</span><br><span class="line">3  15  16  17  18  19  NaN</span><br></pre></td></tr></table></figure>
+
+<p>print(a.merge(c,on=’E’,how=’right’))#右链接(Right)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   E    F    G    H    I  Y</span><br><span class="line">0  0  1.0  2.0  3.0  4.0  1</span><br><span class="line">1  2  NaN  NaN  NaN  NaN  3</span><br></pre></td></tr></table></figure>
+
+<p>print(a.merge(c,left_on=’F’,right_on=’Y’)) #列名可以不同，但要有值相同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   E_x  F  G  H  I  E_y  Y</span><br><span class="line">0    0  1  2  3  4    0  1</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-数据分组之groupby"><a href="#4-数据分组之groupby" class="headerlink" title="4.数据分组之groupby"></a>4.数据分组之groupby</h4><p>t.groupby(by=’columns_name’) #得到的结果是一个DataFrameGroupBy对象</p>
+<p>DataFrameGroupBy对象有很多经过优化的方法</p>
+<img src="/2020/07/05/Pandas/4.jpg" style="zoom:50%;">
+
+
+
+<h5 id="实例1–按一个条件进行分组"><a href="#实例1–按一个条件进行分组" class="headerlink" title="实例1–按一个条件进行分组"></a>实例1–按一个条件进行分组</h5><p>统计星巴克在美国和中国的数量。数据来源<a href="https://www.kaggle.com/starbucks/store-locations/data" target="_blank" rel="noopener">https://www.kaggle.com/starbucks/store-locations/data</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data_path=<span class="string">'D:/csv file/directory.csv'</span></span><br><span class="line">data=pd.read_csv(data_path)</span><br><span class="line">print(data.head())</span><br><span class="line">print(data.info())</span><br><span class="line"><span class="comment">#方法1，直接用列索引进行筛选</span></span><br><span class="line">cn_length=len(data[data[<span class="string">'Country'</span>]==<span class="string">'CN'</span>])</span><br><span class="line">us_length=len(data[data[<span class="string">'Country'</span>]==<span class="string">'US'</span>])</span><br><span class="line">print(cn_length,us_length)</span><br><span class="line"><span class="comment">#输出如下：中国2734家，美国13608家</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">     Brand  Store Number        Store Name Ownership Type  \</span><br><span class="line">0  Starbucks  47370-257954     Meritxell, 96       Licensed   </span><br><span class="line">1  Starbucks  22331-212325  Ajman Drive Thru       Licensed   </span><br><span class="line">2  Starbucks  47089-256771         Dana Mall       Licensed   </span><br><span class="line">3  Starbucks  22126-218024        Twofour 54       Licensed   </span><br><span class="line">4  Starbucks  17127-178586      Al Ain Tower       Licensed   </span><br><span class="line"></span><br><span class="line">                    Street Address              City State&#x2F;Province Country  \</span><br><span class="line">0                Av. Meritxell, 96  Andorra la Vella              7      AD   </span><br><span class="line">1             1 Street 69, Al Jarf             Ajman             AJ      AE   </span><br><span class="line">2     Sheikh Khalifa Bin Zayed St.             Ajman             AJ      AE   </span><br><span class="line">3                  Al Salam Street         Abu Dhabi             AZ      AE   </span><br><span class="line">4  Khaldiya Area, Abu Dhabi Island         Abu Dhabi             AZ      AE   </span><br><span class="line"></span><br><span class="line">  Postcode Phone Number                 Timezone  Longitude  Latitude  </span><br><span class="line">0    AD500    376818720  GMT+1:00 Europe&#x2F;Andorra       1.53     42.51  </span><br><span class="line">1      NaN          NaN     GMT+04:00 Asia&#x2F;Dubai      55.47     25.42  </span><br><span class="line">2      NaN          NaN     GMT+04:00 Asia&#x2F;Dubai      55.47     25.39  </span><br><span class="line">3      NaN          NaN     GMT+04:00 Asia&#x2F;Dubai      54.38     24.48  </span><br><span class="line">4      NaN          NaN     GMT+04:00 Asia&#x2F;Dubai      54.54     24.51  </span><br><span class="line">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span><br><span class="line">RangeIndex: 25600 entries, 0 to 25599</span><br><span class="line">Data columns (total 13 columns):</span><br><span class="line"> #   Column          Non-Null Count  Dtype  </span><br><span class="line">---  ------          --------------  -----  </span><br><span class="line"> 0   Brand           25600 non-null  object </span><br><span class="line"> 1   Store Number    25600 non-null  object </span><br><span class="line"> 2   Store Name      25600 non-null  object </span><br><span class="line"> 3   Ownership Type  25600 non-null  object </span><br><span class="line"> 4   Street Address  25598 non-null  object </span><br><span class="line"> 5   City            25585 non-null  object </span><br><span class="line"> 6   State&#x2F;Province  25600 non-null  object </span><br><span class="line"> 7   Country         25600 non-null  object </span><br><span class="line"> 8   Postcode        24078 non-null  object </span><br><span class="line"> 9   Phone Number    18739 non-null  object </span><br><span class="line"> 10  Timezone        25600 non-null  object </span><br><span class="line"> 11  Longitude       25599 non-null  float64</span><br><span class="line"> 12  Latitude        25599 non-null  float64</span><br><span class="line">dtypes: float64(2), object(11)</span><br><span class="line">memory usage: 2.5+ MB</span><br><span class="line">None</span><br><span class="line">2734 13608</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#方法2，用groupby</span></span><br><span class="line"></span><br><span class="line">a=data.groupby(by=<span class="string">'Country'</span>) <span class="comment">#a是一个DataFrameGroupBy对象，可遍历，可调用聚合方法count.()。a中每一个元素是一个元组。</span></span><br><span class="line"></span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    print(i)</span><br><span class="line">    print(<span class="string">'*'</span>*<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出如下</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x000001D992724288&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">(&#39;AD&#39;,        Brand  Store Number     Store Name Ownership Type     Street Address  \</span><br><span class="line">0  Starbucks  47370-257954  Meritxell, 96       Licensed  Av. Meritxell, 96   </span><br><span class="line"></span><br><span class="line">               City State&#x2F;Province Country Postcode Phone Number  \</span><br><span class="line">0  Andorra la Vella              7      AD    AD500    376818720   </span><br><span class="line"></span><br><span class="line">                  Timezone  Longitude  Latitude  </span><br><span class="line">0  GMT+1:00 Europe&#x2F;Andorra       1.53     42.51  )</span><br><span class="line">****************************************************************************************************</span><br><span class="line">(&#39;AE&#39;,          Brand  Store Number                      Store Name Ownership Type  \</span><br><span class="line">1    Starbucks  22331-212325                Ajman Drive Thru       Licensed   </span><br><span class="line">2    Starbucks  47089-256771                       Dana Mall       Licensed   </span><br><span class="line">3    Starbucks  22126-218024                      Twofour 54       Licensed   </span><br><span class="line">4    Starbucks  17127-178586                    Al Ain Tower       Licensed   </span><br><span class="line">5    Starbucks  17688-182164        Dalma Mall, Ground Floor       Licensed   </span><br><span class="line">..         ...           ...                             ...            ...   </span><br><span class="line">140  Starbucks   34253-62541                  Bukhatir Tower       Licensed   </span><br><span class="line">141  Starbucks   1359-138434                  Qanat Al Qasba       Licensed   </span><br><span class="line">142  Starbucks   34259-54260                   Sahara Center       Licensed   </span><br><span class="line">143  Starbucks   34217-27108  American University of Sharjah       Licensed   </span><br><span class="line">144  Starbucks  22697-223524                  UAQ Drive Thru       Licensed   </span><br><span class="line"></span><br><span class="line">                         Street Address           City State&#x2F;Province Country  \</span><br><span class="line">1                  1 Street 69, Al Jarf          Ajman             AJ      AE   </span><br><span class="line">2          Sheikh Khalifa Bin Zayed St.          Ajman             AJ      AE   </span><br><span class="line">3                       Al Salam Street      Abu Dhabi             AZ      AE   </span><br><span class="line">4       Khaldiya Area, Abu Dhabi Island      Abu Dhabi             AZ      AE   </span><br><span class="line">5                  Dalma Mall, Mussafah      Abu Dhabi             AZ      AE   </span><br><span class="line">..                                  ...            ...            ...     ...   </span><br><span class="line">140            Sharjah Buheira Corniche        Sharjah             SH      AE   </span><br><span class="line">141                      Al Taawun Road        Sharjah             SH      AE   </span><br><span class="line">142                             Alnahda        Sharjah             SH      AE   </span><br><span class="line">143  Airport Road, Universities Complex        Sharjah             SH      AE   </span><br><span class="line">144                 King Faisal Highway  Umm Al Quwain             UQ      AE</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a.count())<span class="comment">#看看将a计数能得到什么结果，结果如下所示</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">         Brand  Store Number  Store Name  Ownership Type  Street Address  \</span><br><span class="line">Country                                                                    </span><br><span class="line">AD           1             1           1               1               1   </span><br><span class="line">AE         144           144         144             144             144   </span><br><span class="line">AR         108           108         108             108             108   </span><br><span class="line">AT          18            18          18              18              18   </span><br><span class="line">AU          22            22          22              22              22   </span><br><span class="line">...        ...           ...         ...             ...             ...   </span><br><span class="line">TT           3             3           3               3               3   </span><br><span class="line">TW         394           394         394             394             394   </span><br><span class="line">US       13608         13608       13608           13608           13608   </span><br><span class="line">VN          25            25          25              25              25   </span><br><span class="line">ZA           3             3           3               3               3   </span><br><span class="line"></span><br><span class="line">           City  State&#x2F;Province  Postcode  Phone Number  Timezone  Longitude  \</span><br><span class="line">Country                                                                       </span><br><span class="line">AD           1               1         1             1         1          1   </span><br><span class="line">AE         144             144        24            78       144        144   </span><br><span class="line">AR         108             108       100            29       108        108   </span><br><span class="line">AT          18              18        18            17        18         18   </span><br><span class="line">AU          22              22        22             0        22         22   </span><br><span class="line">...        ...             ...       ...           ...       ...        ...   </span><br><span class="line">TT           3               3         3             0         3          3   </span><br><span class="line">TW         394             394       365            39       394        394   </span><br><span class="line">US       13608           13608     13607         13122     13608      13608   </span><br><span class="line">VN          25              25        25            23        25         25   </span><br><span class="line">ZA           3               3         3             2         3          3   </span><br><span class="line"></span><br><span class="line">         Latitude  </span><br><span class="line">Country            </span><br><span class="line">AD              1  </span><br><span class="line">AE            144  </span><br><span class="line">AR            108  </span><br><span class="line">AT             18  </span><br><span class="line">AU             22  </span><br><span class="line">...           ...  </span><br><span class="line">TT              3  </span><br><span class="line">TW            394  </span><br><span class="line">US          13608  </span><br><span class="line">VN             25  </span><br><span class="line">ZA              3  </span><br><span class="line"></span><br><span class="line">[73 rows x 12 columns]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a[<span class="string">'Brand'</span>].count())<span class="comment">#Series类型,选择Brand是因为Brand列中数据没有缺失，计数它就相当于对每个国家（每个元组中）星巴克的个数进行计数。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Country</span><br><span class="line">AD        1</span><br><span class="line">AE      144</span><br><span class="line">AR      108</span><br><span class="line">AT       18</span><br><span class="line">AU       22</span><br><span class="line">      ...  </span><br><span class="line">TT        3</span><br><span class="line">TW      394</span><br><span class="line">US    13608</span><br><span class="line">VN       25</span><br><span class="line">ZA        3</span><br><span class="line">Name: Brand, Length: 73, dtype: int64</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="string">'Brand'</span>].count()[<span class="string">'CN'</span>]<span class="comment">#输出结果为2734，同理可以得到美国的。</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="实例2–按多条件进行分组"><a href="#实例2–按多条件进行分组" class="headerlink" title="实例2–按多条件进行分组"></a>实例2–按多条件进行分组</h5><p>以实例1为基础。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数据按照多个条件进行分组</span></span><br><span class="line">grouped=data[<span class="string">'Brand'</span>].groupby(by=[data[<span class="string">'Country'</span>],data[<span class="string">'State/Province'</span>]]).count()<span class="comment">#按国家和省进行分组并统计个数。注意data['Brand']是一个series类型，后面分组时不能写成by=['Country','State/Province']。</span></span><br><span class="line">print(grouped)<span class="comment">#grouped是series类型，左边两列都是索引。</span></span><br><span class="line"><span class="comment">#输出如下</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Country  State&#x2F;Province</span><br><span class="line">AD       7                  1</span><br><span class="line">AE       AJ                 2</span><br><span class="line">         AZ                48</span><br><span class="line">         DU                82</span><br><span class="line">         FU                 2</span><br><span class="line">                           ..</span><br><span class="line">US       WV                25</span><br><span class="line">         WY                23</span><br><span class="line">VN       HN                 6</span><br><span class="line">         SG                19</span><br><span class="line">ZA       GT                 3</span><br><span class="line">Name: Brand, Length: 545, dtype: int64</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grouped1=data.groupby(by=[<span class="string">'Country'</span>,<span class="string">'State/Province'</span>]).count()[<span class="string">'Brand'</span>]</span><br><span class="line">print(grouped1)</span><br><span class="line"><span class="comment">#输出如下，可以达到同样效果</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Country  State&#x2F;Province</span><br><span class="line">AD       7                  1</span><br><span class="line">AE       AJ                 2</span><br><span class="line">         AZ                48</span><br><span class="line">         DU                82</span><br><span class="line">         FU                 2</span><br><span class="line">                           ..</span><br><span class="line">US       WV                25</span><br><span class="line">         WY                23</span><br><span class="line">VN       HN                 6</span><br><span class="line">         SG                19</span><br><span class="line">ZA       GT                 3</span><br><span class="line">Name: Brand, Length: 545, dtype: int64</span><br></pre></td></tr></table></figure>
+
+<h3 id="DataFrame的索引与复合索引-set-index"><a href="#DataFrame的索引与复合索引-set-index" class="headerlink" title=".DataFrame的索引与复合索引 set_index()"></a>.DataFrame的索引与复合索引 set_index()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">a=pd.DataFrame(&#123;<span class="string">'a'</span>:range(<span class="number">7</span>),<span class="string">'b'</span>:range(<span class="number">7</span>,<span class="number">0</span>,<span class="number">-1</span>),<span class="string">'c'</span>:[<span class="string">'one'</span>,<span class="string">'one'</span>,<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'two'</span>,<span class="string">'two'</span>,<span class="string">'two'</span>],<span class="string">'d'</span>:list(<span class="string">'hjklmno'</span>)&#125;)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   a  b    c  d</span><br><span class="line">0  0  7  one  h</span><br><span class="line">1  1  6  one  j</span><br><span class="line">2  2  5  one  k</span><br><span class="line">3  3  4  two  l</span><br><span class="line">4  4  3  two  m</span><br><span class="line">5  5  2  two  n</span><br><span class="line">6  6  1  two  o</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改索引</span></span><br><span class="line">a.index=list(<span class="string">'ABCDEFG'</span>)</span><br><span class="line">print(a)</span><br><span class="line"><span class="comment">#重新设置index</span></span><br><span class="line">b=a.reindex([<span class="string">'A'</span>,<span class="string">'E'</span>,<span class="string">'a'</span>])</span><br><span class="line">print(b)<span class="comment">#若索引不存在则赋值nan</span></span><br><span class="line"><span class="comment">#把某一列作为索引</span></span><br><span class="line">c=a.set_index(<span class="string">'a'</span>,drop=<span class="literal">True</span>)<span class="comment">#把a列作为索引,当drop=True时a列只作为索引</span></span><br><span class="line">print(c)</span><br><span class="line"><span class="comment">#返回索引的唯一值</span></span><br><span class="line">print(a[<span class="string">'c'</span>].unique())</span><br><span class="line"><span class="comment">#设置复合索引</span></span><br><span class="line">d=a.set_index([<span class="string">'c'</span>,<span class="string">'a'</span>],drop=<span class="literal">False</span>)</span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">   a  b    c  d</span><br><span class="line">A  0  7  one  h</span><br><span class="line">B  1  6  one  j</span><br><span class="line">C  2  5  one  k</span><br><span class="line">D  3  4  two  l</span><br><span class="line">E  4  3  two  m</span><br><span class="line">F  5  2  two  n</span><br><span class="line">G  6  1  two  o</span><br><span class="line">     a    b    c    d</span><br><span class="line">A  0.0  7.0  one    h</span><br><span class="line">E  4.0  3.0  two    m</span><br><span class="line">a  NaN  NaN  NaN  NaN</span><br><span class="line">   b    c  d</span><br><span class="line">a           </span><br><span class="line">0  7  one  h</span><br><span class="line">1  6  one  j</span><br><span class="line">2  5  one  k</span><br><span class="line">3  4  two  l</span><br><span class="line">4  3  two  m</span><br><span class="line">5  2  two  n</span><br><span class="line">6  1  two  o</span><br><span class="line">[&#39;one&#39; &#39;two&#39;]</span><br><span class="line">       a  b    c  d</span><br><span class="line">c   a              </span><br><span class="line">one 0  0  7  one  h</span><br><span class="line">    1  1  6  one  j</span><br><span class="line">    2  2  5  one  k</span><br><span class="line">two 3  3  4  two  l</span><br><span class="line">    4  4  3  two  m</span><br><span class="line">    5  5  2  two  n</span><br><span class="line">    6  6  1  two  o</span><br></pre></td></tr></table></figure>
+
+<p>Out[3]:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MultiIndex([(&#39;one&#39;, 0),</span><br><span class="line">            (&#39;one&#39;, 1),</span><br><span class="line">            (&#39;one&#39;, 2),</span><br><span class="line">            (&#39;two&#39;, 3),</span><br><span class="line">            (&#39;two&#39;, 4),</span><br><span class="line">            (&#39;two&#39;, 5),</span><br><span class="line">            (&#39;two&#39;, 6)],</span><br><span class="line">           names&#x3D;[&#39;c&#39;, &#39;a&#39;])</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用复合索引取DataFrame中的值</span></span><br><span class="line">print(d[<span class="string">'a'</span>][<span class="string">'one'</span>][<span class="number">2</span>])<span class="comment">#取第a列第['one'][2]行的值</span></span><br><span class="line">print(d.swaplevel())<span class="comment">#交换两个行索引的位置,level相当于复合索引的里外层。</span></span><br><span class="line">d.loc[<span class="string">'one'</span>].loc[<span class="number">0</span>]<span class="comment">#若要直接用行索引取值，则要用loc来取。这里指取第one，0行的值。</span></span><br><span class="line">e=a.set_index([<span class="string">'c'</span>,<span class="string">'a'</span>])[<span class="string">'d'</span>]</span><br><span class="line">print(e[<span class="string">'one'</span>,<span class="number">2</span>],e[<span class="string">'one'</span>][<span class="number">2</span>])<span class="comment">#用复合索引取Series中的值,两种方式都可以</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">       a  b    c  d</span><br><span class="line">a c                </span><br><span class="line">0 one  0  7  one  h</span><br><span class="line">1 one  1  6  one  j</span><br><span class="line">2 one  2  5  one  k</span><br><span class="line">3 two  3  4  two  l</span><br><span class="line">4 two  4  3  two  m</span><br><span class="line">5 two  5  2  two  n</span><br><span class="line">6 two  6  1  two  o</span><br><span class="line">k k</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Pandas之时间序列"><a href="#4-Pandas之时间序列" class="headerlink" title="4.Pandas之时间序列"></a>4.Pandas之时间序列</h2><h3 id="生成时间范围pd-date-range"><a href="#生成时间范围pd-date-range" class="headerlink" title="生成时间范围pd.date_range()"></a>生成时间范围pd.date_range()</h3><p>pd.date_range(start=None,end=None,periods=None,freq=’D’)</p>
+<p>start 和end以及freq配合能够生成start和end范围内以频率为freq的一组时间索引。</p>
+<p>start和periods以及freq配合能够生成从start开始的以频率为freq的periods个时间索引。</p>
+<p>代码如下：</p>
+<img src="/2020/07/05/Pandas/11.png" style="zoom:150%;">
+
+
+
+<h3 id="freq参数的详细描述"><a href="#freq参数的详细描述" class="headerlink" title="freq参数的详细描述"></a>freq参数的详细描述</h3><p><img src="/2020/07/05/Pandas/5.png" alt></p>
+<h3 id="pd-to-datetime-转化格式"><a href="#pd-to-datetime-转化格式" class="headerlink" title="pd.to_datetime() 转化格式"></a>pd.to_datetime() 转化格式</h3><p>pd.to_datetime(t[‘b’],format=’’)可以把b这列的时间字符串转化为时间序列。format参数大部分情况不用写，但对于pandas无法格式化的时间字符串，可以使用此参数，如包含中文。</p>
+<h3 id="resample-重采样"><a href="#resample-重采样" class="headerlink" title="resample()重采样"></a>resample()重采样</h3><p>将时间序列从一个频率转化为另一个频率的过程。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t=pd.DataFrame(np.random.uniform(<span class="number">10</span>,<span class="number">50</span>,(<span class="number">100</span>,<span class="number">1</span>)),index=pd.date_range(start=<span class="string">'20170101'</span>,periods=<span class="number">100</span>,freq=<span class="string">'D'</span>))</span><br><span class="line">print(t)</span><br><span class="line">print(t.resample(<span class="string">'M'</span>).mean())<span class="comment">#resample将t中的时间频率改变了，之后对每个月的值求平均。注意resample的操作对象是为行索引的时间序列</span></span><br><span class="line">print(t.resample(<span class="string">'M'</span>).count())<span class="comment">#对每个月进行计数，</span></span><br><span class="line"><span class="comment">#输出如下</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/12.png" alt></p>
+<h3 id="实例1（用to-datetime解决实际问题）"><a href="#实例1（用to-datetime解决实际问题）" class="headerlink" title="实例1（用to_datetime解决实际问题）"></a>实例1（用to_datetime解决实际问题）</h3><p>统计911数据中不同月份电话次数的变化情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">data=pd.read_csv(data_path)<span class="comment">#在前文的实例2中可查看data</span></span><br><span class="line">data[<span class="string">'timeStamp'</span>]=pd.to_datetime(data[<span class="string">'timeStamp'</span>])<span class="comment">#将data中的timeStamp列转化为pandas时间序列的格式</span></span><br><span class="line">data.set_index(<span class="string">'timeStamp'</span>,inplace=<span class="literal">True</span>)<span class="comment">#将timeStamp列作为行索引，inplace=True即地生效。</span></span><br><span class="line">data.resample(<span class="string">'M'</span>).count()[<span class="string">'title'</span>]<span class="comment">#变为行索引后，就可以使用resample()得到我们想要的结果。</span></span><br><span class="line"><span class="comment">#输出如下，未截图完整</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2020/07/05/Pandas/D:%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5Cpandas%5C13.png" alt></p>
+<p>现在我们想统计911数据中不同月份不同类型的电话次数的变化情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data.groupby(by=<span class="string">'cate'</span>).resample(<span class="string">'M'</span>).count()[<span class="string">'cate'</span>]<span class="comment">#先按cate分组，再按每个月进行计数</span></span><br><span class="line"><span class="comment">#结果如下</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/D:%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5Cpandas%5C14.png" alt></p>
+<p>#现在我们再用loc[]取行索引就得到想要的结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">E=data.groupby(by=<span class="string">'cate'</span>).resample(<span class="string">'M'</span>).count()[<span class="string">'cate'</span>]</span><br><span class="line">E.loc[<span class="string">'EMS'</span>]<span class="comment">#得到EMS在每个月发生的次数，同理可得另外两个的</span></span><br><span class="line"><span class="comment">#结果如下，未截图完整</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/15.png" alt></p>
+<h3 id="PeriodIndex-时间段"><a href="#PeriodIndex-时间段" class="headerlink" title="PeriodIndex()时间段"></a>PeriodIndex()时间段</h3><p>periods = pd.PeriodIndex(year=data[“year”],month=data[“month”],day=data[“day”],hour=data[“hour”],freq=”H”)</p>
+<p>如果我们要处理的数据中年月日都是按列分开的（与上个例子不同），就要用PeriodIndex()将他们合并成一列转化为PeriodIndex类型，再用set_index()方法将它作为数据的列索引，然后可以用resample()对这个列索引进行处理了。</p>
+<h3 id="实例2（用PeriodIndex解决实际问题）"><a href="#实例2（用PeriodIndex解决实际问题）" class="headerlink" title="实例2（用PeriodIndex解决实际问题）"></a>实例2（用PeriodIndex解决实际问题）</h3><p>绘制出北京pm2.5随时间的变化情况。数据来源<a href="https://www.kaggle.com/uciml/pm25-data-for-five-chinese-cities" target="_blank" rel="noopener">https://www.kaggle.com/uciml/pm25-data-for-five-chinese-cities</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">file_path=<span class="string">'D:/csv file/BeijingPM20100101_20151231.csv'</span></span><br><span class="line">pd.read_csv(file_path</span><br><span class="line"></span><br><span class="line"><span class="comment">#数据显示如下</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/16.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df=pd.read_csv(file_path)</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">period=pd.PeriodIndex(year=df[<span class="string">'year'</span>],month=df[<span class="string">'month'</span>],day=df[<span class="string">'day'</span>],hour=df[<span class="string">'hour'</span>],freq=<span class="string">'H'</span>)<span class="comment">#把分开的时间字符串通过PeriodIndex的方法转化为pandas的时间类型。</span></span><br><span class="line">print(period)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/17.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'period'</span>]=period<span class="comment">#添加period列到df中</span></span><br><span class="line">df.set_index(<span class="string">'period'</span>,inplace=<span class="literal">True</span>) <span class="comment">#将period列作为行索引</span></span><br><span class="line">data=df.dropna(axis=<span class="number">0</span>,subset=[<span class="string">'PM_US Post'</span>])<span class="comment">#去掉PM_US Post列中的nan数据</span></span><br><span class="line">new_data=data.resample(<span class="string">'M'</span>).mean() <span class="comment">#数据太多，进行降采样</span></span><br><span class="line">_x=new_data[<span class="string">'PM_US Post'</span>].index</span><br><span class="line">_y=new_data[<span class="string">'PM_US Post'</span>].values</span><br><span class="line">plt.figure(figsize=(<span class="number">20</span>,<span class="number">8</span>),dpi=<span class="number">80</span>)</span><br><span class="line">plt.xticks(range(len(_x)),_x,rotation=<span class="number">45</span>)</span><br><span class="line">plt.plot(range(len(_x)),_y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Pandas/18.jpg" alt></p>
+<p>与以前直接将index和values作为x轴和y轴就画出图不同，这次在实际写代码中，我发现直接用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(_x,_y)</span><br></pre></td></tr></table></figure>
+
+<p>绘图会出现以下错误：</p>
+<p>TypeError: float() argument must be a string or a number, not ‘Period’</p>
+<p>上网查询没有得到结果，不知是否与index是时间序列有关。</p>
+<h4 id="小tips—strftime-）"><a href="#小tips—strftime-）" class="headerlink" title="小tips—strftime(）"></a>小tips—strftime(）</h4><p>有时我们希望横坐标只有年月日，而绘图后发现横坐标莫名的多出了时分秒，就可以用strftime() 函数接收以时间元组，并返回以可读字符串表示的当地时间，格式由()中的参数format决定。</p>
+<p>x=[i.strftime(‘%Y%m%d’) for i in x] # x一般就是作为列索引的时间序列.如上个实例中的_x。</p>
+<h2 id="5-显示所有行与列"><a href="#5-显示所有行与列" class="headerlink" title="5.显示所有行与列"></a>5.显示所有行与列</h2><p>#显示所有列<br>pd.set_option(‘display.max_columns’, None)<br>#显示所有行<br>pd.set_option(‘display.max_rows’, None)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/05/Pandas/" data-id="ckc97jc780004wsvt7ei54yu7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/05/Numpy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Numpy
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/05/Python%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E5%92%8C%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python网络爬虫和信息提取</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C/">Linux操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Matplotlib/">Matplotlib</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Mysql/">Mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Numpy/">Numpy</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Pandas/">Pandas</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

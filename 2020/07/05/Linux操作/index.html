@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Linux操作 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="快捷操作ls:查看当前目录下的文件和目录。 cd:使用 cd 命令可进入其他目录(如cd code  表示进入code目录) cd .. 可以回到上一级目录，类似 Windows 的「向上」。 cd - 表示回到上一次所在的目录，类似 Windows 的「后退」。 cd ~ 表示回到当前用户的主目录，类似 Windows 的「回到桌面」。 cd &#x2F; 表示进入根目录，它是一切目录的父目录 查看目录结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux操作">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/Linux%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="快捷操作ls:查看当前目录下的文件和目录。 cd:使用 cd 命令可进入其他目录(如cd code  表示进入code目录) cd .. 可以回到上一级目录，类似 Windows 的「向上」。 cd - 表示回到上一次所在的目录，类似 Windows 的「后退」。 cd ~ 表示回到当前用户的主目录，类似 Windows 的「回到桌面」。 cd &#x2F; 表示进入根目录，它是一切目录的父目录 查看目录结">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Linux%E6%93%8D%E4%BD%9C/1.png">
+<meta property="og:image" content="https://doc.shiyanlou.com/courses/uid8504-20190517-1558083409067">
+<meta property="article:published_time" content="2020-07-05T15:03:12.000Z">
+<meta property="article:modified_time" content="2020-07-05T15:04:32.010Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/05/Linux%E6%93%8D%E4%BD%9C/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time datetime="2020-07-05T15:03:12.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h3><p>ls:查看当前目录下的文件和目录。</p>
+<p>cd:使用 cd 命令可进入其他目录(如cd code  表示进入code目录)</p>
+<p><code>cd ..</code> 可以回到上一级目录，类似 Windows 的「向上」。</p>
+<p><code>cd -</code> 表示回到上一次所在的目录，类似 Windows 的「后退」。</p>
+<p><code>cd ~</code> 表示回到当前用户的主目录，类似 Windows 的「回到桌面」。</p>
+<p><code>cd /</code> 表示进入根目录，它是一切目录的父目录</p>
+<h3 id="查看目录结构：tree"><a href="#查看目录结构：tree" class="headerlink" title="查看目录结构：tree"></a>查看目录结构：tree</h3><p>使用 tree 命令，可以列出一个文件夹下的所有子文件夹和文件（以树形结构来进行列出）。按下 <code>ctrl + c</code> 键即可停止遍历。</p>
+<h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><p>使用 pwd 命令可以获取当前目录的绝对路径（指一个以根目录 / 为起点的完整路径）</p>
+<p><strong>提示：</strong>如果忘记了目录名、文件名或命令，可使用 Tab 键自动补全，还可避免输入错误；连续按两次 Tab 可以显示全部候选结果。</p>
+<h3 id="新建目录"><a href="#新建目录" class="headerlink" title="新建目录"></a>新建目录</h3><p>使用 <code>mkdir</code> 命令可创建目录，<code>mkdir mycode</code> 的意思就是新建一个名为 <code>mycode</code> 的目录。</p>
+<p>还可以在 <code>mkdir</code> 后加入 <code>-p</code> 参数，一次性创建多级目录，如：</p>
+<p><img src="/2020/07/05/Linux%E6%93%8D%E4%BD%9C/1.png" alt="img"></p>
+<h3 id="Linux-文件操作"><a href="#Linux-文件操作" class="headerlink" title="Linux 文件操作"></a>Linux 文件操作</h3><p>使用 <code>touch</code> 命令可以新建文件，比如我想在新建一个名为 “hello” 的文件，可输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ **touch hello**</span><br></pre></td></tr></table></figure>
+
+<p>（该命令不会覆盖已有同名文件）</p>
+<p>使用 <code>cp</code> 命令（Copy）复制文件到指定目录下，比如要把 <code>hello</code> 文件复制到 <code>one/two</code> 这个目录下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ **cp hello one&#x2F;two&#x2F;**</span><br></pre></td></tr></table></figure>
+
+<p>如果要复制目录，需要在 <code>cp</code> 后加上 <code>-r</code> ，然后接上 <code>目录名 目标目录名</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ mkdir test</span><br><span class="line">shiyanlou:~&#x2F; $ cp -r test one&#x2F;two </span><br><span class="line">shiyanlou:~&#x2F; $ tree one </span><br><span class="line">one</span><br><span class="line"> └── two</span><br><span class="line">      ├── hello</span><br><span class="line">      ├── test</span><br><span class="line">      └── three</span><br><span class="line"></span><br><span class="line">3 directories, 1 file</span><br></pre></td></tr></table></figure>
+
+
+
+<p>下面是 Linux 中对文件的常用操作，包含新建、复制、删除等。</p>
+<h4 id="新建空白文件"><a href="#新建空白文件" class="headerlink" title="新建空白文件"></a>新建空白文件</h4><p>使用 <code>touch</code> 命令可以新建文件，比如我想在新建一个名为 “hello” 的文件，可输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ touch hello</span><br></pre></td></tr></table></figure>
+
+<p>“hello” 文件就被创建出来了，用 <code>ls</code> 命令查看一下：</p>
+<p><img src="https://doc.shiyanlou.com/courses/uid8504-20190517-1558083409067" alt="图片描述"></p>
+<p>（该命令不会覆盖已有同名文件）</p>
+<h4 id="编辑文件"><a href="#编辑文件" class="headerlink" title="编辑文件"></a>编辑文件</h4><p>使用vim命令进该文件，点击insert可进行编辑。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ vim hello</span><br></pre></td></tr></table></figure>
+
+<p>编辑完成后按退出esc键，再输入 :wq  即可实现保存且退出。</p>
+<h4 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h4><p>使用 <code>cp</code> 命令（Copy）复制文件到指定目录下，比如要把 <code>hello</code> 文件复制到 <code>one/two</code> 这个目录下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ cp hello one&#x2F;two&#x2F;  </span><br><span class="line">shiyanlou:~&#x2F; $ tree one   </span><br><span class="line">one</span><br><span class="line"> └── two</span><br><span class="line">      ├── hello</span><br><span class="line">      └── three</span><br><span class="line"></span><br><span class="line">2 directories, 1 file</span><br><span class="line">shiyanlou:~&#x2F; $</span><br></pre></td></tr></table></figure>
+
+<p>如果要复制目录，需要在 <code>cp</code> 后加上 <code>-r</code> ，然后接上 <code>目录名 目标目录名</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ mkdir test</span><br><span class="line">shiyanlou:~&#x2F; $ cp -r test one&#x2F;two</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>使用 <code>rm</code> 命令删除文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ ls</span><br><span class="line">Code  Desktop  hello  one</span><br><span class="line">shiyanlou:~&#x2F; $ rm hello</span><br><span class="line">shiyanlou:~&#x2F; $ ls</span><br><span class="line">Code  Desktop  one</span><br></pre></td></tr></table></figure>
+
+<p>删除目录要加上 <code>-r</code> 选项，类似 <code>cp -r</code> 拷贝目录，会删除目录和目录下的所有内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ mkdir test</span><br><span class="line">shiyanlou:~&#x2F; $ ls</span><br><span class="line">Code  Desktop  one  test</span><br><span class="line">shiyanlou:~&#x2F; $ rm -r test</span><br><span class="line">shiyanlou:~&#x2F; $ ls</span><br><span class="line">Code  Desktop  one</span><br></pre></td></tr></table></figure>
+
+<h4 id="移动文件-目录与重命名"><a href="#移动文件-目录与重命名" class="headerlink" title="移动文件 / 目录与重命名"></a>移动文件 / 目录与重命名</h4><p>使用 <code>mv</code> 命令可以移动文件或目录。</p>
+<p>首先，我们进入到 <code>/home/shiyanlou</code> 目录，使用 <code>touch</code> 创建空文件 <code>test1</code>：</p>
+<p>然后，我们用mkdir创建一个新目录 <code>dir1</code></p>
+<p>使用 <code>mv</code> 命令 将 <code>test1</code> 移动到 <code>dir1</code> 目录，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:~&#x2F; $ mv test1 dir1</span><br><span class="line">shiyanlou:~&#x2F; $ cd dir1</span><br><span class="line">shiyanlou:dir1&#x2F; $ ls</span><br><span class="line">test1</span><br></pre></td></tr></table></figure>
+
+<p><code>mv</code> 命令还可以用来重命名，如 <code>mv test1 test2</code>， 会把 <code>test1</code> 重命名为 <code>test2</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:dir1&#x2F; $ ls</span><br><span class="line">test1</span><br><span class="line">shiyanlou:dir1&#x2F; $ mv test1 test2</span><br><span class="line">shiyanlou:dir1&#x2F; $ ls</span><br><span class="line">test2</span><br></pre></td></tr></table></figure>
+
+<h4 id="cat打印"><a href="#cat打印" class="headerlink" title="cat打印"></a>cat打印</h4><p>使用 <code>cat</code> 命令，可以将文件中的内容打印到屏幕上，使用方法是 <code>cat 文件路径</code>。</p>
+<p>现在还没有文件，我们先从其他地方复制过来一个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:dir1&#x2F; $ cp &#x2F;etc&#x2F;passwd passwd</span><br><span class="line">shiyanlou:dir1&#x2F; $ ls</span><br><span class="line">passwd  test2</span><br></pre></td></tr></table></figure>
+
+<p>这样就把 <code>passwd</code> 文件从 <code>/etc</code> 目录拷贝到了当前目录中，然后我们用 <code>cat passwd</code> 显示文件中的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:dir1&#x2F; $ cat passwd</span><br><span class="line">root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</span><br><span class="line">daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</span><br><span class="line">games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>cat -n</code> 可以带行号地打印文件内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">shiyanlou:dir1&#x2F; $ cat -n passwd</span><br><span class="line">     1    root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</span><br><span class="line">     2    daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">     3    bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">     4    sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">     5    sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</span><br><span class="line">     6    games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">     7    man:x:6:12:man:&#x2F;var&#x2F;cache&#x2F;man:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br></pre></td></tr></table></figure>
+
+<h4 id="帮助命令man"><a href="#帮助命令man" class="headerlink" title="帮助命令man"></a>帮助命令man</h4><p>在 Linux 环境中，如果你遇到困难，可以使用 <code>man</code> 命令，它是 <code>Manual pages</code> 的缩写。例如输入 <code>man cat</code> ，可以获取 cat 命令的详细的帮助文件。进入到 man 的页面后，按 <code>q</code> 可以退出 man。</p>
+<p>有些命令可以使用 <code>--help</code> 选项查看帮助文档。如输入man –help </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/05/Linux%E6%93%8D%E4%BD%9C/" data-id="ckc97jc6y0000wsvt0df99zpl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/05/Matplotlib/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Matplotlib</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C/">Linux操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Matplotlib/">Matplotlib</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Mysql/">Mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Numpy/">Numpy</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Pandas/">Pandas</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
