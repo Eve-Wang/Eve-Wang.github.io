@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Scrapy&amp;Re--动态爬虫实例 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于动态爬虫： 基本原理  实例一：爬取影评网站中的视频链接，视频名，以及图片https:&#x2F;&#x2F;www.1905.com&#x2F;mtalk&#x2F; 方法一：用request打开网站：     由于这是一个动态网页，我们不能直接爬它的网址。打开XHR，手动获取真正的URL。   在之后写代码请求访问时，要把query string parameters 以键值对形式添加到我们的params中     123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy&amp;Re--动态爬虫实例">
+<meta property="og:url" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于动态爬虫： 基本原理  实例一：爬取影评网站中的视频链接，视频名，以及图片https:&#x2F;&#x2F;www.1905.com&#x2F;mtalk&#x2F; 方法一：用request打开网站：     由于这是一个动态网页，我们不能直接爬它的网址。打开XHR，手动获取真正的URL。   在之后写代码请求访问时，要把query string parameters 以键值对形式添加到我们的params中     123456">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/9.png">
+<meta property="article:published_time" content="2020-07-06T15:58:47.000Z">
+<meta property="article:modified_time" content="2020-07-06T16:05:04.801Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="动态爬虫">
+<meta property="article:tag" content="Request">
+<meta property="article:tag" content="Scrapy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Scrapy-Re-动态爬虫实例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/" class="article-date">
+  <time datetime="2020-07-06T15:58:47.000Z" itemprop="datePublished">2020-07-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Scrapy&amp;Re--动态爬虫实例
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于动态爬虫：</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/1.png" style="zoom: 67%;">
+
+<h2 id="实例一：爬取影评网站中的视频链接，视频名，以及图片"><a href="#实例一：爬取影评网站中的视频链接，视频名，以及图片" class="headerlink" title="实例一：爬取影评网站中的视频链接，视频名，以及图片"></a>实例一：爬取影评网站中的视频链接，视频名，以及图片</h2><p><a href="https://www.1905.com/mtalk/" target="_blank" rel="noopener">https://www.1905.com/mtalk/</a></p>
+<h3 id="方法一：用request"><a href="#方法一：用request" class="headerlink" title="方法一：用request"></a>方法一：用request</h3><p>打开网站：</p>
+<img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/2.png" style="zoom: 33%;">
+
+
+
+<p>由于这是一个动态网页，我们不能直接爬它的网址。打开XHR，手动获取真正的URL。</p>
+<img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/3.png" style="zoom:33%;">
+
+<p>在之后写代码请求访问时，要把query string parameters 以键值对形式添加到我们的params中</p>
+<img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/4.png" style="zoom: 33%;">
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">()</span>:</span></span><br><span class="line">    url=<span class="string">'http://www.1905.com/api/content/index.php'</span> </span><br><span class="line">    header=&#123;<span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36'</span>&#125; <span class="comment">#这里头部不伪装成浏览器也可以访问</span></span><br><span class="line">    param=&#123;</span><br><span class="line"><span class="string">'callback'</span>: <span class="string">'reloadList'</span>,</span><br><span class="line"><span class="string">'m'</span>: <span class="string">'converged'</span>,</span><br><span class="line"><span class="string">'a'</span>: <span class="string">'info'</span>,</span><br><span class="line"><span class="string">'type'</span>: <span class="string">'jryp'</span>,</span><br><span class="line"><span class="string">'year'</span>: <span class="string">'2020'</span>,</span><br><span class="line"><span class="string">'month'</span>: <span class="string">'5'</span></span><br><span class="line">    &#125; <span class="comment">#从网站看到还有其他年份和月份的数据，我们可以直接修改param中的year和month。</span></span><br><span class="line">    r=requests.get(url,headers=header,params=param) </span><br><span class="line">    result=r.text</span><br><span class="line">find()</span><br></pre></td></tr></table></figure>
+
+<p>我们发现多了一些数据 reloadList({“month”:{“6”:6,”5”:5,”4”:4,”3”:3,”2”:2,”1”:1}，导致返回的代码不是json字符串形式。这样会导致后续json.loads()将json字符串格式转为dict格式时出错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reloadList(&#123;&quot;month&quot;:&#123;&quot;6&quot;:6,&quot;5&quot;:5,&quot;4&quot;:4,&quot;3&quot;:3,&quot;2&quot;:2,&quot;1&quot;:1&#125;,&quot;info&quot;:[&#123;&quot;contentid&quot;:&quot;1458732&quot;,&quot;title&quot;:&quot;\u4e00\u5468\u70ed\u70b9\uff1a\u89e3\u8bfb\u201c\u4e24\u4f1a\u201d\u4e2d\u7684\u7535\u5f71\u4e4b\u58f0&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image11.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0529\&#x2F;thumb_1_224_122_20200529043833417252.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1458732.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-29\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1458506&quot;,&quot;title&quot;:&quot;\u4e24\u4f1a\u7279\u522b\u7b56\u5212\u8282\u76ee\uff1a\u63a8\u4ecb\u65b0\u7247\u300a\u5343\u9877\u6f84\u78a7\u7684\u65f6\u4ee3\u300b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0529\&#x2F;thumb_1_224_122_20200529091151656904.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1458506.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-28\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1458290&quot;,&quot;title&quot;:&quot;\u4e24\u4f1a\u7279\u522b\u7b56\u5212\u8282\u76ee\uff1a\u63a8\u4ecb\u5f20\u827a\u8c0b\u65b0\u7247\u300a\u575a\u5982\u78d0\u77f3\u300b\u300a\u60ac\u5d16\u4e4b\u4e0a\u300b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0527\&#x2F;thumb_1_224_122_20200527040952900837.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1458290.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-27\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1458145&quot;,&quot;title&quot;:&quot;\u4e24\u4f1a\u7279\u522b\u7b56\u5212\u8282\u76ee\uff1a\u63a8\u4ecb\u65b0\u7247\u300a\u5c01\u795e\u4e09\u90e8\u66f2\u300b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image13.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0527\&#x2F;thumb_1_224_122_20200527091651592674.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1458145.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-26\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1457789&quot;,&quot;title&quot;:&quot;\u4e24\u4f1a\u7279\u522b\u7b56\u5212\u8282\u76ee\uff1a\u63a8\u4ecb\u65b0\u7247\u300a\u897f\u6e38\u8bb0\u771f\u5047\u7f8e\u7334\u738b\u300b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0526\&#x2F;thumb_1_224_122_20200526085953497978.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1457789.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-25\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1457465&quot;,&quot;title&quot;:&quot;\u4e24\u4f1a\u7279\u522b\u7b56\u5212\u8282\u76ee\uff1a\u63a8\u4ecb\u65b0\u7247\u300a\u718a\u51fa\u6ca1\u00b7\u72c2\u91ce\u5927\u9646\u300b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image13.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0522\&#x2F;thumb_1_224_122_20200522062257499752.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1457465.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-22\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1457310&quot;,&quot;title&quot;:&quot;\u4e24\u4f1a\u7279\u522b\u7b56\u5212\u8282\u76ee\uff1a\u63a8\u4ecb\u65b0\u7247\u300a\u6211\u548c\u6211\u7684\u5bb6\u4e61\u300b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0522\&#x2F;thumb_1_224_122_20200522090219537956.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1457310.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-21\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1457055&quot;,&quot;title&quot;:&quot;\u4e24\u4f1a\u7279\u522b\u7b56\u5212\u8282\u76ee\uff1a\u63a8\u4ecb\u65b0\u7247\u300a\u79c0\u7f8e\u4eba\u751f\u300b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0520\&#x2F;thumb_1_224_122_20200520041720924811.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1457055.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-20\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1456896&quot;,&quot;title&quot;:&quot;\u4e24\u4f1a\u7279\u522b\u7b56\u5212\u8282\u76ee\uff1a\u63a8\u4ecb\u65b0\u7247\u300a749\u5c40\u300b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image11.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0521\&#x2F;thumb_1_224_122_20200521011124342128.png&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1456896.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-19\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1456602&quot;,&quot;title&quot;:&quot;\u767e\u4ee3\u5149\u5f71\u5386\u4e45\u5f25\u65b0 \u4e16\u754c\u535a\u7269\u9986\u65e5 \u611f\u53d7\u4e2d\u56fd\u7535\u5f71\u535a\u7269\u9986\u7684\u9b45\u529b&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image11.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0519\&#x2F;thumb_1_224_122_20200519091623915695.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1456602.shtml&quot;,&quot;duration&quot;:&quot;0&quot;,&quot;airtime&quot;:&quot;2020-05-18\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1456178&quot;,&quot;title&quot;:&quot;\u89e3\u8bfb\u201c\u514d\u7a0e\u5229\u597d\u201d\u53cc\u653f\u7b56\uff1a\u80fd\u4e3a\u7535\u5f71\u884c\u4e1a\u7684\u53d1\u5c55\u5e26\u6765\u54ea\u4e9b\u652f\u6301\uff1f&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0515\&#x2F;thumb_1_224_122_20200515041954797088.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1456178.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-15\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1455841&quot;,&quot;title&quot;:&quot;\u6ee1\u5730\u7686\u662f\u80e1\u516b\u4e00\uff01\u300a\u9b3c\u5439\u706f\u300bIP\u77e9\u9635\u4e00\u56e2\u4e71 \u4f5c\u8005\u80cc\u9505\u51a4\u4e0d\u51a4\uff1f&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0514\&#x2F;thumb_1_224_122_20200514031301735539.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1455841.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-14\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1455806&quot;,&quot;title&quot;:&quot;\u300a\u5029\u5973\u5e7d\u9b42\uff1a\u4eba\u95f4\u60c5\u300b\u7206\u706b\u51fa\u5708 \u662f\u6361\u6f0f\u8fd8\u662f\u7f51\u5927\u7684\u65b0\u91cc\u7a0b\u7891\uff1f&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image13.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0514\&#x2F;thumb_1_224_122_20200514090500861713.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1455806.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-13\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1455661&quot;,&quot;title&quot;:&quot;\u4ece\u7d27\u6025\u62a2\u6551\u751f\u547d\u5230\u5904\u7406\u65e5\u5e38\u7410\u788e \u56fd\u9645\u62a4\u58eb\u8282 \u5411\u6700\u7f8e\u62a4\u58eb\u81f4\u656c&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0513\&#x2F;thumb_1_224_122_20200513090430196613.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1455661.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-12\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1455507&quot;,&quot;title&quot;:&quot;\u7cbe\u7b97\u5e08\u738b\u6676\u518d\u5bfc\u7ecf\u5178 \u300a\u501a\u5929\u5c60\u9f99\u8bb0\u300b\uff1a\u8425\u9500\u4ece\u9009\u89d2\u5f00\u59cb\uff1f&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image11.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0512\&#x2F;thumb_1_224_122_20200512094841916354.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1455507.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-11\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1454917&quot;,&quot;title&quot;:&quot;\u4e00\u5468\u70ed\u70b9\uff1a\u89e3\u8bfb\u5f71\u89c6\u884c\u4e1a\u8054\u5408\u5021\u8bae \u4e3a\u201c\u81ea\u6551\u201d\u5efa\u8a00\u732e\u7b56&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0508\&#x2F;thumb_1_224_122_20200508044743904659.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1454917.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-08\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1454487&quot;,&quot;title&quot;:&quot;\u300a\u4eca\u65e5\u5f71\u8bc4\u00b7\u81f4\u656c\u52b3\u52a8\u8005\u300b\u4e4b\u7e41\u8302\uff1a\u75ab\u60c5\u4e4b\u4e2d\u6709\u62c5\u5f53\u7684\u4f01\u4e1a\u5bb6\u4eec&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image11.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0506\&#x2F;thumb_1_224_122_20200506052833620891.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1454487.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-07\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1454002&quot;,&quot;title&quot;:&quot;\u300a\u4eca\u65e5\u5f71\u8bc4\u00b7\u81f4\u656c\u52b3\u52a8\u8005\u300b\u4e4b\u4f59\u9999\uff1a\u75ab\u60c5\u671f\u95f4\u575a\u5b88\u5c97\u4f4d\u7684\u6559\u5e08\u4eec&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image14.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0430\&#x2F;thumb_1_224_122_20200430101201175534.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1454002.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-06\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1454000&quot;,&quot;title&quot;:&quot;\u300a\u4eca\u65e5\u5f71\u8bc4\u00b7\u81f4\u656c\u52b3\u52a8\u8005\u300b\u4e4b\u77d7\u7acb\uff1a\u5411\u4e2d\u56fd\u519b\u4eba\u4e0e\u4eba\u6c11\u8b66\u5bdf\u81f4\u656c&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image11.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0430\&#x2F;thumb_1_224_122_20200430101135678150.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1454000.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-05\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1453999&quot;,&quot;title&quot;:&quot;\u300a\u4eca\u65e5\u5f71\u8bc4\u00b7\u81f4\u656c\u52b3\u52a8\u8005\u300b\u4e4b\u7480\u74a8\uff1a\u5e73\u51e1\u4e14\u4f1f\u5927\u7684\u533b\u62a4\u4eba\u5458\u4eec&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image13.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0430\&#x2F;thumb_1_224_122_20200430101103363111.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1453999.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-04\u671f&quot;&#125;,&#123;&quot;contentid&quot;:&quot;1453998&quot;,&quot;title&quot;:&quot;\u300a\u4eca\u65e5\u5f71\u8bc4\u00b7\u81f4\u656c\u52b3\u52a8\u8005\u300b\u4e4b\u751f\u5982\u590f\u82b1\uff1a\u4e3a\u65b0\u65f6\u671f\u7684\u52b3\u52a8\u8005\u4eec\u70b9\u8d5e&quot;,&quot;thumb&quot;:&quot;https:\&#x2F;\&#x2F;image11.m1905.cn\&#x2F;uploadfile\&#x2F;2020\&#x2F;0430\&#x2F;thumb_1_224_122_20200430101037817743.jpg&quot;,&quot;url&quot;:&quot;https:\&#x2F;\&#x2F;www.1905.com\&#x2F;video\&#x2F;play\&#x2F;1453998.shtml&quot;,&quot;duration&quot;:&quot;480&quot;,&quot;airtime&quot;:&quot;2020-05-01\u671f&quot;&#125;]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>从preview里可以看到info是我们想要的数据。</p>
+<img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/5.png" style="zoom:33%;">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用replace()将代码中最前面reloadList(和最后面的)剪掉</span></span><br><span class="line">result=result.replace(<span class="string">'reloadList('</span>,<span class="string">''</span>).replace(<span class="string">')'</span>,<span class="string">''</span>) </span><br><span class="line">    <span class="comment">#json.loads()将json字符串格式转为dict格式,json.dumps()则相反。</span></span><br><span class="line">    final=json.loads(result)</span><br><span class="line">    print(final) <span class="comment">#final就是我们最终的可以进行爬取的数据</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> final[<span class="string">'info'</span>]:</span><br><span class="line">        print(i[<span class="string">'url'</span>],i[<span class="string">'title'</span>],i[<span class="string">'thumb'</span>])</span><br><span class="line">        <span class="comment">#读取图片，使用content返回一个二进制数据</span></span><br><span class="line">        img=requests.get(i[<span class="string">'thumb'</span>]).content<span class="comment">#i['thumb']就是图片的链接</span></span><br><span class="line">        <span class="comment">#存储照片</span></span><br><span class="line">        <span class="keyword">with</span> open(<span class="string">'D:/photos/%s.jpg'</span>%i[<span class="string">'title'</span>],<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(img)</span><br><span class="line">        <span class="keyword">break</span> <span class="comment">#循环一次试试</span></span><br><span class="line">find()<span class="comment">#正常返回的数据不会有reloadList，只有后面的info</span></span><br></pre></td></tr></table></figure>
+
+<p>out:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#39;month&#39;: &#123;&#39;6&#39;: 6, &#39;5&#39;: 5, &#39;4&#39;: 4, &#39;3&#39;: 3, &#39;2&#39;: 2, &#39;1&#39;: 1&#125;, &#39;info&#39;: [&#123;&#39;contentid&#39;: &#39;1458732&#39;, &#39;title&#39;: &#39;一周热点：解读“两会”中的电影之声&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0529&#x2F;thumb_1_224_122_20200529043833417252.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1458732.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-29期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1458506&#39;, &#39;title&#39;: &#39;两会特别策划节目：推介新片《千顷澄碧的时代》&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0529&#x2F;thumb_1_224_122_20200529091151656904.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1458506.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-28期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1458290&#39;, &#39;title&#39;: &#39;两会特别策划节目：推介张艺谋新片《坚如磐石》《悬崖之上》&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0527&#x2F;thumb_1_224_122_20200527040952900837.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1458290.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-27期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1458145&#39;, &#39;title&#39;: &#39;两会特别策划节目：推介新片《封神三部曲》&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image13.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0527&#x2F;thumb_1_224_122_20200527091651592674.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1458145.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-26期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1457789&#39;, &#39;title&#39;: &#39;两会特别策划节目：推介新片《西游记真假美猴王》&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0526&#x2F;thumb_1_224_122_20200526085953497978.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1457789.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-25期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1457465&#39;, &#39;title&#39;: &#39;两会特别策划节目：推介新片《熊出没·狂野大陆》&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image13.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0522&#x2F;thumb_1_224_122_20200522062257499752.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1457465.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-22期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1457310&#39;, &#39;title&#39;: &#39;两会特别策划节目：推介新片《我和我的家乡》&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0522&#x2F;thumb_1_224_122_20200522090219537956.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1457310.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-21期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1457055&#39;, &#39;title&#39;: &#39;两会特别策划节目：推介新片《秀美人生》&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0520&#x2F;thumb_1_224_122_20200520041720924811.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1457055.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-20期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1456896&#39;, &#39;title&#39;: &#39;两会特别策划节目：推介新片《749局》&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0521&#x2F;thumb_1_224_122_20200521011124342128.png&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1456896.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-19期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1456602&#39;, &#39;title&#39;: &#39;百代光影历久弥新 世界博物馆日 感受中国电影博物馆的魅力&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0519&#x2F;thumb_1_224_122_20200519091623915695.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1456602.shtml&#39;, &#39;duration&#39;: &#39;0&#39;, &#39;airtime&#39;: &#39;2020-05-18期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1456178&#39;, &#39;title&#39;: &#39;解读“免税利好”双政策：能为电影行业的发展带来哪些支持？&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0515&#x2F;thumb_1_224_122_20200515041954797088.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1456178.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-15期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1455841&#39;, &#39;title&#39;: &#39;满地皆是胡八一！《鬼吹灯》IP矩阵一团乱 作者背锅冤不冤？&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0514&#x2F;thumb_1_224_122_20200514031301735539.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1455841.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-14期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1455806&#39;, &#39;title&#39;: &#39;《倩女幽魂：人间情》爆火出圈 是捡漏还是网大的新里程碑？&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image13.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0514&#x2F;thumb_1_224_122_20200514090500861713.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1455806.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-13期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1455661&#39;, &#39;title&#39;: &#39;从紧急抢救生命到处理日常琐碎 国际护士节 向最美护士致敬&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0513&#x2F;thumb_1_224_122_20200513090430196613.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1455661.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-12期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1455507&#39;, &#39;title&#39;: &#39;精算师王晶再导经典 《倚天屠龙记》：营销从选角开始？&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0512&#x2F;thumb_1_224_122_20200512094841916354.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1455507.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-11期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1454917&#39;, &#39;title&#39;: &#39;一周热点：解读影视行业联合倡议 为“自救”建言献策&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0508&#x2F;thumb_1_224_122_20200508044743904659.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1454917.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-08期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1454487&#39;, &#39;title&#39;: &#39;《今日影评·致敬劳动者》之繁茂：疫情之中有担当的企业家们&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0506&#x2F;thumb_1_224_122_20200506052833620891.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1454487.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-07期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1454002&#39;, &#39;title&#39;: &#39;《今日影评·致敬劳动者》之余香：疫情期间坚守岗位的教师们&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image14.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0430&#x2F;thumb_1_224_122_20200430101201175534.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1454002.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-06期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1454000&#39;, &#39;title&#39;: &#39;《今日影评·致敬劳动者》之矗立：向中国军人与人民警察致敬&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0430&#x2F;thumb_1_224_122_20200430101135678150.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1454000.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-05期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1453999&#39;, &#39;title&#39;: &#39;《今日影评·致敬劳动者》之璀璨：平凡且伟大的医护人员们&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image13.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0430&#x2F;thumb_1_224_122_20200430101103363111.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1453999.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-04期&#39;&#125;, &#123;&#39;contentid&#39;: &#39;1453998&#39;, &#39;title&#39;: &#39;《今日影评·致敬劳动者》之生如夏花：为新时期的劳动者们点赞&#39;, &#39;thumb&#39;: &#39;https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0430&#x2F;thumb_1_224_122_20200430101037817743.jpg&#39;, &#39;url&#39;: &#39;https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1453998.shtml&#39;, &#39;duration&#39;: &#39;480&#39;, &#39;airtime&#39;: &#39;2020-05-01期&#39;&#125;]&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.1905.com&#x2F;video&#x2F;play&#x2F;1458732.shtml 一周热点：解读“两会”中的电影之声 https:&#x2F;&#x2F;image11.m1905.cn&#x2F;uploadfile&#x2F;2020&#x2F;0529&#x2F;thumb_1_224_122_20200529043833417252.jpg</span><br></pre></td></tr></table></figure>
+
+
+
+<p>图片已经保存到我们的指定目录下，成功！</p>
+<p><img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/6.png" alt></p>
+<p>当然我们可以循环遍历出所有年份月份的数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">()</span>:</span></span><br><span class="line">    param=&#123;</span><br><span class="line"><span class="string">'callback'</span>: <span class="string">'reloadList'</span>,</span><br><span class="line"><span class="string">'m'</span>: <span class="string">'converged'</span>,</span><br><span class="line"><span class="string">'a'</span>: <span class="string">'info'</span>,</span><br><span class="line"><span class="string">'type'</span>: <span class="string">'jryp'</span></span><br><span class="line">&#125; <span class="comment">#从网站看到还有其他年份和月份的数据，我们可以直接修改param中的year和month</span></span><br><span class="line">    url=<span class="string">'http://www.1905.com/api/content/index.php'</span></span><br><span class="line">    header=&#123;<span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36'</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2016</span>,<span class="number">2021</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">13</span>):</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                param[<span class="string">'year'</span>]=str(i)</span><br><span class="line">                param[<span class="string">'month'</span>]=str(j)</span><br><span class="line">                r=requests.get(url,headers=header,params=param) <span class="comment">#头部不伪装成浏览器也可以访问</span></span><br><span class="line">                result=r.text</span><br><span class="line">                a=result.replace(<span class="string">'reloadList('</span>,<span class="string">''</span>).replace(<span class="string">')'</span>,<span class="string">''</span>)</span><br><span class="line">                <span class="comment">#json.loads()将json字符串格式转为dict格式,json.dumps()则相反。</span></span><br><span class="line">                final=json.loads(a)</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> final[<span class="string">'info'</span>]:</span><br><span class="line">                    print(k[<span class="string">'url'</span>],k[<span class="string">'title'</span>],k[<span class="string">'thumb'</span>])</span><br><span class="line">             <span class="keyword">except</span>:</span><br><span class="line">                 print(<span class="string">'non'</span>)</span><br><span class="line">find()<span class="comment">#正常返回的数据不会有reloadList，只有后面的info</span></span><br></pre></td></tr></table></figure>
+
+<p>out：</p>
+<p><img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/10.png" alt></p>
+<p>出现了个问题，网站上2016年前几个月是没有数据的，但结果输出了这年12月份的数据。2020年的后几个月没有数据，但也输出了这年1月的数据。我猜测是由于他们的后台设置。解决方法可以把2016和2020单独遍历。但我觉得还有更好的办法。（比如在代码中把年份和月份取出来进行遍历）</p>
+<pre><code>except:
+     print(&apos;non&apos;)</code></pre><p>find()#正常返回的数据不会有reloadList，只有后面的info</p>
+<h3 id="方法二：用scrapy"><a href="#方法二：用scrapy" class="headerlink" title="方法二：用scrapy"></a>方法二：用scrapy</h3><p>如何创建爬虫我们前面已经说过，现在不再累述。直接打开我们创建的爬虫文件movietalk.py</p>
+<p>完整代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MovietalkSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'movietalk'</span></span><br><span class="line"><span class="comment">#    allowed_domains = ['1905.com']</span></span><br><span class="line">    start_urls = [<span class="string">'https://www.1905.com/api/content/index.php?callback=reloadList&amp;m=converged&amp;a=info&amp;type=jryp&amp;year=2020&amp;month=5'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="comment"># 用replace()将代码中最前面reloadList(和最后面的)剪掉</span></span><br><span class="line">        result = response.text.replace(<span class="string">'reloadList('</span>, <span class="string">''</span>).replace(<span class="string">')'</span>, <span class="string">''</span>)</span><br><span class="line">        <span class="comment"># json.loads()将json字符串格式转为dict格式,json.dumps()则相反。</span></span><br><span class="line">        final = json.loads(result)</span><br><span class="line">        print(final)  <span class="comment"># final就是我们最终的可以进行爬取的数据</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> final[<span class="string">'info'</span>]:</span><br><span class="line">            items=&#123;<span class="string">'url'</span>:i[<span class="string">'url'</span>],<span class="string">'title'</span>:i[<span class="string">'title'</span>],<span class="string">'thumb'</span>:i[<span class="string">'thumb'</span>]&#125; <span class="comment">#保存到一个csv文件</span></span><br><span class="line">            <span class="keyword">yield</span> items</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>这里要注意的是，由于我们不是用request库去请求访问，因此不能请求访问时把参数放到params中。由于我们知道设置params的效果就相当于直接在url后面添加上这些参数。</p>
+<p>因此我们直接将下图中整个url（包括？后面的）复制下来。</p>
+<p><img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/3.png" alt></p>
+<p>还要注意的是，其中的title是中文，如果直接保存成csv文件会乱码。我们打开settings.py文件，加入一句代码即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORT_ENCODING &#x3D; &#39;gb18030&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/7.png" alt></p>
+<p>如果要保存为json或txt格式，则加这行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FEED_EXPORT_ENCODING &#x3D;&#39;utf-8&#39;</span><br></pre></td></tr></table></figure>
+
+<p>查看是否保存成功：</p>
+<p><img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/8.png" alt></p>
+<p><img src="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/9.png" alt></p>
+<p>成功！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/" data-id="ckcap612h000ai8vt6olc81zr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Request/" rel="tag">Request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">动态爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">机器学习之监督学习算法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%BA%93/">数据分析库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%AF%87/">机器学习基础篇</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numpy/" rel="tag">Numpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Re/" rel="tag">Re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Request/" rel="tag">Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bs4/" rel="tag">bs4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">动态爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">无监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">静态爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Matplotlib/" style="font-size: 10px;">Matplotlib</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/Pandas/" style="font-size: 10px;">Pandas</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Request/" style="font-size: 10px;">Request</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/bs4/" style="font-size: 10px;">bs4</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">动态爬虫</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">无监督学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 13.33px;">机器学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">监督学习</a> <a href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">静态爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/">Scrapy&amp;Re--动态爬虫实例</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习之监督学习算法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux操作学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Matplotlib学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Mysql学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

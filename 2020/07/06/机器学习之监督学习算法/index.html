@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>机器学习之监督学习算法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文是一个关于常用的监督学习算法的学习笔记，以及与其相关的一些知识点。 在监督学习中，我们已经被告知了什么是所谓的正确答案。即下面例子中的良性和恶性。 回归问题（预测连续的数值输出）例子：房屋价格预测  线性回归算法也就是根据已有的样本拟合一条直线，用线性方程（一次函数）表示（称为假设函数）。如何拟合（设置参数）这个假设函数是重点。方程中的参数称为模型参数。   m represents Numb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之监督学习算法">
+<meta property="og:url" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文是一个关于常用的监督学习算法的学习笔记，以及与其相关的一些知识点。 在监督学习中，我们已经被告知了什么是所谓的正确答案。即下面例子中的良性和恶性。 回归问题（预测连续的数值输出）例子：房屋价格预测  线性回归算法也就是根据已有的样本拟合一条直线，用线性方程（一次函数）表示（称为假设函数）。如何拟合（设置参数）这个假设函数是重点。方程中的参数称为模型参数。   m represents Numb">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/15.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/16.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/17.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/18.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/19.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/20.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/21.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/22.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/23.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/24.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/25.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/26.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/27.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/28.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/29.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/30.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/31.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/32.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/33.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/34.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/35.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/40.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/36.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/37.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/38.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/39.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/41.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/42.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/43.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/45.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/46.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/47.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/48.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/49.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/52.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/51.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/50.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/53.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/55.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/57.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/58.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/59.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/60.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/61.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/62.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/63.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/64.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/65.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/66.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/56.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/68.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/69.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/70.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/71.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/72.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/73.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/74.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/75.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/76.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/77.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/80.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/81.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/78.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/82.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/79.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/83.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/84.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/85.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/86.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/87.png">
+<meta property="article:published_time" content="2020-07-06T15:05:38.000Z">
+<meta property="article:modified_time" content="2020-07-06T15:49:38.738Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="监督学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-机器学习之监督学习算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2020-07-06T15:05:38.000Z" itemprop="datePublished">2020-07-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%AF%87/">机器学习基础篇</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      机器学习之监督学习算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是一个关于常用的监督学习算法的学习笔记，以及与其相关的一些知识点。</p>
+<p>在监督学习中，我们已经被告知了什么是所谓的正确答案。即下面例子中的良性和恶性。</p>
+<h3 id="回归问题（预测连续的数值输出）"><a href="#回归问题（预测连续的数值输出）" class="headerlink" title="回归问题（预测连续的数值输出）"></a>回归问题（预测连续的数值输出）</h3><p>例子：房屋价格预测</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/1.png" alt></p>
+<h4 id="线性回归算法"><a href="#线性回归算法" class="headerlink" title="线性回归算法"></a>线性回归算法</h4><p>也就是根据已有的样本拟合一条直线，用线性方程（一次函数）表示（称为假设函数）。如何拟合（设置参数）这个假设函数是重点。方程中的参数称为模型参数。</p>
+<img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/5.png">
+
+<p>m represents Number of training examples</p>
+<p>x represents input variable/features</p>
+<p>y represents output variable/‘target’ variable</p>
+<p>代价函数（总是一个凹形函数）</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/6.png" alt></p>
+<p>我们通过改变这两个参数，让代价函数取到最小值，此时的假设函数能最好拟合实际情况。</p>
+<h5 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h5><p>我们用梯度下降算法将代价函数最小化，公式为：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/7.png" alt></p>
+<p>a称为学习速率。用来控制当梯度下降时，我们迈出多大的步子。a越大，梯度下降就越迅速。 化简上式得：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/8.png" alt></p>
+<h4 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h4><p>实际情况当我们的参数很多时（比如在预测房价时，参数不只有面积，还有房屋年龄，卧室数量，地理位置…我们就要进行多元线性回归，这部分会用到线性代数的知识）</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/9.png" alt></p>
+<p>Tips 1</p>
+<p>将x均值归一化（特征收敛），使这些x都处于某个较小的范围，这样后面当我们用梯度下降算法时就可以更快的找到那个最佳点。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/10.png" alt></p>
+<p>Tips 2</p>
+<p>如何选择学习率a</p>
+<p>a过小会导致迭代次数过多</p>
+<p>a过大会导致代价函数不收敛，甚至发散。</p>
+<p>a取0.001，0.003，0.01，0.03，0.1，0.3，1，3…十倍的取，去看代价函数的值随迭代次数变化的情况（当我们判断代价函数此时收敛时，迭代次数越少，说明此时选择的a就越适合）找到合适的a。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/11.png" alt></p>
+<p>上图当迭代次数为300左右时，代价函数就已经很好的收敛了。</p>
+<h5 id="用正规方程求参数（不同于梯度下降算法）"><a href="#用正规方程求参数（不同于梯度下降算法）" class="headerlink" title="用正规方程求参数（不同于梯度下降算法）"></a>用正规方程求参数（不同于梯度下降算法）</h5><p>这种方法不需要进行tips 1 .</p>
+<p>例子：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/14.png" alt></p>
+<p>当X的转置*X不可逆时，我们就不能算出参数。通常出现这种情况是由于以下两个原因：</p>
+<p>1.两个成倍数的特征值（删掉其中一个）</p>
+<p>2.特征值太多，数量多于样本数（删掉一些）</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/15.png" alt></p>
+<p>对比</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/13.png" alt></p>
+<h4 id="多项式回归"><a href="#多项式回归" class="headerlink" title="多项式回归"></a>多项式回归</h4><p>有时我们的假设函数为二次函数或多次函数才能很好拟合：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/12.png" alt></p>
+<h3 id="分类问题（预测一个离散的数值输出）"><a href="#分类问题（预测一个离散的数值输出）" class="headerlink" title="分类问题（预测一个离散的数值输出）"></a>分类问题（预测一个离散的数值输出）</h3><p>例子：预测肿瘤是良性还是恶性</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2.png" alt></p>
+<p>当有多个特征值（age，size）时：</p>
+<p>（o代表良性，x代表恶性）</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/3.png" alt></p>
+<p>实际上机器学习甚至可以设计一种算法处理无穷多个特征值的算法。</p>
+<h4 id="logistic回归（一种分类算法）"><a href="#logistic回归（一种分类算法）" class="headerlink" title="logistic回归（一种分类算法）"></a>logistic回归（一种分类算法）</h4><p>算法的输出值会一直介于0到1之间</p>
+<p>如下图</p>
+<p>Sigmoid/Logistic 函数：g(z)</p>
+<p>在logistic回归中假设函数的表示方法：</p>
+<p>假设函数也可看作输入以θ为参数的x时，假设输出y=1的概率。</p>
+<p>当g(z)大于等于0.5（z大于等于0）时，假设函数预测为1。</p>
+<p>当g(z)小于0.5（z小于0）时，假设函数预测为0。</p>
+<p>z其实就是我们之前回归问题中的假设函数。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/16.png" alt></p>
+<p>假如现在我们已经拟合出了参数θ1  θ2   …</p>
+<p>下图中的那条粉色线被称为决策边界，粉线右边输出为1，左边为0；它是假设函数的一个属性。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/17.png" alt></p>
+<p>如果我们的数据集是这样的：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/18.png" alt></p>
+<p>我们可以在假设函数中添加高阶多项式。假如现在我们已经拟合出了参数θ1  θ2   …，可以看到现在的决策边界是一个圆。这说明决策边界可以是更复杂的曲线，取决于我们假设函数。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/19.png" alt></p>
+<p>如何拟合参数θ</p>
+<p>先介绍一下代价函数。在logistic回归中，如果只有一个训练样本，我们的代价函数是这样的：</p>
+<p>当y=1时，如下图，假如假设函数算出来的值也是1，则把1代到代价函数-log(1)中，此时代价为0。若假设函数趋于0，则代价为无穷大。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/20.png" alt></p>
+<p>代价函数图象的推导：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/21.png" alt></p>
+<p>红线部分 自变量x(这里就是我们的代价函数)范围0到1，y再取负值则沿x轴翻转，就得到代价函数的图像。</p>
+<p>当y=0时，如下图</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/22.png" alt></p>
+<p>我们把单个样本代价函数用一个式子表示:</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/23.png" alt></p>
+<p>现在，当有多个样本时，我们真正的代价函数可以表示为：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/24.png" alt></p>
+<p>与之前一样，用梯度下降算法，我们不断改变θ（改变θ要同时改变θ1，θ2…)，找到代价函数的最小值，这时的θ就是最佳的。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/7.png" alt></p>
+<p>可以看到求出来的更新θj的式子与线性回归中的一样！</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/25.png" alt></p>
+<p>同样的，我们也可以把特征缩放的方法用在这里，让梯度下降收敛更快。</p>
+<h4 id="多类别问题"><a href="#多类别问题" class="headerlink" title="多类别问题"></a>多类别问题</h4><p>如果有多种类别，例如三种时，如下图所示：</p>
+<p>这时我们的解决方法是把最初的训练集分成三种情况，求出这三个训练集各自的假设函数。我们给出一个新的x值，代到这三个假设函数中，得到的值（概率）最大的那个就是我们应该选择的类别。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/26.png" alt></p>
+<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>过拟合是指我们的假设函数能够很好的拟合现有的数据集，但我们用了太多的特征（x）去拟合它，当有新的样本时并不能推测出一个合适的输出值。在回归问题和分类问题中都有可能会出现。如下图所示，右一就是过拟合的情况</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/27.png" alt></p>
+<h4 id="解决方法（对于线性回归问题）："><a href="#解决方法（对于线性回归问题）：" class="headerlink" title="解决方法（对于线性回归问题）："></a>解决方法（对于线性回归问题）：</h4><ol>
+<li><p>减少特征数量（人工剔除或用算法自动剔除）</p>
+</li>
+<li><p>正则化：保留所有的特征，但把其中一些参数θj的值减小，让一些特征值的作用变小。</p>
+<h5 id="将正则化用于梯度下降算法中"><a href="#将正则化用于梯度下降算法中" class="headerlink" title="将正则化用于梯度下降算法中"></a>将正则化用于梯度下降算法中</h5><p>右边的那项为正则化项 ，λ为正则化参数。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/28.png" alt></p>
+</li>
+</ol>
+<p>对于θ0，按我们前面的说法是一个常数，因为x0我们默认为1。没有必要进行正则化。</p>
+<p>对于其他的θj，每次变化的表达式依然是求偏导，只不过现在多了一项。整理式子后我们发现θj的表达式中，（1-a*λ/m）是略小于1的，因为一般m很大。这说明在添加正则项后，每次θ都会再变小一点点。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/29.png" alt></p>
+<h5 id="将正则化用于正规方程中："><a href="#将正则化用于正规方程中：" class="headerlink" title="将正则化用于正规方程中："></a>将正则化用于正规方程中：</h5><p>θ新的表达式如下：（这里不再具体推导多的那一项是怎么来的，矩阵为(n+1)行*(n+1)列）</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/30.png" alt></p>
+<p>如果λ&gt;0，我们可以确保括号里的那一项是可逆的。</p>
+<h4 id="解决方法（对于逻辑回归问题）："><a href="#解决方法（对于逻辑回归问题）：" class="headerlink" title="解决方法（对于逻辑回归问题）："></a>解决方法（对于逻辑回归问题）：</h4><p>与在线性回归问题中处理梯度下降算法的过拟合类似</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/31.png" alt></p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/32.png" alt></p>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>当特征值很多时，前面学的算法会难以处理，因为计算量过大。此时我们会用神经网络模型。</p>
+<p>神经网络模型会模拟人类大脑处理信息的方式，一个神经元接收一些信息（多个输入）并进行处理后，将输出传递给下一个神经元。输出用一个假设函数表示。假设函数中的参数在一些文献中也叫做weights权重。</p>
+<p>下图中x0称为偏执单元，视情况决定是否添加。橙圈为一个神经元。<img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/33.png" alt></p>
+<p>神经网络：</p>
+<p>第一层叫输入层（input layer），第二层叫隐藏层（hidden layer，可以有多层，隐藏层每一项称为单元，它们的输出称为激活项），第三层叫输出层（output layer）。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/34.png" alt></p>
+<p>前向传播</p>
+<p>下图中g(z)就是sigmoid函数。权重矩阵为三行四列。一般来说，如果一个网络第j层有sj个单元，在j+1层有s(j+1)个单元，则θj的维度为s(j+1)行sj+1列。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/35.png" alt></p>
+<h4 id="例1（非线性分类）"><a href="#例1（非线性分类）" class="headerlink" title="例1（非线性分类）"></a>例1（非线性分类）</h4><p>如果我们想要得到这样一个假设函数（实现非线性分类问题），当两个输入相同时，分为一类，当两个输入不同时，分为另一类。如下图所示</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/40.png" alt></p>
+<p>首先先用神经网络算法实现与操作</p>
+<p>如果有三个特征值（x0默认为1），设参数为-30，20，20。x1和x2取值范围为0或1，假设函数就是g(-30+20X1+20X2)，现在进行检验，输入四种组合，我们的假设函数都能得到正确的结果。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/36.png" alt></p>
+<p>或操作：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/37.png" alt></p>
+<p>非操作：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/38.png" alt></p>
+<p>将前面几种操作组合起来，就得到我们想要的实现。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/39.png" alt></p>
+<h4 id="例2（多元分类）"><a href="#例2（多元分类）" class="headerlink" title="例2（多元分类）"></a>例2（多元分类）</h4><p>我们想要判断一张图片是行人，汽车，摩托还是货车。理想情况下，我们希望假设函数输出四种结果，每种结果分别对应行人，汽车…如下图</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/41.png" alt></p>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>根据训练集，从第一层到最后一层去构造每层假设方程的参数。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/42.png" alt></p>
+<h5 id="表示代价函数"><a href="#表示代价函数" class="headerlink" title="表示代价函数"></a>表示代价函数</h5><p>我们用的是逻辑回归的代价函数的一般形式（输出有多种可能时）。</p>
+<p>如下图所示。K个输出单元（可以看作假设函数的输出是一个k维向量），这里有四个；h(x)i指输出向量中的第几个；m个样本；L层，这里有四层；Sl表示第l层有S个单元。正则项可以理解为第l层中，第j个单元第i个参数θji的平方（一列一列的把参数依次加起来）。从前文可知，在第l层，θ参数可以看作一个矩阵，由i和j来标识。这里我们依然不加入偏差项(i=0项)</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/43.png" alt></p>
+<h5 id="用反向传播算法求代价函数的偏导项"><a href="#用反向传播算法求代价函数的偏导项" class="headerlink" title="用反向传播算法求代价函数的偏导项"></a>用反向传播算法求代价函数的偏导项</h5><p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/45.png" alt></p>
+<p>现在先来看看只有一个样本集的情况，a表示激活值（一个向量）：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/46.png" alt></p>
+<p>我们先表示一个激活值（不考虑第一层，每个激活值都是最开始的输入通过一或多次的g(z)函数得出来的输出）的代价（误差），<img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/47.png" alt>代表第l层第j个节点的误差。</p>
+<p>从最后一层反向将前一层的代价（最后一层为假设的输出值与样本y值之差）表示出来。所有的代价相加就等于代价函数对θ求偏导的值。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/48.png" alt></p>
+<p>当有m个样本集时：</p>
+<p>用循环把每个样本的误差加一起。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/49.png" alt></p>
+<p>注意！对于反向传播，我们用随机取值的方法将参数初始化。如下图：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/52.png" alt></p>
+<p>反向传播算法的缺点：</p>
+<p>容易出现一些无法被程序识别的小bug，即使我们观察到代价函数是逐渐减小的，但最终的结果可能会比正确的结果高出一个量级。</p>
+<p>解决办法：</p>
+<h5 id="梯度检验"><a href="#梯度检验" class="headerlink" title="梯度检验"></a>梯度检验</h5><p>当θ为一个实数时，让对θ的导数近似等于对θ的双侧差分</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/51.png" alt></p>
+<p>当θ为一个n维向量时，让对每个θ的偏导等于它们各自的双侧差分<img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/50.png" alt></p>
+<p>之后我们验证通过梯度检验算出的代价函数的偏导是否近似等于反向传播算出来的偏导。如果很接近则说明反向传播是正确运行的，在正式运行代码时要关掉梯度检验，因为它梯度检验的运行速度很慢。</p>
+<h5 id="神经网络模型总述"><a href="#神经网络模型总述" class="headerlink" title="神经网络模型总述"></a>神经网络模型总述</h5><p>1.选择一个合适的神经网络结构</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/53.png" alt></p>
+<p>2.将参数初始化。</p>
+<p>3.用前向传播获得假设函数。</p>
+<p>4.通过代码计算代价函数。</p>
+<p>5.用反向传播算法计算各个参数的偏导</p>
+<p>6.用梯度检验确定反向传播算法没问题后，关闭梯度检验（如下图）</p>
+<p>7.知道偏导后就可以用梯度下降算法或其他高级算法更新θ，逐渐找到代价函数的局部最小值。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/55.png" alt></p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><h4 id="选择多项式（选择模型）"><a href="#选择多项式（选择模型）" class="headerlink" title="选择多项式（选择模型）"></a>选择多项式（选择模型）</h4><p>将样本集分为训练集，(交叉)验证集和测试集（比例为3:1:1）：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/57.png" alt></p>
+<p>三个集合各自的代价函数的表示：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/58.png" alt></p>
+<p>如下图所示，假如有10个待选模型。我们先用验证集的数据确定参数，再算出这10个代价函数的值（比较大小），选择哪个假设函数是最优的，假如第五个模型是最优的。以这个最优模型的参数为参考，去人工调整训练集模型的参数。</p>
+<p>在不断调整训练集的模型的过程中，我们用测试集（相当于新样本）去测试模型的泛化误差。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/59.png" alt></p>
+<h4 id="如何判断偏差欠拟合与方差过拟合"><a href="#如何判断偏差欠拟合与方差过拟合" class="headerlink" title="如何判断偏差欠拟合与方差过拟合"></a>如何判断偏差欠拟合与方差过拟合</h4><p>当偏差过大时为欠拟合，当方差过大时为过拟合。</p>
+<p>一开始，训练误差与验证误差一开始都很大，此时为欠拟合。随着假设函数多项式次数的增加，训练误差变得很小，而验证误差远远大于训练误差，此时为过拟合。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/60.png" alt></p>
+<h4 id="正则化与欠拟合、过拟合的关系"><a href="#正则化与欠拟合、过拟合的关系" class="headerlink" title="正则化与欠拟合、过拟合的关系"></a>正则化与欠拟合、过拟合的关系</h4><p>λ越大，对参数的惩罚程度越大，欠拟合程度越高。</p>
+<p>λ越小，对参数的惩罚程度越小，过拟合程度越高。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/61.png" alt></p>
+<p>如何选择正则化参数λ：</p>
+<p>尝试一组λ，找出其中使验证误差最小的λ。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/62.png" alt></p>
+<p>随λ的变化，训练误差与验证误差的变化如下：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/63.png" alt></p>
+<h4 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h4><p>判断模型是否存在偏差或方差问题</p>
+<p>m就找训练集中的大概10个20个就可以了。</p>
+<p>正常情况下，我们假设模型是一个二次函数（这个训练集比较符合二次函数的特征）：</p>
+<p>随着训练样本的增加，训练误差会越来越大。（样本少时能很好拟合，但样本多时二次函数可能就已经不足以拟合了）</p>
+<p>而验证误差会越来越小，因为随着样本的增大，能获得更好的泛化表现。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/64.png" alt></p>
+<p>高偏差时的学习曲线：</p>
+<p>如果我们用一个一次函数作为假设函数：</p>
+<p>随着训练样本的增加，训练误差会不断增大直到趋近一个稳定值。因为我们知道一次函数并不能很好的拟合这些样本，即使样本量越来越大。而验证误差会从一个很高的值逐渐减小直到趋近一个稳定值。最终两种误差值会比较接近。<img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/65.png" alt></p>
+<p>高方差时的学习曲线：</p>
+<p>当我们用一个高阶函数作为（模型）假设函数时：</p>
+<p>随着样本量不断的增大，模型会变得越来越好。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/66.png" alt></p>
+<p>因此如果出现过拟合问题，增大训练样本数量对改进算法是有帮助的。</p>
+<h4 id="如何修正算法"><a href="#如何修正算法" class="headerlink" title="如何修正算法"></a>如何修正算法</h4><p>在了解过拟合和欠拟合之后。当得到一个线性回归模型但它的误差很大时，我们可以从以下方面去修正这个模型（修正欠拟合或过过拟合）：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/56.png" alt></p>
+<h4 id="对于神经网络的欠拟合和过拟合"><a href="#对于神经网络的欠拟合和过拟合" class="headerlink" title="对于神经网络的欠拟合和过拟合"></a>对于神经网络的欠拟合和过拟合</h4><p>通常隐藏层越多，每层单元越多（计算量也就越大），就意味着参数越多，更容易出现过拟合。我们可以根据之前所说的将样本集划分为训练集，验证集，测试集来找最适合的那个模型结构。</p>
+<h3 id="机器学习系统设计"><a href="#机器学习系统设计" class="headerlink" title="机器学习系统设计"></a>机器学习系统设计</h3><h4 id="执行的优先级"><a href="#执行的优先级" class="headerlink" title="执行的优先级"></a>执行的优先级</h4><p>例子：垃圾邮件分类器</p>
+<p>如何让这个分类器错误率更小（随机选择以下的方法，因为不能确定哪一个效果更好）：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/68.png" alt></p>
+<p>一开始时，先用一个尽量简单粗暴的模型去实现，之后再根据学习曲线去调整这个模型。同时，对于那些经常被错误分类的邮件，我们看看这些邮件内容它们有没有什么共同特征（误差分析），看是否还需要添加新的特征。</p>
+<p>在决定要不要使用词干提取器（如Porter Stemmer，会将discount，discounts，discounting…看成一个）时，我们可以用交叉验证集的数据验证在使用它前后误差率的变化。</p>
+<h4 id="不对称性分类的误差评估（度量率-召回率）"><a href="#不对称性分类的误差评估（度量率-召回率）" class="headerlink" title="不对称性分类的误差评估（度量率/召回率）"></a>不对称性分类的误差评估（度量率/召回率）</h4><p>例如我们想要设计一个模型判断是否是癌症，由于我们知道患病率本来就是很低的，所以对于那些验证集样本，我们不能接受一个相对高的误差率。（比如误差率是1%，而验证集样本的患病率是0.5%，说明这个模型不好。因为即使我们把所有样本都当成未患病的，误差率也只有0.5%。）</p>
+<p>对于这种偏斜类，我们可以用度量率或召回率（越高越好）来度量误差</p>
+<p>度量率：在验证集中，对于我们预测的那些患有癌症的病人，真正有多少个患有癌症的比率。</p>
+<p>召回率：在验证集中，对于那些患有癌症的病人，我们预测正确的比率。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/69.png" alt></p>
+<p>度量率和召回率的权衡</p>
+<p>假如我们将假设函数的临界值设为0.7。假设值&gt;=0.7时预测为1，此时的度量率高，而召回率低。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/70.png" alt></p>
+<p>用F1 Score值（0-1之间，越大越好）来度量：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/71.png" alt></p>
+<h3 id="支持向量机（SVM）-大间距分类器"><a href="#支持向量机（SVM）-大间距分类器" class="headerlink" title="支持向量机（SVM）/大间距分类器"></a>支持向量机（SVM）/大间距分类器</h3><h4 id="推导代价函数"><a href="#推导代价函数" class="headerlink" title="推导代价函数"></a>推导代价函数</h4><p>在逻辑函数中，一个样本的代价函数表示为</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/72.png" alt></p>
+<p>（图左）当y=1时，代价函数替换为品红色线，用cost1(z)表示。</p>
+<p>（图右）当y=0时，代价函数替换为品红色线，用cost0(z)表示。</p>
+<p>用上面的两项代替逻辑回归代价函数函数表达式的那两项，去掉1/m（习惯），不再用λ参数而是C去权衡代价项和正则项的权重，就得到支持向量机的代价函数：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/73.png" alt></p>
+<h4 id="假设函数"><a href="#假设函数" class="headerlink" title="假设函数"></a>假设函数</h4><p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/74.png" alt></p>
+<h4 id="分析代价函数"><a href="#分析代价函数" class="headerlink" title="分析代价函数"></a>分析代价函数</h4><p>现在我们要使代价函数最小，根据图形可知</p>
+<p>如果y=1时，z&gt;=1代价函数就最小（我们知道根据假设函数z&gt;=0时就能够正确分类）。（通常参数C会选取的很大）</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/75.png" alt></p>
+<p>SVM决策边界：</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/76.png" alt></p>
+<p>举例</p>
+<p>黑色线就是向量机的决策边界（黑色线到正/负样本的距离称为间距，它比起其他线间距是最大的），相比其他的决策边界，它的鲁棒性更强，适用性也更好。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/77.png" alt></p>
+<h4 id="高斯核函数exp"><a href="#高斯核函数exp" class="headerlink" title="高斯核函数exp()"></a>高斯核函数exp()</h4><p>用于在向量机中定义新的特征变量，获得更加复杂精确的决策边界。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/80.png" alt></p>
+<p>假如我们用特征值x1，x2构造三个新特征f1，f2，f3。手动选择三个标记点。这里的exp()就是核函数，确切来说是高斯核函数。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/81.png" alt></p>
+<p>σ的作用：</p>
+<p>如果标记点在[3,5]，当x为[3,5]时，f1位于最高点</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/78.png" alt></p>
+<p>每个标记点l对应一个f</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/82.png" alt></p>
+<p>来看看核函数是怎么预测输出的：</p>
+<p>这里假设x是二维（两个特征值x1，x2）</p>
+<p>三个特征变量f1，f2，f3，假如现在我们有三个标记点，且已经知道参数的值（下图所示）。与之前一样，当假设函数&gt;=0时，预测输出值为1。</p>
+<p>现在如果有一个样本（x1,x2），靠近l1（品红色部分），那么根据核函数定义假设函数的值&gt;=0，预测输出为1。如果一个样本靠近三个标记点的任意一个，它都会被预测为1。通过这种方式我们就可以得到一条橘红的非线性的决策边界，内部预测为1，外部预测为0。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/79.png" alt></p>
+<p>如何选取标记点l</p>
+<p>将标记点直接选取为样本的位置</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/83.png" alt></p>
+<p>（对于特征值x1，x2…，如果x1是房屋面积(例如1000平米)，x2是卧室的数量，它们的值差异很大，我们需要把x1缩放，以免||x-l||^2都由房屋面积决定，让SVM能考虑到所有特征变量f。）</p>
+<p>f作为新的特征向量</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/84.png" alt></p>
+<p>引入核函数之后的向量机的代价函数：</p>
+<p>需要注意的是，在实际操作中，如果参数特别多时，我们计算θ^2(等同于[θ]^T[θ])时，会改为计算[θ]^TM[θ]，M为一个矩阵，与标记点有关。这样是为了简化计算。</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/85.png" alt></p>
+<p>参数大小的选择</p>
+<p><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/86.png" alt></p>
+<h4 id="线性核函数"><a href="#线性核函数" class="headerlink" title="线性核函数"></a>线性核函数</h4><p>线性核函数为K(x,z)=xTz。</p>
+<h4 id="向量机vs逻辑回归vs神经网络"><a href="#向量机vs逻辑回归vs神经网络" class="headerlink" title="向量机vs逻辑回归vs神经网络"></a>向量机vs逻辑回归vs神经网络</h4><h2 id><a href="#" class="headerlink" title></a><img src="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/87.png" alt></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/" data-id="ckcap612t000pi8vt3dvm4xnv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">监督学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Scrapy&amp;Re--动态爬虫实例
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux操作学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%BA%93/">数据分析库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%AF%87/">机器学习基础篇</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numpy/" rel="tag">Numpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Re/" rel="tag">Re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Request/" rel="tag">Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bs4/" rel="tag">bs4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">动态爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">无监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">静态爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Matplotlib/" style="font-size: 10px;">Matplotlib</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/Pandas/" style="font-size: 10px;">Pandas</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Request/" style="font-size: 10px;">Request</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/bs4/" style="font-size: 10px;">bs4</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">动态爬虫</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">无监督学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 13.33px;">机器学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">监督学习</a> <a href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">静态爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/">Scrapy&amp;Re--动态爬虫实例</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习之监督学习算法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux操作学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Matplotlib学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Mysql学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

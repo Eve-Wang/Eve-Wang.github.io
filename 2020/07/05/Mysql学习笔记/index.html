@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Mysql学习笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="结构化查询语言(Structured Query Language)简称 SQL.  SQL 是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统，同时也是数据库脚本文件的扩展名。 MySQL 是一个 DBMS（数据库管理系统）. MySQL 是最流行的关系型数据库管理系统（关系数据库，是建立在关系数据库模型基础上的数据库，借助于集合代数等概念和方法来处理数据库中的数据）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="结构化查询语言(Structured Query Language)简称 SQL.  SQL 是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统，同时也是数据库脚本文件的扩展名。 MySQL 是一个 DBMS（数据库管理系统）. MySQL 是最流行的关系型数据库管理系统（关系数据库，是建立在关系数据库模型基础上的数据库，借助于集合代数等概念和方法来处理数据库中的数据）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/6.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/7.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/15.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/16.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/17.png">
+<meta property="article:published_time" content="2020-07-05T14:57:45.000Z">
+<meta property="article:modified_time" content="2020-07-06T15:31:22.469Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Mysql学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-07-05T14:57:45.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mysql学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>结构化查询语言(<code>Structured Query Language</code>)简称 SQL. </p>
+<p>SQL 是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统，同时也是数据库脚本文件的扩展名。</p>
+<p>MySQL 是一个 DBMS（数据库管理系统）.</p>
+<p>MySQL 是最流行的关系型数据库管理系统（关系数据库，是建立在关系数据库模型基础上的数据库，借助于集合代数等概念和方法来处理数据库中的数据）。</p>
+<p>MySQL 使用 SQL 语言进行操作。</p>
+<h1 id="在Linux中启动MySQL"><a href="#在Linux中启动MySQL" class="headerlink" title="在Linux中启动MySQL"></a>在Linux中启动MySQL</h1><h3 id="启动MySQL"><a href="#启动MySQL" class="headerlink" title="启动MySQL"></a>启动MySQL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 启动 MySQL 服务</span><br><span class="line">sudo service mysql start             </span><br><span class="line"></span><br><span class="line"># 使用 root 用户登录，这里环境的密码为空，直接回车就可以登录</span><br><span class="line">mysql -u root</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a><strong>查看数据库</strong></h3><p>使用命令 <code>show databases;</code>，查看有哪些数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| hive               |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">5 rows in set (0.02 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a><strong>连接数据库</strong></h3><p>选择连接其中一个数据库，语句格式为 <code>use &lt;数据库名&gt;</code>，这里可以不用加分号，这里我们选择 <code>information_schema</code> 数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use information_schema</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看表"><a href="#查看表" class="headerlink" title="查看表"></a>查看表</h3><p>使用命令 <code>show tables;</code> 查看此数据库中有哪些表（<strong>注意不要漏掉“;”</strong>）</p>
+<h3 id="查看表内容"><a href="#查看表内容" class="headerlink" title="查看表内容"></a>查看表内容</h3><p> <code>SELECT * FROM 表名;</code></p>
+<h3 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h3><p>使用命令 <code>quit</code> 或者 <code>exit</code> 退出 MySQL。</p>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><p>drop database 数据库名;</p>
+<h3 id="新建数据库"><a href="#新建数据库" class="headerlink" title="新建数据库"></a>新建数据库</h3><p>我们创建一个数据库，给它一个名字，比如 <code>mysql_shiyan</code>，以后的几次实验也是对 <code>mysql_shiyan</code> 这个数据库进行操作。 语句格式为 <code>CREATE DATABASE &lt;数据库名字&gt;;</code>，（注意不要漏掉分号 <code>;</code>），前面的 CREATE DATABASE 也可以使用小写，具体命令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE DATABASE mysql_shiyan;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>SQL语句不分大小写。但是出于严谨，而且便于区分保留字（<strong><em>保留字(reserved word)：指在高级语言中已经定义过的字，使用者不能再将这些字作为变量名或过程名使用。\</em></strong>）和变量名，我们把保留字大写，把变量和数据小写。</p>
+<p>建立此数据库后进入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; USE mysql_shiyan;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="建立表格"><a href="#建立表格" class="headerlink" title="建立表格"></a>建立表格</h4><p>在数据库中新建一张表的语句格式为：</p>
+<p>CREATE TABLE 表的名字 </p>
+<p>( </p>
+<p>列名a 数据类型(数据长度), </p>
+<p>列名b 数据类型(数据长度)， </p>
+<p>列名c 数据类型(数据长度) </p>
+<p>);</p>
+<p>我们尝试在 <code>mysql_shiyan</code> 中新建一张表 <code>employee</code>，包含姓名，ID 和电话信息，所以语句为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE employee (id int(10),name char(20),phone int(12));</span><br></pre></td></tr></table></figure>
+
+<p>然后再创建一张表 <code>department</code>，包含名称和电话信息</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>MySQL 的数据类型和其他编程语言大同小异。</p>
+<p>整数除了 INT 外，还有 TINYINT、SMALLINT、MEDIUMINT、BIGINT。</p>
+<p><strong>CHAR 和 VARCHAR 的区别:</strong> CHAR 的长度是固定的，而 VARCHAR 的长度是可以变化的，比如，存储字符串 “abc”，对于 CHAR(10)，表示存储的字符将占 10 个字节(包括 7 个空字符)，而同样的 VARCHAR(12) 则只占用4个字节的长度，<code>增加一个额外字节来存储字符串本身的长度</code>，12 只是最大值，当你存储的字符小于 12 时，按实际长度存储。</p>
+<p><strong>ENUM和SET的区别:</strong> ENUM 类型的数据的值，必须是定义时枚举的值的其中之一，即单选，而 SET 类型的值则可以多选。</p>
+<h4 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4><p>刚才我们新建了两张表，使用语句 <code>SELECT * FROM employee;</code> 查看表中的内容，可以看到 employee 表中现在还是空的。</p>
+<p>我们通过 INSERT 语句向表中插入数据，语句格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表的名字(列名a,列名b,列名c) VALUES(值1,值2,值3);</span><br></pre></td></tr></table></figure>
+
+<p>我们尝试向 employee 中加入 Tom、Jack 和 Rose：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO employee(id,name,phone) VALUES(01,&#39;TOM&#39;,110110110);</span><br><span class="line">INSERT INTO employee Values(02,&#39;Jack&#39;,119119119);</span><br><span class="line">INSERT INTO employee(id,name) VALUES(03,&#39;Rose&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>现在我们再次使用语句 <code>SELECT * FROM employee;</code> 查看 employee 表，可见 Tom 和 Jack 的相关数据已经保存在其中了：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png" alt></p>
+<h2 id="SQL的约束"><a href="#SQL的约束" class="headerlink" title="SQL的约束"></a>SQL的约束</h2><h3 id="主键-PRIMARY-KEY"><a href="#主键-PRIMARY-KEY" class="headerlink" title="主键 (PRIMARY KEY)"></a>主键 (PRIMARY KEY)</h3><p>主键 (PRIMARY KEY)是用于约束表中的一行，作为这一行的唯一标识符，在一张表中通过主键就能准确定位到一行，因此主键十分重要，主键不能有重复记录且不能为空。</p>
+<p>PRIMARY KEY(a) </p>
+<p>还有一种特殊的主键——复合主键。主键不仅可以是表中的一列，也可以由表中的两列或多列来共同标识，</p>
+<p>PRIMARY KEY(a，b) </p>
+<h3 id="默认值约束-DEFAULT"><a href="#默认值约束-DEFAULT" class="headerlink" title="默认值约束 (DEFAULT)"></a>默认值约束 (DEFAULT)</h3><p>默认值约束 (DEFAULT)规定，当有 DEFAULT 约束的列，插入数据为空时，将使用默认值。</p>
+<p>默认值常用于一些可有可无的字段，比如用户的个性签名，如果用户没有设置，系统给他应该设定一个默认的文本，比如空文本或 ‘这个人太懒了，没有留下任何信息’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">people_num INT(10) DEFAULT 10,</span><br></pre></td></tr></table></figure>
+
+<h3 id="唯一约束-UNIQUE"><a href="#唯一约束-UNIQUE" class="headerlink" title="唯一约束 (UNIQUE)"></a>唯一约束 (UNIQUE)</h3><p>唯一约束 (UNIQUE) 比较简单，它规定一张表中指定的一列的值必须不能有重复值，即这一列每个值都是唯一的。</p>
+<p>UNIQUE(a)</p>
+<h3 id="外键-FOREIGN-KEY"><a href="#外键-FOREIGN-KEY" class="headerlink" title="外键 (FOREIGN KEY)"></a>外键 (FOREIGN KEY)</h3><p>外键 (FOREIGN KEY) 既能确保数据完整性，也能表现表之间的关系。</p>
+<p>比如，现在有用户表和文章表，给文章表中添加一个指向用户 id 的外键，表示这篇文章所属的用户 id，外键将确保这个外键指向的记录是存在的，如果你尝试删除一个用户，而这个用户还有文章存在于数据库中，那么操作将无法完成并报错。因为你删除了该用户过后，他发布的文章都没有所属用户了，而这样的情况是不被允许的。同理，你在创建一篇文章的时候也不能为它指定一个不存在的用户 id。</p>
+<p>一个表可以有多个外键，每个外键必须 REFERENCES (参考) 另一个表的主键，被外键约束的列，取值必须在它参考的列中有对应值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FOREIGN KEY(sid) REFERENCES student(sid)</span><br></pre></td></tr></table></figure>
+
+<h3 id="非空约束-NOT-NULL"><a href="#非空约束-NOT-NULL" class="headerlink" title="非空约束 (NOT NULL)"></a>非空约束 (NOT NULL)</h3><p>非空约束 (NOT NULL),听名字就能理解，被非空约束的列，在插入值时必须非空。</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.png" alt></p>
+<h2 id="SELECT语句详解"><a href="#SELECT语句详解" class="headerlink" title="SELECT语句详解"></a>SELECT语句详解</h2><h3 id="3-1-基本的SELECT语句"><a href="#3-1-基本的SELECT语句" class="headerlink" title="3.1 基本的SELECT语句"></a>3.1 基本的SELECT语句</h3><p>SELECT 语句的基本格式为：</p>
+<p>SELECT 要查询的列名 FROM 表名字 WHERE 限制条件;</p>
+<p>如果要查询表的所有内容，则把 <strong>要查询的列名</strong> 用一个星号 <code>*</code> 号表示，代表要查询表中所有的列。 而大多数情况，我们只需要查看某个表的指定的列，比如要查看 employee 表的 name 和 age：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,age FROM employee;</span><br></pre></td></tr></table></figure>
+
+<p>选择age列并去重：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT age FROM employee;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-2-数学符号条件"><a href="#3-2-数学符号条件" class="headerlink" title="3.2 数学符号条件"></a>3.2 数学符号条件</h3><p>SELECT 语句常常会有 WHERE 限制条件，用于达到更加精确的查询。WHERE限制条件可以有数学符号 (<code>=,&lt;,&gt;,&gt;=,&lt;=</code>) ，刚才我们查询了 name 和 age，现在稍作修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,age FROM employee WHERE age&gt;25;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-“AND”与“OR”"><a href="#3-3-“AND”与“OR”" class="headerlink" title="3.3 “AND”与“OR”"></a>3.3 “AND”与“OR”</h3><p>从这两个单词就能够理解它们的作用。WHERE 后面可以有不止一条限制，而根据条件之间的逻辑关系，可以用 [<code>条件一 OR 条件二]</code>] 和 [<code>条件一 AND 条件二</code>] 连接：</p>
+<p>例如，筛选出 age 小于 25，或 age 大于 30</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,age FROM employee WHERE age&lt;25 OR age&gt;30;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要包含25和30这两个数字的话，可以替换为 <strong>age BETWEEN 25 AND 30</strong> </p>
+<h3 id="3-4-IN-和-NOT-IN"><a href="#3-4-IN-和-NOT-IN" class="headerlink" title="3.4 IN 和 NOT IN"></a>3.4 IN 和 NOT IN</h3><p>关键词 <strong>IN</strong> 和 <strong>NOT IN</strong> 的作用和它们的名字一样明显，用于筛选<strong>“在”</strong>或<strong>“不在”</strong>某个范围内的结果（作用于字符格式的列），比如说我们要查询在 <strong>dpt3</strong> 或 <strong>dpt4</strong> 的人:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,age,phone,in_dpt FROM employee WHERE in_dpt IN (&#39;dpt3&#39;,&#39;dpt4&#39;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.png" alt></p>
+<h3 id="3-5-通配符"><a href="#3-5-通配符" class="headerlink" title="3.5 通配符"></a>3.5 通配符</h3><p>关键字 <strong>LIKE</strong> 可用于实现模糊查询，常见于搜索功能中。</p>
+<p>和 LIKE 联用的通常还有通配符，代表未知字符。SQL中的通配符是 <code>_</code> 和 <code>%</code> 。其中 <code>_</code> 代表一个未指定字符，<code>%</code> 代表<strong>不定个</strong>未指定字符</p>
+<p>比如，要只记得电话号码前四位数为1101，而后两位忘记了，则可以用两个 <code>_</code> 通配符代替：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,age,phone FROM employee WHERE phone LIKE &#39;1101__&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>这样就查找出了 <strong>1101开头的6位数电话号码</strong>：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.png" alt></p>
+<p>另一种情况，比如只记名字的首字母，又不知道名字长度，则用 <code>%</code> 通配符代替不定个字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,age,phone FROM employee WHERE name LIKE &#39;J%&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>这样就查找出了首字母为 <strong>J</strong> 的人：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.png" alt></p>
+<p><strong>%J%</strong> : 表示查询包含J的所有内容。</p>
+<h3 id="3-6-对结果排序"><a href="#3-6-对结果排序" class="headerlink" title="3.6 对结果排序"></a>3.6 对结果排序</h3><p>为了使查询结果看起来更顺眼，我们可能需要对结果按某一列来排序，这就要用到 <strong>ORDER BY</strong> 排序关键词。默认情况下，<strong>ORDER BY</strong> 的结果是<strong>升序</strong>排列，而使用关键词 <strong>ASC</strong> 和 <strong>DESC</strong> 可指定<strong>升序</strong>或<strong>降序</strong>排序。 比如，我们<strong>按 salary 降序排列</strong>，SQL语句为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,age,salary,phone FROM employee ORDER BY salary DESC;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/6.png" alt></p>
+<h3 id="3-7-SQL-内置函数和计算"><a href="#3-7-SQL-内置函数和计算" class="headerlink" title="3.7 SQL 内置函数和计算"></a>3.7 SQL 内置函数和计算</h3><p>SQL 允许对表中的数据进行计算。对此，SQL 有 5 个内置函数，这些函数都对 SELECT 的结果做操作：</p>
+<table>
+<thead>
+<tr>
+<th>函数名：</th>
+<th>COUNT</th>
+<th>SUM</th>
+<th>AVG</th>
+<th>MAX</th>
+<th>MIN</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>作用：</td>
+<td>计数</td>
+<td>求和</td>
+<td>求平均值</td>
+<td>最大值</td>
+<td>最小值</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>其中 COUNT 函数可用于任何数据类型(因为它只是计数)，而 SUM 、AVG 函数都只能对数字类数据类型做计算，MAX 和 MIN 可用于数值、字符串或是日期时间数据类型。</p>
+</blockquote>
+<p>具体举例，比如计算出 salary 的最大、最小值，用这样的一条语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT MAX(salary) AS max_salary,MIN(salary) FROM employee;</span><br></pre></td></tr></table></figure>
+
+<p><strong>这里使用 AS 关键词可以给值重命名</strong>，比如最大值被命名为了 max_salary：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/7.png" alt></p>
+<h3 id="3-8-子查询"><a href="#3-8-子查询" class="headerlink" title="3.8 子查询"></a>3.8 子查询</h3><p>上面讨论的 SELECT 语句都仅涉及一个表中的数据，然而有时必须处理多个表才能获得所需的信息。例如：想要知道名为 “Tom” 的员工所在部门做了几个工程。员工信息储存在 employee 表中，但工程信息储存在 project 表中。</p>
+<p>对于这样的情况，我们可以用子查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT of_dpt,COUNT(proj_name) AS count_project FROM project GROUP BY of_dpt</span><br><span class="line">HAVING of_dpt IN</span><br><span class="line">(SELECT in_dpt FROM employee WHERE name&#x3D;&#39;Tom&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码包含两个 SELECT 语句，第二个 SELECT 语句将返回一个集合的数据形式，然后被第一个 SELECT 语句用 <strong>in</strong> 进行判断。</p>
+<p>GROUP BY 子句将查询结果按某一列或多列的值分组，值相等的为一组。后常跟having短语是为了指定筛选条件，即从Group <a href="https://www.baidu.com/s?wd=by&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">by</a>所分出来的分组结果中进行筛选，则having后面可以加条件。</p>
+<h3 id="3-9-连接查询"><a href="#3-9-连接查询" class="headerlink" title="3.9 连接查询"></a>3.9 连接查询</h3><p>mysql&gt; SELECT * FROM project;<br>+———-+———–+————+————+——–+<br>| proj_num | proj_name | start_date | end_date   | of_dpt |<br>+———-+———–+————+————+——–+<br>|        1 | proj_a    | 2015-01-15 | 2015-01-31 | dpt2   |<br>|        2 | proj_b    | 2015-01-15 | 2015-02-15 | dpt1   |<br>|        3 | proj_c    | 2015-02-01 | 2015-03-01 | dpt4   |<br>|        4 | proj_d    | 2015-02-15 | 2015-04-01 | dpt3   |<br>|        5 | proj_e    | 2015-02-25 | 2015-03-01 | dpt4   |<br>|        6 | proj_f    | 2015-02-26 | 2015-03-01 | dpt2   |<br>+———-+———–+————+————+——–+<br>6 rows in set (0.01 sec)</p>
+<p>mysql&gt; SELECT * FROM employee;<br>+—-+——+——+——–+——–+——–+<br>| id | name | age  | salary | phone  | in_dpt |<br>+—-+——+——+——–+——–+——–+<br>|  1 | Tom  |   26 |   2500 | 119119 | dpt4   |<br>|  2 | Jack |   24 |   2500 | 120120 | dpt2   |<br>|  3 | Rose |   22 |   2800 | 114114 | dpt3   |<br>|  4 | Jim  |   35 |   3000 | 100861 | dpt1   |<br>|  5 | Mary |   21 |   3000 | 100101 | dpt2   |<br>|  6 | Alex |   26 |   3000 | 123456 | dpt1   |<br>|  7 | Ken  |   27 |   3500 | 654321 | dpt1   |<br>|  8 | Rick |   24 |   3500 | 987654 | dpt3   |<br>|  9 | Joe  |   31 |   3600 | 110129 | dpt2   |<br>| 10 | Mike |   23 |   3400 | 110110 | dpt4   |<br>| 11 | Jobs | NULL |   3600 |  19283 | dpt2   |<br>| 12 | Tony | NULL |   3400 | 102938 | dpt3   |<br>+—-+——+——+——–+——–+——–+<br>12 rows in set (0.00 sec)</p>
+<p>mysql&gt; SELECT * FROM department;<br>+———-+————+<br>| dpt_name | people_num |<br>+———-+————+<br>| dpt1     |         11 |<br>| dpt2     |         12 |<br>| dpt3     |         10 |<br>| dpt4     |         15 |<br>+———-+————+<br>4 rows in set (0.01 sec)</p>
+<p>在处理多个表时，子查询只有在结果来自一个表时才有用。但如果需要显示两个表或多个表中的数据，这时就必须使用连接 <strong>(join)</strong> 操作。 连接的基本思想是把两个或多个表当作一个新的表来操作，如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT id,name,people_num</span><br><span class="line">FROM employee,department</span><br><span class="line">WHERE employee.in_dpt = department.dpt_name</span><br><span class="line">ORDER BY id;</span><br></pre></td></tr></table></figure>
+
+<p>这条语句查询出的是，各员工所在部门的人数，其中员工的 id 和 name 来自 employee 表，people_num 来自 department 表：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.png" alt></p>
+<p>另一个连接语句格式是使用 JOIN ON 语法，刚才的语句等同于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT id,name,people_num</span><br><span class="line">FROM employee JOIN department</span><br><span class="line">ON employee.in_dpt &#x3D; department.dpt_name</span><br><span class="line">ORDER BY id;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库及表的修改和删除"><a href="#数据库及表的修改和删除" class="headerlink" title="数据库及表的修改和删除"></a>数据库及表的修改和删除</h2><h3 id="3-1关于修改数据库名"><a href="#3-1关于修改数据库名" class="headerlink" title="3.1关于修改数据库名"></a>3.1关于修改数据库名</h3><p>目前 Mysql 没有提供修改数据库名称的方法，因为这曾导致一系列安全问题。</p>
+<p>在老版本中 RENAME DATABASE 可以修改数据库名称，这条命令在 MySQL 5.1.7 中被加入，但官方很快就发现这条命令所带来的危险，于是在 MySQL 5.1.23 中把这条命令移除。</p>
+<p>事实上，数据库名几乎不会遇到必须修改的情况，如果你一定要这么做，比较安全的做法是重新建一个新库，然后将旧库中的数据转移到新库中，并且暂时不要删除旧的数据库，以防数据遗失。</p>
+<h3 id="3-2-对一张表的修改"><a href="#3-2-对一张表的修改" class="headerlink" title="3.2 对一张表的修改"></a>3.2 对一张表的修改</h3><h4 id="3-2-1表格重命名"><a href="#3-2-1表格重命名" class="headerlink" title="3.2.1表格重命名"></a>3.2.1表格重命名</h4><p>重命名一张表的语句有多种形式，以下 3 种格式效果是一样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">RENAME TABLE 原名 TO 新名字;</span><br><span class="line"></span><br><span class="line">ALTER TABLE 原名 RENAME 新名;</span><br><span class="line"></span><br><span class="line">ALTER TABLE 原名 RENAME TO 新名;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-2-删除一张表"><a href="#3-2-2-删除一张表" class="headerlink" title="3.2.2 删除一张表"></a>3.2.2 删除一张表</h4><p>删除一张表的语句，类似于刚才用过的删除数据库的语句，格式是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE 表名字;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-对一列的修改-即对表结构的修改"><a href="#3-3-对一列的修改-即对表结构的修改" class="headerlink" title="3.3 对一列的修改(即对表结构的修改)"></a>3.3 对一列的修改(即对表结构的修改)</h3><h4 id="3-3-1-增加一列"><a href="#3-3-1-增加一列" class="headerlink" title="3.3.1 增加一列"></a>3.3.1 增加一列</h4><p>在表中增加一列的语句格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名字 ADD COLUMN 列名字 数据类型 约束;</span><br><span class="line">或：</span><br><span class="line">ALTER TABLE 表名字 ADD 列名字 数据类型 约束;</span><br></pre></td></tr></table></figure>
+
+<p>现在 employee 表中有 <code>id、name、age、salary、phone、in_dpt</code> 这6个列，我们尝试加入 <code>height</code> (身高)一个列并指定DEFAULT 约束：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE employee ADD height INT(4) DEFAULT 170;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现：新增加的列，被默认放置在这张表的最右边。如果要把增加的列插入在指定位置，则需要在语句的最后使用AFTER关键词(<strong>“AFTER 列1” 表示新增的列被放置在 “列1” 的后面</strong>)。</p>
+<blockquote>
+<p>提醒：语句中的 INT(4) 不是表示整数的字节数，而是表示该值的显示宽度，如果设置填充字符为 0，则 170 显示为 0170</p>
+</blockquote>
+<p>比如我们新增一列 <code>weight</code>(体重) 放置在 <code>age</code>(年龄) 的后面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE employee ADD weight INT(4) DEFAULT 120 AFTER age;</span><br></pre></td></tr></table></figure>
+
+<p>上面的效果是把新增的列加在某位置的后面，如果想放在第一列的位置，则使用 <code>FIRST</code> 关键词，如语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE employee ADD test INT(10) DEFAULT 11 FIRST;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-2-删除一列"><a href="#3-3-2-删除一列" class="headerlink" title="3.3.2 删除一列"></a>3.3.2 删除一列</h4><p>删除表中的一列和刚才使用的新增一列的语句格式十分相似，只是把关键词 <code>ADD</code> 改为 <code>DROP</code> ，语句后面不需要有数据类型、约束或位置信息。具体语句格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名字 DROP COLUMN 列名字;</span><br><span class="line"></span><br><span class="line">或： ALTER TABLE 表名字 DROP 列名字;</span><br></pre></td></tr></table></figure>
+
+<p>我们把刚才新增的 <code>test</code> 删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE employee DROP test;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-3-重命名一列"><a href="#3-3-3-重命名一列" class="headerlink" title="3.3.3 重命名一列"></a>3.3.3 重命名一列</h4><p>这条语句其实不只可用于重命名一列，准确地说，它是对一个列做修改(CHANGE) ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名字 CHANGE 原列名 新列名 数据类型 约束;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意：这条重命名语句后面的 “数据类型” 不能省略，否则重命名失败。</strong></p>
+</blockquote>
+<p>当<strong>原列名</strong>和<strong>新列名</strong>相同的时候，指定新的<strong>数据类型</strong>或<strong>约束</strong>，就可以用于修改数据类型或约束。需要注意的是，修改数据类型可能会导致数据丢失，所以要慎重使用。</p>
+<p>我们用这条语句将 “height” 一列重命名为汉语拼音 “shengao” ，效果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE employee CHANGE height shengao INT(4) DEFAULT 170;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-4-改变数据类型"><a href="#3-3-4-改变数据类型" class="headerlink" title="3.3.4 改变数据类型"></a>3.3.4 改变数据类型</h4><p>要修改一列的数据类型，除了使用刚才的 <strong>CHANGE</strong> 语句外，还可以用这样的 <strong>MODIFY</strong> 语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名字 MODIFY 列名字 新数据类型;</span><br></pre></td></tr></table></figure>
+
+<p>再次提醒，修改数据类型必须小心，因为这可能会导致数据丢失。在尝试修改数据类型之前，请慎重考虑。</p>
+<h3 id="3-4-对表的内容修改"><a href="#3-4-对表的内容修改" class="headerlink" title="3.4 对表的内容修改"></a>3.4 对表的内容修改</h3><h4 id="3-4-1-修改表中某个值"><a href="#3-4-1-修改表中某个值" class="headerlink" title="3.4.1 修改表中某个值"></a>3.4.1 修改表中某个值</h4><p>大多数时候我们需要做修改的不会是整个数据库或整张表，而是表中的某一个或几个数据，这就需要我们用下面这条命令达到精确的修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE 表名字 SET 列1&#x3D;值1,列2&#x3D;值2 WHERE 条件;</span><br></pre></td></tr></table></figure>
+
+<p>比如，我们要把 Tom 的 age 改为 21，salary 改为 3000：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE employee SET age&#x3D;21,salary&#x3D;3000 WHERE name&#x3D;&#39;Tom&#39;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-2-删除一行记录"><a href="#3-4-2-删除一行记录" class="headerlink" title="3.4.2 删除一行记录"></a>3.4.2 删除一行记录</h4><p>删除表中的一行数据，也必须加上 WHERE 条件，否则整列的数据都会被删除。删除语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM 表名字 WHERE 条件;</span><br></pre></td></tr></table></figure>
+
+<p>我们尝试把 Tom 的数据删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM employee WHERE name&#x3D;&#39;Tom&#39;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他基本操作"><a href="#其他基本操作" class="headerlink" title="其他基本操作"></a>其他基本操作</h2><h3 id="3-1-索引"><a href="#3-1-索引" class="headerlink" title="3.1 索引"></a>3.1 索引</h3><p>索引是一种与表有关的结构，它的作用相当于书的目录，可以根据目录中的页码快速找到所需的内容。</p>
+<p>当表中有大量记录时，若要对表进行查询，没有索引的情况是全表搜索：将所有记录一一取出，和查询条件进行对比，然后返回满足条件的记录。这样做会执行大量磁盘 I/O 操作，并花费大量数据库系统时间。</p>
+<p>而如果在表中已建立索引，在索引中找到符合查询条件的索引值，通过索引值就可以快速找到表中的数据，可以<strong>大大加快查询速度</strong>。</p>
+<p>对一张表中的某个列建立索引，有以下两种语句格式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名字 ADD INDEX 索引名 (列名);</span><br><span class="line"></span><br><span class="line">CREATE INDEX 索引名 ON 表名字 (列名);</span><br></pre></td></tr></table></figure>
+
+<p>我们用这两种语句分别建立索引：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE employee ADD INDEX idx_id (id);  #在employee表的id列上建立名为idx_id的索引</span><br><span class="line"></span><br><span class="line">CREATE INDEX idx_name ON employee (name);   #在employee表的name列上建立名为idx_name的索引</span><br></pre></td></tr></table></figure>
+
+<p>索引的效果是加快查询速度，当表中数据不够多的时候是感受不出它的效果的。这里我们使用命令 <strong>SHOW INDEX FROM 表名字;</strong> 查看刚才新建的索引：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/9.png" alt></p>
+<p>在使用 SELECT 语句查询的时候，语句中 WHERE 里面的条件，会<strong>自动判断有没有可用的索引</strong>。</p>
+<p>一些字段不适合创建索引，比如性别，这个字段存在大量的重复记录无法享受索引带来的速度加成，甚至会拖累数据库，导致数据冗余和额外的 CPU 开销。</p>
+<h3 id="3-2-视图"><a href="#3-2-视图" class="headerlink" title="3.2 视图"></a>3.2 视图</h3><p>视图是从一个或多个表中导出来的表，是一种<strong>虚拟存在的表</strong>。它就像一个窗口，通过这个窗口可以看到系统专门提供的数据，这样，用户可以不用看到整个数据库中的数据，而只关心对自己有用的数据。</p>
+<p>注意理解视图是虚拟的表：</p>
+<ul>
+<li>数据库中只存放了视图的定义，而没有存放视图中的数据，这些数据存放在原来的表中；</li>
+<li>使用视图查询数据时，数据库系统会从原来的表中取出对应的数据；</li>
+<li>视图中的数据依赖于原来表中的数据，一旦表中数据发生改变，显示在视图中的数据也会发生改变；</li>
+<li>在使用视图的时候，可以把它当作一张表。</li>
+</ul>
+<p>创建视图的语句格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW 视图名(列a,列b,列c) AS SELECT 列1,列2,列3 FROM 表名字;</span><br></pre></td></tr></table></figure>
+
+<p>可见创建视图的语句，后半句是一个 SELECT 查询语句，所以<strong>视图也可以建立在多张表上</strong>，只需在 SELECT 语句中使用<strong>子查询</strong>或连接查询。</p>
+<p>现在我们创建一个简单的视图，名为 <strong>v_emp</strong>，包含<strong>v_name</strong>，<strong>v_age</strong>，<strong>v_phone</strong>三个列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW v_emp (v_name,v_age,v_phone) AS SELECT name,age,phone FROM employee;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.png" alt></p>
+<h3 id="3-3-导入"><a href="#3-3-导入" class="headerlink" title="3.3 导入"></a>3.3 导入</h3><p>此处讲解的是导入一个纯数据文件，该文件中将包含与数据表字段相对应的多条数据，这样可以快速导入大量数据，除此之外，还有用 SQL 语句的导入方式，语法为：<code>source *.sql</code> 这是实验中经常用到的。两者之间的不同是：数据文件导入方式只包含数据，导入规则由数据库系统完成；SQL 文件导入相当于执行该文件中包含的 SQL 语句，可以实现多种操作，包括删除，更新，新增，甚至对数据库的重建。</p>
+<p>数据文件导入，可以把一个文件里的数据保存进一张表。导入语句格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LOAD DATA INFILE &#39;文件路径和文件名&#39; INTO TABLE 表名字;</span><br></pre></td></tr></table></figure>
+
+<p>现在 SQL6 目录下有一个名为 <strong>in.txt</strong> 的文件，我们尝试把这个文件中的数据导入数据库 <strong>mysql_shiyan</strong> 的 <strong>employee</strong> 表中。</p>
+<p>由于导入导出大量数据都属于敏感操作，根据 mysql 的安全策略，导入导出的文件都必须在指定的路径下进行，在 mysql 终端中查看路径变量：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot</span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show variables like <span class="string">'%secure%'</span>;</span></span><br><span class="line">+--------------------------+-----------------------+</span><br><span class="line">| Variable_name            | Value                 |</span><br><span class="line">+--------------------------+-----------------------+</span><br><span class="line">| require_secure_transport | OFF                   |</span><br><span class="line">| secure_auth              | ON                    |</span><br><span class="line">| secure_file_priv         | /var/lib/mysql-files/ |</span><br><span class="line">+--------------------------+-----------------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>注意到 secure_file_priv 变量指定安全路径为 <code>/var/lib/mysql-files/</code> ，要导入数据文件，需要将该文件移动到安全路径下。</p>
+<p>打开 Xfce 终端，输入命令拷贝 SQL6 文件夹到 <code>/var/lib/mysql-files/</code> 目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -a &#x2F;home&#x2F;shiyanlou&#x2F;Desktop&#x2F;SQL6 &#x2F;var&#x2F;lib&#x2F;mysql-files&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>使用命令 <code>sudo vim /var/lib/mysql-files/SQL6/in.txt</code> 查看 <code>in.txt</code> 文件中的内容：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/11.png" alt></p>
+<p>可以看到其中仅仅包含了数据本身，没有任何的 SQL 语句</p>
+<p>再使用以下命令以 root 用户登录数据库，再连接 <strong>mysql_shiyan</strong> 数据库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在Xfce 终端输入命令</span></span><br><span class="line">mysql -u root</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在 MySQL 控制台中输入命令</span></span><br><span class="line">use mysql_shiyan</span><br></pre></td></tr></table></figure>
+
+<p>查看一下没有导入数据之前，employee 表中的数据：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/12.png" alt></p>
+<p>现在执行导入语句，文件中的数据成功导入 employee 表：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/13.png" alt></p>
+<h3 id="3-4-导出"><a href="#3-4-导出" class="headerlink" title="3.4 导出"></a>3.4 导出</h3><p>导出与导入是相反的过程，是把数据库某个表中的数据保存到一个文件之中。导出语句基本格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列1，列2 INTO OUTFILE &#39;文件路径和文件名&#39; FROM 表名字;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：语句中 “文件路径” 之下不能已经有同名文件。</strong></p>
+<p>现在我们把整个 employee 表的数据导出到 /var/lib/mysql-files/ 目录下，导出文件命名为 <strong>out.txt</strong> 具体语句为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * INTO OUTFILE &#39;&#x2F;var&#x2F;lib&#x2F;mysql-files&#x2F;out.txt&#39; FROM employee;</span><br></pre></td></tr></table></figure>
+
+<p>用 gedit 可以查看导出文件 <code>/var/lib/mysql-files/out.txt</code> 的内容：</p>
+<blockquote>
+<p>也可以使用 <code>sudo cat /var/lib/mysql-files/out.txt</code> 命令查看。</p>
+</blockquote>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/14.png" alt></p>
+<h3 id="3-5-备份"><a href="#3-5-备份" class="headerlink" title="3.5 备份"></a>3.5 备份</h3><p>数据库中的数据十分重要，出于安全性考虑，在数据库的使用中，应该注意使用备份功能。</p>
+<blockquote>
+<p>备份与导出的区别：导出的文件只是保存数据库中的数据；而备份，则是把数据库的结构，包括数据、约束、索引、视图等全部另存为一个文件。</p>
+</blockquote>
+<p><strong>mysqldump</strong> 是 MySQL 用于备份数据库的实用程序。它主要产生一个 SQL 脚本文件，其中包含从头重新创建数据库所必需的命令 CREATE TABLE INSERT 等。</p>
+<p>使用 mysqldump 备份的语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root 数据库名&gt;备份文件名;   #备份整个数据库</span><br><span class="line"></span><br><span class="line">mysqldump -u root 数据库名 表名字&gt;备份文件名;  #备份整个表</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>mysqldump 是一个备份工具，因此该命令是在终端中执行的，而不是在 mysql 交互环境下</p>
+</blockquote>
+<p>我们尝试备份整个数据库 <code>mysql_shiyan</code>，将备份文件命名为 <code>bak.sql</code>，先 <code>Ctrl+D</code> 退出 MySQL 控制台，再打开 Xfce 终端，在终端中输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;home&#x2F;shiyanlou&#x2F;</span><br><span class="line">mysqldump -u root mysql_shiyan &gt; bak.sql;</span><br></pre></td></tr></table></figure>
+
+<p>使用命令 “ls” 可见已经生成备份文件 <code>bak.sql</code>：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/15.png" alt></p>
+<p>3.6 恢复</p>
+<p>用备份文件恢复数据库。在本次实验的开始，我们使用过这样一条命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &#x2F;tmp&#x2F;SQL6&#x2F;MySQL-06.sql</span><br></pre></td></tr></table></figure>
+
+<p>这就是一条恢复语句，它把 MySQL-06.sql 文件中保存的<code>mysql_shiyan</code> 数据库恢复。</p>
+<p>还有另一种方式恢复数据库，但是在这之前我们先使用命令新建一个<strong>空的数据库 test</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root          #因为在上一步已经退出了MySQL，现在需要重新登录</span><br><span class="line"></span><br><span class="line">CREATE DATABASE test;  #新建一个名为test的数据库</span><br></pre></td></tr></table></figure>
+
+<p>再次 <strong>Ctrl+D</strong> 退出 MySQL，然后输入语句进行恢复，把刚才备份的 <strong>bak.sql</strong> 恢复到 <strong>test</strong> 数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root test &lt; bak.sql</span><br></pre></td></tr></table></figure>
+
+<p>我们输入命令查看 test 数据库的表，便可验证是否恢复成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root          #因为在上一步已经退出了MySQL，现在需要重新登录</span><br><span class="line"></span><br><span class="line">use test               #连接数据库test</span><br><span class="line"></span><br><span class="line">SHOW TABLES;           #查看test数据库的表</span><br></pre></td></tr></table></figure>
+
+<p>可以看见原数据库的4张表和1个视图，现在已经恢复到 test 数据库中：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/16.png" alt></p>
+<p>再查看 employee 表的恢复情况：</p>
+<p><img src="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/17.png" alt></p>
+<h1 id="用python操作数据库"><a href="#用python操作数据库" class="headerlink" title="用python操作数据库"></a>用python操作数据库</h1><p>与linux不同，python执行sql语句要先建立一个游标cursor。在execute()中执行sql语句。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="comment">#连接mysql</span></span><br><span class="line">db=pymysql.connect(<span class="string">'localhost'</span>,<span class="string">'root'</span>,<span class="string">'12345689'</span>) </span><br><span class="line"><span class="comment">#使用cursor()方法获取操作游标 </span></span><br><span class="line">cursor=db.cursor()</span><br><span class="line"><span class="comment">#使用execute方法执行SQL语句,连接testdb数据库</span></span><br><span class="line">cursor.execute(<span class="string">'use testdb'</span>)</span><br><span class="line"><span class="comment">#也可以在前面写db=pymysql.connect('localhost','root','12345689','testdb')时就连接testdb数据库。</span></span><br><span class="line"><span class="comment">#在testdb数据库中创建一个表</span></span><br><span class="line">sql=<span class="string">'create table employee(first_name varchar(20),last_name varchar(20),age INT(3),sex varchar(8),income int(20))'</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    cursor.execute(sql)</span><br><span class="line">    <span class="comment">#db.commit()网上解释在修改数据时需要加这句代码，才会提交到数据库执行。但实操时发现不加这句代码也可以。</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    db.rollback() <span class="comment">#如果执行中发生错误，则撤销这步操作</span></span><br><span class="line"><span class="comment">#在查看数据库时，要先选择，再抓取。</span></span><br><span class="line">cursor.execute(<span class="string">'select * from employee'</span>)</span><br><span class="line">print(cursor.fetchall()) <span class="comment">#还有个fetchone()</span></span><br><span class="line"><span class="comment">#关闭数据库连接</span></span><br><span class="line">db.close()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckcap61250002i8vth5oj3g7d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/05/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Matplotlib学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/05/Numpy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Numpy学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%BA%93/">数据分析库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E7%AF%87/">机器学习基础篇</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numpy/" rel="tag">Numpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Re/" rel="tag">Re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Request/" rel="tag">Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bs4/" rel="tag">bs4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">动态爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">无监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">静态爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Matplotlib/" style="font-size: 10px;">Matplotlib</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/Pandas/" style="font-size: 10px;">Pandas</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Request/" style="font-size: 10px;">Request</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/bs4/" style="font-size: 10px;">bs4</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">动态爬虫</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">无监督学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 13.33px;">机器学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">监督学习</a> <a href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">静态爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/">Scrapy&amp;Re--动态爬虫实例</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习之监督学习算法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux操作学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Matplotlib学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Mysql学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
