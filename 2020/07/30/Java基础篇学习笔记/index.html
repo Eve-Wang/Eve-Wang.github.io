@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Java基础篇学习笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一章java程序的编译与执行JDK&#x2F;bin：该目录下存放了很多命令。如： javac.exe负责编译 java.exe负责运行 编译java程序 写好helloworld.java程序后，打开cmd输入命令进行编译 1javac D:\helloworld.java  此时在这个程序文件路径下生成了一个class文件。  运行java程序 进入class目录打开cmd。输入命令： java+类名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础篇学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章java程序的编译与执行JDK&#x2F;bin：该目录下存放了很多命令。如： javac.exe负责编译 java.exe负责运行 编译java程序 写好helloworld.java程序后，打开cmd输入命令进行编译 1javac D:\helloworld.java  此时在这个程序文件路径下生成了一个class文件。  运行java程序 进入class目录打开cmd。输入命令： java+类名">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C1.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C5.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C6.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C7.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C8.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C9.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C10.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C11.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C12.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C13.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C14.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C15.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C16.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C17.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C18.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C19.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C20.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C21.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C22.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C23.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C24.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C25.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C29.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C26.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C27.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C28.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C30.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C31.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C32.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C33.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C34.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C35.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C37.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C36.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C38.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C39.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C40.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C41.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C42.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C43.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C64.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C44.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C45.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C46.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C47.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C48.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C49.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C50.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C51.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C52.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C53.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C54.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C54.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C55.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C56.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C57.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C58.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C59.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C60.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C61.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C62.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C63.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C65.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C63.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C64.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C65.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C66.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C67.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C68.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C69.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C70.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C71.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C72.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C73.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C74.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/75.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/76.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/77.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/78.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/79.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/80.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/81.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/82.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/83.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/84.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/85.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/86.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/87.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/88.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/89.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/90.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/91.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/92.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/93.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/94.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/95.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/96.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/97.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C98.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C99.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C100.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C101.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C102.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C103.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C104.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C105.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C106.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C107.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C108.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C109.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C110.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C111.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C112.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C113.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C114.jpg">
+<meta property="article:published_time" content="2020-07-30T06:48:46.000Z">
+<meta property="article:modified_time" content="2020-07-30T06:52:46.076Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java基础篇学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-07-30T06:48:46.000Z" itemprop="datePublished">2020-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java基础篇学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="java程序的编译与执行"><a href="#java程序的编译与执行" class="headerlink" title="java程序的编译与执行"></a>java程序的编译与执行</h3><p>JDK/bin：该目录下存放了很多命令。如：</p>
+<p>javac.exe负责编译</p>
+<p>java.exe负责运行</p>
+<p>编译java程序</p>
+<p>写好helloworld.java程序后，打开cmd输入命令进行编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac D:\helloworld.java</span><br></pre></td></tr></table></figure>
+
+<p>此时在这个程序文件路径下生成了一个class文件。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C1.png" alt></p>
+<p>运行java程序</p>
+<p>进入class目录打开cmd。输入命令： java+类名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java helloworld</span><br></pre></td></tr></table></figure>
+
+<p>就得到运行结果</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C2.png" alt></p>
+<h3 id="注释规则"><a href="#注释规则" class="headerlink" title="注释规则"></a>注释规则</h3><p>单行注释</p>
+<p>//</p>
+<p>多行注释</p>
+<p>/*</p>
+<p>多行</p>
+<p>*/</p>
+<p>javadoc注释（我们可以通过 <strong>javadoc</strong> 命令从文档注释中提取内容，生成程序的 API 帮助文档。）</p>
+<p>/**</p>
+<p>*javadoc注释</p>
+<p>*/</p>
+<h3 id="Java的class"><a href="#Java的class" class="headerlink" title="Java的class"></a>Java的class</h3><p>一个java源文件可以定义多个class，对应会生成多个.class字节码文件</p>
+<p>public的class不是必须的，如果有只能有一个，且该类名称必须与java源文件名称一致。</p>
+<h2 id="第二章–Java语言基础"><a href="#第二章–Java语言基础" class="headerlink" title="第二章–Java语言基础"></a>第二章–Java语言基础</h2><h3 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h3><p>Java 语言是一种<strong>强类型</strong>语言。通俗点说就是，在 Java 中存储的数据都是有类型的，而且必须在编译时就确定其类型。 Java 中有两类数据类型：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C3.jpg" alt></p>
+<p>在 Java 的领域里<strong>，基本数据类型变量</strong>存的是<strong>数据本身</strong>，而<strong>引用类型变量</strong>存的是保存<strong>数据的空间地址</strong>。说白了，基本数据类型变量里存储的是直接放在抽屉里的东西，而引用数据类型变量里存储的是这个抽屉的钥匙，钥匙和抽屉一一对应。</p>
+<h4 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h4><p>int型可以自动转换为double型，但反之不行。double 类型长度为 8 字节， int 类型为 4 字节。</p>
+<p>double型可以强制转换为int型，操作如下：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C4.jpg" alt></p>
+<h4 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h4><p>例如类名，接口名，方法名，变量名…</p>
+<p>方法名一般采用第一个单词首字母小写，其它单词首字母大写的形式</p>
+<p>使用标识符时，需要遵守几条规则：</p>
+<ol>
+<li><p>标识符<strong>可以</strong>由<strong>字母、数字、下划线（_）、美元符（$）</strong>组成，但不能包含 @、%、空格等其它特殊字符<strong>，不能以数字开头</strong>。譬如：123name 就是不合法滴</p>
+</li>
+<li><p>标识符<strong>不能是 Java 关键字和保留字</strong>（ Java 预留的关键字，以后的升级版本中有可能作为关键字），但可以包含关键字和保留字。如：不可以使用 void 作为标识符，但是 Myvoid 可以</p>
+</li>
+<li><p>标识符是<strong>严格区分大小写</strong>的。</p>
+</li>
+</ol>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>java中的一些常用关键字如public，class，void…、</p>
+<h5 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h5><p>this关键字代表当前对象。经常用于封装中。</p>
+<p>this.属性 操作当前对象的属性</p>
+<p>this.方法 操作当前对象的属性</p>
+<h4 id="字面值"><a href="#字面值" class="headerlink" title="字面值"></a>字面值</h4><p>字面值就是数据</p>
+<p>如100(整数型)，3.14(浮点数型),”abc”(字符串型),true,false(布尔型)，’a’(字符型)</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>Java中的变量需要先声明再使用。命名规则：</p>
+<p>1、变量名由多单词组成时，<strong>第一个单词的首字母小写</strong>，<strong>其后单词的首字母大写</strong>，俗称骆驼式命名法（也称驼峰命名法），如 myAge</p>
+<p>2、变量命名时，尽量简短且能清楚的表达变量的作用，做到<strong>见名知意</strong>。如：定义变量名 stuName 保存“学生姓名”信息</p>
+<p>PS： Java 变量名的<strong>长度没有限制</strong>，但 Java 语言<strong>是区分大小写</strong>的，所以 price 和 Price 是两个完全不同的变量。</p>
+<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>所谓常量，我们可以理解为是一种特殊的变量，它的值被设定后，在<strong>程序运行过程中不允许改变</strong>。常量名一般使用<strong>大写字符</strong></p>
+<p>语法：<strong>final 常量名 = 值;</strong></p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C5.jpg" alt></p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><p>a=1</p>
+<p>b=++a表示将a+1后再赋值给b。</p>
+<p>b=a++表示先将a赋值给b再+1。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C6.jpg" alt></p>
+<h4 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h4><p>1、  &gt; 、 &lt; 、 &gt;= 、 &lt;= 只支持左右两边操作数是数值类型</p>
+<p>2、  == 、 != 两边的操作数既可以是数值类型，也可以是引用类型</p>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C7.jpg" alt></p>
+<h4 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h4><p>条件运算符（ ? : ）也称为 “三元运算符”。</p>
+<p>语法形式：<strong>布尔表达式 ？ 表达式1 ：表达式2</strong></p>
+<p>运算过程：如果布尔表达式的值为 <strong>true</strong> ，则返回 <strong>表达式1</strong> 的值，否则返回 <strong>表达式2</strong> 的值</p>
+<p>例如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C8.jpg" alt></p>
+<p>因为，表达式 8&gt;5 的值为 true ，所以，返回： <strong>8大于5</strong></p>
+<h3 id="Java条件语句之-if"><a href="#Java条件语句之-if" class="headerlink" title="Java条件语句之 if"></a>Java条件语句之 if</h3><h4 id="简单if语句"><a href="#简单if语句" class="headerlink" title="简单if语句"></a>简单if语句</h4><p>语法：</p>
+<p>if(条件){</p>
+<p>条件成立时执行的代码</p>
+<p>}</p>
+<p>注意：如果 if 条件成立时的执行语句只有一条，是可以省略大括号的。但如果执行语句有多条，那么大括号不可或缺。</p>
+<h4 id="if…else-语句"><a href="#if…else-语句" class="headerlink" title="if…else 语句"></a><strong>if…else</strong> 语句</h4><p><strong>if…else</strong> 语句的操作比 if 语句多了一步:  当条件成立时，则执行 if 部分的代码块； 条件不成立时，则进入 else 部分。</p>
+<p>语法：</p>
+<p>if(条件){</p>
+<p>代码块1</p>
+<p>}else{</p>
+<p>代码块2</p>
+<p>}</p>
+<h4 id="多重-if-语句"><a href="#多重-if-语句" class="headerlink" title="多重 if 语句"></a>多重 if 语句</h4><p><strong>多重 if 语句</strong>，在条件 1 不满足的情况下，才会进行条件 2 的判断；当前面的条件均不成立时，才会执行 else 块内的代码。例如，如果考试成绩大于 90 分，则奖励一个 IPHONE 5S ，如果成绩介于 70 分至 90 分之间，则奖励一个红米，否则罚做 500 个俯卧撑。</p>
+<p>语法：</p>
+<p>if(条件1){</p>
+<p>代码块1</p>
+<p>}else if(条件2){</p>
+<p>代码块2</p>
+<p>}else{</p>
+<p>代码块3</p>
+<p>}</p>
+<p>注意：条件里不能写成区间如40&gt;age&gt;=18</p>
+<h3 id="Java条件语句之Switch"><a href="#Java条件语句之Switch" class="headerlink" title="Java条件语句之Switch"></a>Java条件语句之Switch</h3><p>当需要对选项进行等值判断时，使用 switch 语句更加简洁明了。例如：根据考试的名次，给予前 4 名不同的奖品。第一名，奖励笔记本一台；第二名，奖励 IPAD 2 一个；第三名，奖励移动电源一个；最后一名奖励 U 盘一个。</p>
+<p>语法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C9.jpg" alt></p>
+<p>执行过程：当 switch 后表达式的值和 case 语句后的值相同时，从该位置开始向下执行，直到遇到 break 语句或者 switch 语句块结束；如果没有匹配的 case 语句则执行 default 块的代码。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C10.jpg" alt></p>
+<p>注意：</p>
+<p>1、 switch 后面小括号中表达式的值必须是<strong>整型或字符型</strong></p>
+<p>2、 case 后面的值<strong>可以是常量数值</strong>，如 1、2，字符，字符串等；也<strong>可以是一个常量表达式</strong>，如 2+2 ；但不能是变量或带有变量的表达式，如 a * 2</p>
+<p>3、 case 匹配后，执行匹配块里的程序代码，如果没有遇见 <strong>break</strong> 会继续执行下一个的 case 块的内容，直到遇到 break 语句或者 switch 语句块结束 如</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C11.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C12.jpg" alt></p>
+<p>4、 可以把功能相同的 case 语句合并起来，如</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C13.jpg" alt></p>
+<p>5、 default 块可以出现在<strong>任意位置</strong>，也<strong>可以省略</strong></p>
+<h3 id="Java循环语句"><a href="#Java循环语句" class="headerlink" title="Java循环语句"></a>Java循环语句</h3><h4 id="while"><a href="#while" class="headerlink" title="while"></a>while</h4><p>语法：</p>
+<p>while(判断条件){</p>
+<p>循环操作</p>
+<p>}</p>
+<p>执行过程：</p>
+<p>&lt; 1 &gt;、 判断 while 后面的条件是否成立( true / false )</p>
+<p>&lt; 2 &gt;、 当条件成立时，执行循环内的操作代码 ，然后重复执行&lt; 1 &gt;、&lt; 2 &gt;， 直到循环条件不成立为止</p>
+<p>特点： <strong>先判断，后执行</strong></p>
+<h4 id="do…while"><a href="#do…while" class="headerlink" title="do…while"></a>do…while</h4><p><strong>do…while 循环</strong>与 while 循环语法有些类似，但执行过程差别比较大。</p>
+<p>语法：</p>
+<p>do{</p>
+<p>循环操作</p>
+<p>}while(判断条件);</p>
+<p>执行过程：</p>
+<p>&lt;1&gt;、 先执行一遍循环操作，然后判断循环条件是否成立</p>
+<p>&lt;2&gt;、 如果条件成立，继续执行&lt; 1 &gt; 、&lt; 2 &gt;，直到循环条件不成立为止</p>
+<p>特点： <strong>先执行，后判断</strong></p>
+<p>由此可见，do…while 语句保证循环<strong>至少被执行一次</strong>！</p>
+<h4 id="for"><a href="#for" class="headerlink" title="for"></a>for</h4><p>Java 的循环结构中除了 while 和 do…while 外，还有 <strong>for 循环</strong>，三种循环可以相互替换。</p>
+<p>语法： </p>
+<p>for (循环变量初始化; 循环条件; 循环变量变化){</p>
+<p>循环操作</p>
+<p>}</p>
+<p>执行过程：</p>
+<p>&lt;1&gt;、 执行循环变量初始化部分，设置循环的初始状态，此部分在整个循环中只执行一次</p>
+<p>&lt;2&gt;、 进行循环条件的判断，如果条件为 true ，则执行循环体内代码；如果为 false ，则直接退出循环</p>
+<p>&lt;3&gt;、 执行循环变量变化部分，改变循环变量的值，以便进行下一次条件判断</p>
+<p>&lt;4&gt;、 依次重新执行&lt; 2 &gt;、&lt; 3 &gt;、&lt; 4 &gt;，直到退出循环</p>
+<p>特点：相比 while 和 do…while 语句<strong>结构更加简洁易读</strong></p>
+<p>例如，输出 1000 遍“我爱慕课网”，使用 for 的实现代码为：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C14.jpg" alt></p>
+<p>注意：</p>
+<p>1、 for 关键字后面括号中的三个表达式必须用 “;” 隔开，三个表达式都可以省略，但 “;” 不能省略。</p>
+<p>  a. 省略“循环变量初始化”，可以在 for 语句之前由赋值语句进行变量初始化操作，如:</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C15.jpg" alt></p>
+<p> b. 省略“循环条件”，可能会造成循环将一直执行下去，也就是我们常说的“死循环”现象，可以在循环体中使用 break 强制跳出循环</p>
+<p>c. 省略“循环变量变化”，可以在循环体中进行循环变量的变化，如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C16.jpg" alt></p>
+<p>2、 for 循环变量初始化和循环变量变化部分，可以是使用 “,” 同时初始化或改变多个循环变量的值，如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C17.jpg" alt></p>
+<p>3、 循环条件部分可以使用逻辑运算符组合的表达式，表示复杂判断条件，但一定注意运算的优先级，如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C18.jpg" alt></p>
+<p>代码中，必须同时满足变量 i 小于 10 ，并且 i 不等于 5 时才会进行循环，输出变量 i 的值。</p>
+<h3 id="Java循环跳转语句之-break"><a href="#Java循环跳转语句之-break" class="headerlink" title="Java循环跳转语句之 break"></a>Java循环跳转语句之 break</h3><p>例如，使用循环输出 1–10的数值，其中，如果数值大于 2 ，并且为 3 的倍数则停止输出。</p>
+<p>实现代码：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C19.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C20.jpg" alt></p>
+<h3 id="Java循环跳转语句之-continue"><a href="#Java循环跳转语句之-continue" class="headerlink" title="Java循环跳转语句之 continue"></a>Java循环跳转语句之 continue</h3><p><strong>continue</strong> 的作用是跳过循环体中剩余的语句执行下一次循环。</p>
+<p>例如，打印 1–10 之间所有的偶数，使用 continue 语句实现代码为：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C21.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C22.jpg" alt></p>
+<p>java的输入操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line">Scanner input=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> score=input.nextInt(); <span class="comment">//获取输入的成绩</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><p>数组可以理解为是一个巨大的“盒子”，里面可以按顺序存放多个类型相同的数据，比如可以定义 int 型的数组 scores 存储 4 名学生的成绩</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C23.jpg" alt></p>
+<p>数组中的元素都可以通过下标来访问，下标从 0 开始。例如，可以通过 scores[0] 获取数组中的第一个元素 76 ，scores[2] 就可以取到第三个元素 92</p>
+<p>Java 中操作数组只需要四个步骤：</p>
+<p><strong>1、 声明数组</strong></p>
+<p>语法： <strong>数据类型[ ] 数组名；</strong></p>
+<p>或者  <strong>数据类型 数组名[ ]；</strong></p>
+<p>其中，数组名可以是任意合法的变量名，如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C24.jpg" alt></p>
+<p><strong>2、 分配空间</strong></p>
+<p>简单地说，就是指定数组中最多可存储多少个元素</p>
+<p>语法： <strong>数组名 = new  数据类型 [ 数组长度 ];</strong></p>
+<p>其中，数组长度就是数组中能存放元素的个数，如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C25.jpg" alt></p>
+<p>我们也可以将上面的两个步骤合并，在声明数组的同时为它分配空间，如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C29.jpg" alt></p>
+<p><strong>3、 赋值</strong></p>
+<p>分配空间后就可以向数组中放数据了，数组中元素都是通过下标来访问的，例如向 scores 数组中存放学生成绩</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C26.jpg" alt></p>
+<p><strong>4、 处理数组中数据</strong></p>
+<p>我们可以对赋值后的数组进行操作和处理.</p>
+<p>在 Java 中还提供了另外一种直接创建数组的方式，它将声明数组、分配空间和赋值合并完成，如</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C27.jpg" alt></p>
+<p>它等价于：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C28.jpg" alt></p>
+<h4 id="使用循环操作-Java-中的数组"><a href="#使用循环操作-Java-中的数组" class="headerlink" title="使用循环操作 Java 中的数组"></a>使用循环操作 Java 中的数组</h4><p>我们经常使用循环控制数组成员的操作。如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C30.jpg" alt></p>
+<h4 id="使用-Arrays-类操作-Java-中的数组"><a href="#使用-Arrays-类操作-Java-中的数组" class="headerlink" title="使用 Arrays 类操作 Java 中的数组"></a>使用 Arrays 类操作 Java 中的数组</h4><p>Arrays 类是 Java 中提供的一个工具类，在 java.util 包中。该类中包含了一些方法用来直接操作数组，比如可直接实现数组的排序、搜索等。</p>
+<p>Arrays 中常用的方法：</p>
+<h5 id="1、-排序"><a href="#1、-排序" class="headerlink" title="1、 排序"></a><strong>1、 排序</strong></h5><p>语法： <strong>Arrays.sort(数组名);</strong></p>
+<p>可以使用 sort( ) 方法实现对数组的排序，只要将数组名放在 sort( ) 方法的括号中，就可以完成对该数组的排序（按升序排列），如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C31.jpg" alt></p>
+<p>运行结果： </p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C32.jpg" alt></p>
+<h5 id="2、-将数组转换为字符串"><a href="#2、-将数组转换为字符串" class="headerlink" title="2、 将数组转换为字符串"></a><strong>2、 将数组转换为字符串</strong></h5><p>语法： <strong>Arrays.toString(数组名);</strong></p>
+<p>可以使用 toString( ) 方法将一个数组转换成字符串，该方法按顺序把多个数组元素连接在一起，多个元素之间使用逗号和空格隔开，如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C33.jpg" alt></p>
+<p>运行结果为： </p>
+<p><strong>输出数组nums中的元素：[25，7，126，53，14，86]</strong></p>
+<h4 id="使用-foreach-操作数组"><a href="#使用-foreach-操作数组" class="headerlink" title="使用 foreach 操作数组"></a>使用 foreach 操作数组</h4><p>foreach 并不是 Java 中的关键字，是 for 语句的特殊简化版本，在遍历数组、集合时， foreach 更简单便捷。</p>
+<p>我们分别使用 for 和 foreach 语句来遍历数组：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C34.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C35.jpg" alt></p>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><p>所谓二维数组，可以简单的理解为是一种“特殊”的一维数组，它的每个数组空间中保存的是一个一维数组。</p>
+<p>那么如何使用二维数组呢，步骤如下：</p>
+<p><strong>1、 声明数组并分配空间</strong></p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C37.jpg" alt></p>
+<p>或者</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C36.jpg" alt></p>
+<p><strong>2、 赋值</strong></p>
+<p>二维数组的赋值，和一维数组类似，可以通过下标来逐个赋值，注意索引从 0 开始</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C38.jpg" alt></p>
+<p>也可以在声明数组的同时为其赋值</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C39.jpg" alt></p>
+<p><strong>3、 处理数组</strong></p>
+<p>二维数组的访问和输出同一维数组一样，只是多了一个下标而已。在循环输出时，需要里面再内嵌一个循环，即使用二重循环来输出二维数组中的每一个元素。如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C40.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C41.jpg" alt></p>
+<p><strong>需要了解的：</strong>在定义二维数组时也可以只指定行的个数，然后再为每一行分别指定列的个数。如果每行的列数不同，则创建的是不规则的二维数组，如下所示：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C42.jpg" alt></p>
+<p>运行结果为：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><h3 id="定义-Java-中的方法"><a href="#定义-Java-中的方法" class="headerlink" title="定义 Java 中的方法"></a>定义 Java 中的方法</h3><p>所谓方法，就是用来解决一类问题的</p>
+<p>代码的有序组合，是一个功能模块。</p>
+<p>一般情况下，定义一个方法的语法是：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C43.jpg" alt></p>
+<p>其中：</p>
+<h4 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h4><p>1、 访问修饰符：方法允许被访问的权限范围， 可以是 public、protected、private 甚至可以省略 ，其中 public 表示该方法或变量可以被其他任何代码调用。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C64.png" alt></p>
+<p>2、 返回值类型：方法返回值的类型，如果方法不返回任何值，则返回值类型指定为 void ；如果方法具有返回值，则需要指定返回值的类型，并且在方法体中使用 return 语句返回值</p>
+<p>3、 方法名：定义的方法的名字，必须使用合法的标识符</p>
+<p>4、 参数列表：传递给方法的参数列表，参数可以有多个，多个参数间以逗号隔开，每个参数由参数类型和参数名组成，以空格隔开 </p>
+<h4 id="例1–无参无返回值（创建对象，调用方法）"><a href="#例1–无参无返回值（创建对象，调用方法）" class="headerlink" title="例1–无参无返回值（创建对象，调用方法）"></a>例1–无参无返回值（创建对象，调用方法）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line"><span class="comment">//定义了一个方法名为 print 的方法，实现输出信息功能</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Hello World"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//在 main 方法中调用 print 方法</span></span><br><span class="line">    <span class="comment">//创建对象，对象名为test</span></span><br><span class="line">    	HelloWorld test=<span class="keyword">new</span> HelloWorld();</span><br><span class="line">    <span class="comment">//调用之前定义的print方法</span></span><br><span class="line">    	test.print();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当需要调用方法执行某个操作时，可以先创建类的对象，然后通过  <strong>对象名.方法名();</strong> 来实现</p>
+<h4 id="例2–无参带返回值"><a href="#例2–无参带返回值" class="headerlink" title="例2–无参带返回值"></a>例2–无参带返回值</h4><p>例如：下面的代码，定义了一个方法名为 calSum ，无参数，但返回值为 int 类型的方法，执行的操作为计算两数之和，并返回结果</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C44.jpg" alt></p>
+<p>在 calSum( ) 方法中，返回值类型为 int 类型，因此在方法体中必须使用 return 返回一个整数值。</p>
+<p>调用带返回值的方法时需要注意，由于方法执行后会返回一个结果，因此在调用带返回值方法时一般都会接收其返回值并进行处理。如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C45.jpg" alt></p>
+<p>运行结果为： <strong>两数之和为：17</strong></p>
+<p><strong>不容忽视的“小陷阱”：</strong></p>
+<p>1、 如果方法的返回类型为 void ，则方法中不能使用 return 返回值！</p>
+<p>2、 方法的返回值最多只能有一个，不能返回多个值</p>
+<p>3、 方法返回值的类型必须兼容，例如，如果返回值类型为 int ，则不能返回 String 型值</p>
+<h4 id="例3–带参无返回值"><a href="#例3–带参无返回值" class="headerlink" title="例3–带参无返回值"></a>例3–带参无返回值</h4><p>我们可以通过在方法中加入参数列表接收外部传入的数据信息，参数可以是任意的基本类型数据或引用类型数据。</p>
+<p>我们先来看一个带参数，但没有返回值的方法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C46.jpg" alt></p>
+<p>上面的代码定义了一个 show 方法，带有一个参数 name ，实现输出欢迎消息。</p>
+<p>调用带参方法与调用无参方法的语法类似，但在调用时必须传入实际的参数值</p>
+<p>例如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C47.jpg" alt></p>
+<p>运行结果为： <strong>欢迎您，爱慕课！</strong></p>
+<p>很多时候，我们把定义方法时的参数称为<strong>形参</strong>，目的是用来定义方法需要传入的参数的个数和类型；把调用方法时的参数称为<strong>实参</strong>，是传递给方法真正被处理的值。</p>
+<p><strong>一定不可忽视的问题：</strong></p>
+<p>1、 调用带参方法时，必须保证实参的数量、类型、顺序与形参一一对应</p>
+<p>2、 调用方法时，实参不需要指定数据类型</p>
+<p>3、 方法的参数可以是基本数据类型，如 int、double 等，也可以是引用数据类型，如 String、数组等</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C48.jpg" alt></p>
+<p>4、 当方法参数有多个时，多个参数间以逗号分隔</p>
+<h4 id="例4–带参带返回值"><a href="#例4–带参带返回值" class="headerlink" title="例4–带参带返回值"></a>例4–带参带返回值</h4><p>如果方法既包含参数，又带有返回值，我们称为带参带返回值的方法。</p>
+<p>例如：下面的代码，定义了一个 show 方法，带有一个参数 name ，方法执行后返回一个 String 类型的结果</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C49.jpg" alt></p>
+<p>调用带参带返回值的方法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C50.jpg" alt></p>
+<p>运行结果为： <strong>欢迎您，爱慕课！</strong></p>
+<h3 id="Java-中方法的重载"><a href="#Java-中方法的重载" class="headerlink" title="Java 中方法的重载"></a>Java 中方法的重载</h3><p> 如果同一个类中包含了两个或两个以上方法名相同、方法参数的个数、顺序或类型不同的方法，则称为方法的重载，也可称该方法被重载了。如下所示 4 个方法名称都为 show ，但方法的参数有所不同，因此都属于方法的重载：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C51.jpg" alt></p>
+<p>当调用被重载的方法时， Java 会根据参数的个数和类型来判断应该调用哪个重载方法，参数完全匹配的方法将被执行。如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C52.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C53.jpg" alt></p>
+<p><strong>判断方法重载的依据：</strong></p>
+<p>1、 必须是在同一个类中</p>
+<p>2、 方法名相同</p>
+<p>3、 方法参数的个数、顺序或类型不同</p>
+<p>4、 与方法的修饰符或返回值没有关系</p>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h3><p><strong>类</strong>：类是一个模板，它描述一类对象的行为（方法）和状态（属性），比如把狗作为一类，把猫作为另一类。</p>
+<p>定义类的的步骤</p>
+<p>a.定义类名</p>
+<p>b.编写类的属性</p>
+<p>c.编写类的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class 类名&#123;</span><br><span class="line">属性1的类型 属性1；</span><br><span class="line">属性2的类型 属性2；</span><br><span class="line">...</span><br><span class="line">方法1；</span><br><span class="line">方法2；</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>对象</strong>：对象是类的一个实例，有状态和行为。例如，一条狗是一个对象，它的状态有：颜色、名字、品种；行为有：摇尾巴、叫、吃等。</p>
+<p>软件对象也有状态和行为。软件对象的状态就是属性，行为通过方法体现。</p>
+<p>先创建一个类（创建这个类时，类名设置为Student，package名设置为test）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test；</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Study</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再创建一个类，在里面实例化一个Student类对象，对对象的属性赋值,或调用Student类方法。例如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> test；<span class="comment">//导入刚才创建的test包</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InitialStudent</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Student pupil1=<span class="keyword">new</span> Student();<span class="comment">//使用new+构造方法创建对象</span></span><br><span class="line">        pupil1.age=<span class="number">12</span>; <span class="comment">//对对象的属性赋值</span></span><br><span class="line">        pupil1.name=<span class="string">"XiaoHong"</span>;<span class="comment">//对对象的属性赋值</span></span><br><span class="line">        pupil1.Study();<span class="comment">//调用方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>构造方法是指定义在Java类中的一个用来初始化对象的方法。构造方法与类同名且没有返回值。 </p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C54.png" alt></p>
+<p>一个类里可以有多个构造方法，只要它们不是一模一样。</p>
+<h3 id="成员变量与局部变量"><a href="#成员变量与局部变量" class="headerlink" title="成员变量与局部变量"></a>成员变量与局部变量</h3><p>成员变量：在类中定义，用来描述对象将要有什么。能够被本类或其他类的方法使用。成员变量初始值默认为0。</p>
+<p>局部变量：在类的方法中定义，用来在方法中临时保存数据。java没有给局部变量赋予初始值。</p>
+<p>在不同的方法中，可以有同名局部变量。局部变量的优先级高于它的同名成员变量。</p>
+<h3 id="static-之静态变量"><a href="#static-之静态变量" class="headerlink" title="static 之静态变量"></a>static 之静态变量</h3><p>我们可以基于一个类创建多个该类的对象，每个对象都拥有自己的成员，互相独立。然而在某些时候，我们更希望该类所有的对象共享同一个成员，此时 static 就可以发挥作用。</p>
+<p>Java 中被 static 修饰的成员称为静态成员或类成员。它属于整个类所有，而不是某个对象所有，即被类的所有对象所共享。静态成员可以使用类名直接访问，也可以使用对象名进行访问。当然，鉴于他作用的特殊性更推荐用类名访问。</p>
+<p>使用 static 可以修饰变量、方法和代码块。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C54.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C55.jpg" alt></p>
+<p>如果只是普通的成员变量，就不能通过类名来访问，必须先创建类的对象。</p>
+<h3 id="static之静态方法"><a href="#static之静态方法" class="headerlink" title="static之静态方法"></a>static之静态方法</h3><p>与静态变量一样，我们也可以使用 static 修饰方法，称为静态方法或类方法。其实之前我们一直写的 main 方法就是静态方法。静态方法的使用如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C56.jpg" alt></p>
+<p>需要注意：</p>
+<p>1、 <strong>静态方法中可以直接调用同类中的静态成员，但不能直接调用非静态成员。</strong>如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C57.jpg" alt></p>
+<p><strong>如果希望在静态方法中调用非静态变量，可以通过创建类的对象，然后通过对象来访问非静态变量</strong>。如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C58.jpg" alt></p>
+<p>2、 <strong>在普通成员方法中，则可以直接访问同类的非静态变量和静态变量</strong>，如下所示：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C59.jpg" alt></p>
+<p>3、 <strong>静态方法中不能直接调用非静态方法，需要通过对象来访问非静态方法。</strong>如：</p>
+<p>总结一下，普通方法中可以直接访问同类的所有成员变量或方法。而静态方法只能直接访问静态变量和直接调用静态方法，不能直接调用非静态成员或方法。</p>
+<h3 id="static之静态初始化块"><a href="#static之静态初始化块" class="headerlink" title="static之静态初始化块"></a>static之静态初始化块</h3><p>Java 中可以通过初始化块进行数据赋值。如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C60.jpg" alt></p>
+<p>在类的声明中，可以包含多个初始化块，当创建类的实例时，就会依次执行这些代码块。如果使用 static 修饰初始化块，就称为静态初始化块。</p>
+<p>需要特别注意：<strong>静态初始化块只在类加载时执行，且只会执行一次，同时静态初始化块只能给静态变量赋值，不能初始化普通的成员变量</strong>。</p>
+<p>我们来看一段代码：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C61.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C62.jpg" alt></p>
+<p>通过输出结果，我们可以看到，程序运行时静态初始化块最先被执行，然后执行普通初始化块，最后才执行构造方法。由于静态初始化块只在类加载时执行一次，所以当再次创建对象 hello2 时并未执行静态初始化块。</p>
+<h2 id="第五章–封装"><a href="#第五章–封装" class="headerlink" title="第五章–封装"></a>第五章–封装</h2><p>面向对象的三大特性：封装，继承，多态。</p>
+<p>将类的某些信息隐藏在类内部，不允许外部程序直接访问，而是通过该类提供的方法来实现对隐藏信息的操作和访问。</p>
+<p>优点：</p>
+<p>1.只能通过规定的方法访问数据。例如在其他类不能直接调用该类的private变量，可以在该类中定义一个方法获取这个变量，然后在其他类中通过调用这个方法间接获取那个私人变量。</p>
+<p>2.隐藏类的实例细节，方便修改和实现。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C63.png" alt></p>
+<p>eg：在Telphone类里创建get和set方法</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C65.png" alt></p>
+<h3 id="使用包管理java中的类"><a href="#使用包管理java中的类" class="headerlink" title="使用包管理java中的类"></a>使用包管理java中的类</h3><p>包的作用：管理Java文件；解决同名文件冲突。</p>
+<p>定义包：package 包名</p>
+<p>注：必须放在Java源程序的第一行。命名包可以用”.”隔开表示层次。</p>
+<p>eg：apartment1.floor2.room3</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> apartment1.floor2.room3;</span><br></pre></td></tr></table></figure>
+
+<p>包的使用：</p>
+<p>在某个文件使用刚才创建的包的类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> apartment1.floor2.room3;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Java中的内部类"><a href="#Java中的内部类" class="headerlink" title="Java中的内部类"></a>Java中的内部类</h3><p>内部类（ Inner Class ）就是定义在另外一个类里面的类。与之对应，包含内部类的类被称为外部类。内部类也是一个类，可以有自己的成员方法和成员变量。</p>
+<p>作用：</p>
+<ol>
+<li><p>内部类提供了更好的封装，可以把内部类隐藏在外部类之内，不允许同一个包中的其他类访问该类</p>
+</li>
+<li><p>内部类的方法可以直接访问外部类的所有数据，包括私有的数据</p>
+</li>
+<li><p>内部类所实现的功能使用外部类同样可以实现，只是有时使用内部类更方便</p>
+</li>
+</ol>
+<p>内部类可分为以下几种：</p>
+<ul>
+<li>成员内部类</li>
+<li>静态内部类</li>
+<li>方法内部类</li>
+<li>匿名内部类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//外部类HelloWorld</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line"><span class="comment">// 内部类Inner，类Inner在类HelloWorld的内部</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 内部类的方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"welcome to imooc!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 创建外部类对象</span></span><br><span class="line">	HelloWorld hello = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">    <span class="comment">// 创建内部类对象</span></span><br><span class="line">	Inner i = hello.<span class="keyword">new</span> Inner();</span><br><span class="line">    <span class="comment">// 调用内部类对象的方法</span></span><br><span class="line">	i.show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="成员内部类"><a href="#成员内部类" class="headerlink" title="成员内部类"></a>成员内部类</h4><p>内部类中最常见的就是成员内部类，也称为普通内部类。我们来看如下代码：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C63.jpg" alt></p>
+<p>运行结果为：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C64.jpg" alt></p>
+<p>从上面的代码中我们可以看到，<strong>成员内部类的使用方法</strong>：</p>
+<p>1、 Inner 类定义在 Outer 类的内部，相当于 Outer 类的一个成员变量的位置，Inner 类可以使用任意访问控制符，如 public 、 protected 、 private等</p>
+<p>2、 Inner 类中定义的 test() 方法可以直接访问 Outer 类中的数据，而不受访问控制符的影响，如直接访问 Outer 类中的私有属性a</p>
+<p>3、 定义了成员内部类后，必须使用外部类对象来创建内部类对象，而不能直接去 new 一个内部类对象，即：内部类 对象名 = 外部类对象.new 内部类( )</p>
+<p>4、 编译上面的程序后，会发现产生了两个 .class 文件</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C65.jpg" alt></p>
+<p>其中，第二个是外部类的 .class 文件，第一个是内部类的 .class 文件，即成员内部类的 .class 文件总是这样：外部类名$内部类名.class</p>
+<p>注意：</p>
+<p>1、 外部类是不能直接使用内部类的成员和方法</p>
+<p>可先创建内部类的对象，然后通过内部类的对象来访问其成员变量和方法。</p>
+<p>2、 如果外部类和内部类具有相同的成员变量或方法，内部类默认访问自己的成员变量或方法，如果要访问外部类的成员变量，可以使用 this 关键字。如：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C66.jpg" alt></p>
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><p>静态内部类是 static 修饰的内部类，这种内部类的特点是：</p>
+<p>1、 静态内部类不能直接访问外部类的非静态成员，但可以通过 <strong>new 外部类().成员</strong> 的方式访问 </p>
+<p>2、 如果外部类的静态成员与内部类的成员名称相同，可通过“类名.静态成员”访问外部类的静态成员；如果外部类的静态成员与内部类的成员名称不相同，则可通过“成员名”直接调用外部类的静态成员</p>
+<p>3、 创建静态内部类的对象时，不需要外部类的对象，可以直接创建 <strong>内部类 对象名= new 内部类();</strong></p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C67.jpg" alt></p>
+<p>运行结果</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C68.jpg" alt></p>
+<h4 id="方法内部类"><a href="#方法内部类" class="headerlink" title="方法内部类"></a>方法内部类</h4><p>方法内部类就是内部类定义在外部类的方法中，方法内部类只在该方法的内部可见，即只在该方法内可以使用。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C69.jpg" alt></p>
+<p>方法内部类的对象应该要定义在方法中。</p>
+<p><strong>注意：</strong>由于方法内部类不能在外部类的方法以外的地方使用，因此方法内部类不能使用访问控制符和 static 修饰符。</p>
+<h2 id="第六章–继承"><a href="#第六章–继承" class="headerlink" title="第六章–继承"></a>第六章–继承</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>继承是类和类之间的一种关系。</p>
+<p>Java中的继承是单继承，即一个类只有一个父类。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>子类拥有父类的所有属性和方法，（修饰符不能是private）实现代码复用。</p>
+<h4 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h4><p><strong>class</strong> 子类 <strong>extends</strong> 父类{</p>
+<p>}</p>
+<h4 id="继承的例子"><a href="#继承的例子" class="headerlink" title="继承的例子"></a>继承的例子</h4><p>创建一个动物–父类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"动物具有吃东西的能力"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个狗–子类，创建时继承动物类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Dog dog1=<span class="keyword">new</span> Dog();</span><br><span class="line">        dog1.age=<span class="number">10</span>;</span><br><span class="line">        dog1.name=<span class="string">"duoduo"</span>;</span><br><span class="line">        dog1.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="继承的初始化顺序"><a href="#继承的初始化顺序" class="headerlink" title="继承的初始化顺序"></a>继承的初始化顺序</h4><p>1 初始化父类之后再初始化子类（创建对象时，先创建父类对象再创建子类对象）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"动物具有吃东西的能力"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Animal</span><span class="params">()</span></span>&#123; <span class="comment">//父类构造方法</span></span><br><span class="line">        System.out.println(<span class="string">"Animal类执行了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Dog dog1=<span class="keyword">new</span> Dog();</span><br><span class="line">        dog1.age=<span class="number">10</span>;</span><br><span class="line">        dog1.name=<span class="string">"duoduo"</span>;</span><br><span class="line">        dog1.eat();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">()</span></span>&#123; <span class="comment">//子类构造方法</span></span><br><span class="line">        System.out.println(<span class="string">"Dog类执行了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Animal类执行了</span><br><span class="line">Dog类执行了</span><br><span class="line">动物具有吃东西的能力</span><br></pre></td></tr></table></figure>
+
+<p>2 先执行初始化对象中的属性，再执行构造方法中属性的初始化。</p>
+<h3 id="方法重写"><a href="#方法重写" class="headerlink" title="方法重写"></a>方法重写</h3><p>子类在继承父类的方法时可以对父类的方法进行重写，当调用方法时会优先调用子类的方法。</p>
+<p>重写时返回值类型，方法名，参数类型及个数都要与父类继承的方法相同才能重写成功。</p>
+<p>修改刚刚Dog类的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"狗具有吃东西的能力"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h3><p>final可以修饰类，方法，属性和变量。</p>
+<p>final修饰类时，该类就不能被继承。</p>
+<p>修饰方法时，方法不能被重写，但可以被调用。</p>
+<p>修饰属性时，如果只是声明了该属性而没有赋值，就必须在构造方法中赋值。如果修饰了该属性并同时赋了值，则不能再在构造方法或子类中进行修改。</p>
+<p>修饰变量时，变量变常量。</p>
+<h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><p>在对象的内部使用，可以代表父类对象。</p>
+<p>如访问父类的属性：super.age</p>
+<p>访问父类的方法：super.eat()</p>
+<p>例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age=<span class="number">5</span>;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"动物具有吃东西的能力"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"狗具有吃东西的能力"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Dog dog1=<span class="keyword">new</span> Dog();</span><br><span class="line">        <span class="comment">//dog1.age=10; 如果加此行代码，执行结果的5会变为10</span></span><br><span class="line">        dog1.name=<span class="string">"duoduo"</span>;</span><br><span class="line">        <span class="comment">//dog1.eat();</span></span><br><span class="line">        dog1.method();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//在子类中写一个方法调用父类的属性和方法。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        eat();<span class="comment">//调用自己的方法</span></span><br><span class="line">        <span class="keyword">super</span>.eat();<span class="comment">//调用父类的方法</span></span><br><span class="line">        System.out.println(<span class="keyword">super</span>.age);<span class="comment">//调用父类的属性</span></span><br><span class="line">        System.out.println(age);<span class="comment">//调用子类继承的属性</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">狗具有吃东西的能力</span><br><span class="line">动物具有吃东西的能力</span><br><span class="line">5</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<p>super的应用</p>
+<p>如果子类的构造方法中没有显示调用父类的构造方法，则系统默认调用父类无参的构造方法。如果显示调用构造方法，则必须在子类构造方法的第一行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">()</span></span>&#123; <span class="comment">//子类构造方法</span></span><br><span class="line">    <span class="keyword">super</span>();<span class="comment">//这一行没有后台依然会隐性添加。</span></span><br><span class="line">    System.out.println(<span class="string">"Dog类执行了"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果父类没有无参的构造方法，则子类的构造方法应在第一行调用父类的有参构造方法。</p>
+<p>例如现在我们在父类中写一个有参的构造方法 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Animal</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123; <span class="comment">//父类有参构造方法</span></span><br><span class="line">    <span class="keyword">this</span>.age=age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>则在写子类的构造方法时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">()</span></span>&#123; </span><br><span class="line">    <span class="keyword">super</span>(<span class="number">8</span>);<span class="comment">//必须先调用父类的有参构造方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="object类"><a href="#object类" class="headerlink" title="object类"></a>object类</h3><p>object类是所有类的父类。如果一个类没有使用extends关键字标识它继承哪个父类，拿它默认继承object类。</p>
+<h4 id="object类的方法"><a href="#object类的方法" class="headerlink" title="object类的方法"></a>object类的方法</h4><h5 id="1-toString-方法"><a href="#1-toString-方法" class="headerlink" title="1.toString()方法"></a>1.toString()方法</h5><p>默认继承 Object 的 toString( ) 方法，输出对象地址</p>
+<p>返回对象的哈希code码（对象地址字符串）</p>
+<h5 id="2-equals-方法"><a href="#2-equals-方法" class="headerlink" title="2 equals()方法"></a>2 equals()方法</h5><p>比较对象的运用是否指向同一块内存地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dog dog&#x3D;new Dog();</span><br></pre></td></tr></table></figure>
+
+<p>在这里dog其实不是一个对象，而是指指向一个对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Dog dog1 = <span class="keyword">new</span> Dog();</span><br><span class="line">        Dog dog2 = <span class="keyword">new</span> Dog();</span><br><span class="line">        <span class="keyword">if</span> (dog1.equals(dog2)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"两个对象是相同的"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"两个对象是不相同的"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">两个对象是不相同的</span><br></pre></td></tr></table></figure>
+
+<p>如果我们要用equals()比较两个对象的值是否相等，那就要在Dog类里重写equals()方法。</p>
+<h2 id="第七章–多态"><a href="#第七章–多态" class="headerlink" title="第七章–多态"></a>第七章–多态</h2><p>指对象的多种状态，继承是多态的实现基础。</p>
+<h3 id="1-引用多态"><a href="#1-引用多态" class="headerlink" title="1.引用多态"></a>1.引用多态</h3><p>父类的引用可以指向本类的对象。</p>
+<p>父类的引用可以指向子类的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age=<span class="number">5</span>;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"动物具有吃东西的能力"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Animal obj1=<span class="keyword">new</span> Animal();</span><br><span class="line">        Animal obj2=<span class="keyword">new</span> Dog();<span class="comment">//父类的引用可以指向子类的对象</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-方法多态"><a href="#2-方法多态" class="headerlink" title="2.方法多态"></a>2.方法多态</h3><p>创建本类对象时，调用的方法为本类方法。</p>
+<p>创建子类对象时，调用的方法为子类重写的方法或者继承的方法。</p>
+<p>例如我们现在在Dog类中重写eat方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mmm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"狗吃骨头"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Animal obj1=<span class="keyword">new</span> Animal();</span><br><span class="line">        Animal obj2=<span class="keyword">new</span> Dog();<span class="comment">//父类的引用可以指向子类的对象</span></span><br><span class="line">        obj1.eat();</span><br><span class="line">        obj2.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">动物具有吃东西的能力</span><br><span class="line">狗吃骨头</span><br></pre></td></tr></table></figure>
+
+<h3 id="多态中的引用类型转换"><a href="#多态中的引用类型转换" class="headerlink" title="多态中的引用类型转换"></a>多态中的引用类型转换</h3><p>1.向上类型转换（隐式/自动类型转换），是小类型到大类型的转换。（无风险）</p>
+<p>2.向下类型转换（强制类型转换），是大类型到小类型。（有风险，数据可能会溢出）</p>
+<p>instanceof运算符，来解决引用对象的类型，避免类型转换的安全性问题。</p>
+<p>例子（Animal父类，Dog子类和Cat子类）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"狗吃骨头"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Dog dog=<span class="keyword">new</span> Dog();</span><br><span class="line">        Animal animal=dog;<span class="comment">//向上类型转换，自动类型提升。</span></span><br><span class="line">        Dog dog2=(Dog)animal;<span class="comment">//向下类型转换，强制类型转换。</span></span><br><span class="line">        <span class="comment">//Cat cat=(Cat)animal; 不能再把属于Dog类的animal强制转换为属于Cat类的animal。</span></span><br><span class="line">        <span class="keyword">if</span>(animal <span class="keyword">instanceof</span> Cat)&#123;</span><br><span class="line">            Cat cat=(Cat)animal;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"无法进行类型转换"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无法进行类型转换</span><br></pre></td></tr></table></figure>
+
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>应用场景：</p>
+<p>1.在某些情况下，某个父类只是知道其子类应该包含怎样的方法，但无法准确知道这些子类如何实现这些方法。抽象类用来约束子类有哪些方法，但不关注具体实现。</p>
+<p>2.从多个具有相同特征的类中抽象出一个抽象类，以这个抽象类作为子类的模板，从而避免了子类设计的随意性。</p>
+<p>使用规则</p>
+<p>用abstract修饰符定义抽象类。</p>
+<p>用abstract修饰符定义抽象方法，只有声明，不需要实现。</p>
+<p>包含抽象方法的类是抽象类。</p>
+<p>抽象类中可以包含普通的方法，也可以没有抽象方法。</p>
+<p>抽象方法没有方法体以;结束。</p>
+<p>例子</p>
+<p>创建一个抽象Telphone父类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Telphone</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">message</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bigscreen</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在创建CellPhone子类，子类自动实现父类里的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CellPhone</span> <span class="keyword">extends</span> <span class="title">Telphone</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">message</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们可以在子类的两个方法体里添加代码了。比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CellPhone</span> <span class="keyword">extends</span> <span class="title">Telphone</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘拨打电话"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">message</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘发短信"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>接口可以理解为一种特殊的类，由全局常量和公共的抽象方法所组成。</p>
+<p>类是一种具体实现体，而接口定义了某一批类所需要遵守的规范，接口不关心这些类的内部数据，也不关心这些类里方法的实现细节，它只规定这些类里必须提供某些方法。</p>
+<h4 id="定义接口"><a href="#定义接口" class="headerlink" title="定义接口"></a>定义接口</h4><p>基本语法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C70.png" alt></p>
+<p>public static final 常量名</p>
+<p>public abstract 方法名</p>
+<h4 id="使用接口"><a href="#使用接口" class="headerlink" title="使用接口"></a>使用接口</h4><p>一个类可以有一个或多个接口，实现接口使用implements关键字。弥补java中类只能继承一个父类的不足。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C71.png" alt></p>
+<p>例子</p>
+<p>通过接口描述两个不同对象的共同特性。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C72.png" alt></p>
+<p>以抽象类中的例子为例，创建一个接口，接口名一般以I开头。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IPlayGame</span> </span>&#123; <span class="comment">//接口可以不显式显现abstract关键字</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playgame</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>让CellPhone类接入这个接口，CellPhone类就必须添加playgame那个方法。之后可以在这个方法中添加代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmartPhone</span> <span class="keyword">extends</span> <span class="title">Telphone</span> <span class="keyword">implements</span> <span class="title">IPlayGame</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘拨打电话"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">message</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘发短信"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playgame</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘玩游戏"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    CellPhone phone1=<span class="keyword">new</span> CellPhone();</span><br><span class="line">    phone1.playgame();</span><br><span class="line">    IPlayGame phone2=<span class="keyword">new</span> CellPhone();</span><br><span class="line">    phone2.playgame();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用键盘玩游戏</span><br><span class="line">用键盘玩游戏</span><br></pre></td></tr></table></figure>
+
+
+
+<p>接口有时还会与匿名内部类（没有名字的类，用于关注实现而不关注实现类的名称）配合使用。</p>
+<p>利用匿名内部类的方式实现接口：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C73.png" alt></p>
+<p>执行结果为：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C74.png" alt></p>
+<h2 id="第八章–异常"><a href="#第八章–异常" class="headerlink" title="第八章–异常"></a>第八章–异常</h2><p>异常包括：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/75.png" alt></p>
+<p>检查异常包括文件异常和SQL异常。</p>
+<p>处理异常</p>
+<p>try-catch以及try-catch-finally</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"><span class="comment">//一些抛出异常的方法</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line"><span class="comment">//捕获某异常并处理</span></span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    <span class="comment">//最终要执行的一些代码，进行善后工作。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例子1</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/76.png" alt></p>
+<p>在执行完catch语句后最后一句代码依旧会被执行。</p>
+<p>例子2</p>
+<p>如果有try中出现多种异常，可以用catch语句分别取捕获：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/77.png" alt></p>
+<p>catch块里的异常类型应该从子类编写到父类。</p>
+<h4 id="Java中的异常抛出"><a href="#Java中的异常抛出" class="headerlink" title="Java中的异常抛出"></a>Java中的异常抛出</h4><p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/78.png" alt></p>
+<p>捕获到的异常，可以在当前方法的 catch 块中处理，也可抛出给调用者去处理</p>
+<h4 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class 自定义异常类 extends 异常类型&#123;</span><br><span class="line">&#125;&#x2F;&#x2F;继承与意思相近的异常或直接继承Exception类</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/79.png" alt></p>
+<h2 id="第九章–字符串"><a href="#第九章–字符串" class="headerlink" title="第九章–字符串"></a>第九章–字符串</h2><h3 id="创建-String-对象"><a href="#创建-String-对象" class="headerlink" title="创建 String 对象"></a>创建 String 对象</h3><p>在 Java 中，字符串被作为 String 类型的对象处理。 String 类位于 java.lang 包中。默认情况下，该包被自动导入所有的程序。</p>
+<p>创建 String 对象的方法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/80.jpg" alt></p>
+<p>String 对象创建后则不能被修改，是不可变的，所谓的修改其实是创建了新的对象，所指向的内存空间不同。</p>
+<p>每次 new 一个字符串就是产生一个新的对象，即便两个字符串的内容相同，使用 ”==” 比较时也为 ”false” ,如果只需比较内容是否相同，应使用 ”equals()” 方法。而如果直接创建的话，多次出现时会被编译器优化，只创建一个对象。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/81.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/82.jpg" alt></p>
+<h3 id="String-类的常用方法-Ⅰ"><a href="#String-类的常用方法-Ⅰ" class="headerlink" title="String 类的常用方法 Ⅰ"></a>String 类的常用方法 Ⅰ</h3><p>String 类的常用方法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/83.jpg" alt></p>
+<p>结合代码来熟悉一下方法的使用：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/84.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/85.jpg" alt></p>
+<p>注意：</p>
+<ol>
+<li><p>字符串 str 中字符的索引从0开始，范围为 0 到 str.length()-1</p>
+</li>
+<li><p>使用 indexOf 进行字符或字符串查找时，如果匹配返回位置索引；如果没有匹配结果，返回 -1</p>
+</li>
+<li><p>使用 substring(beginIndex , endIndex) 进行字符串截取时，包括 beginIndex 位置的字符，不包括 endIndex 位置的字符</p>
+</li>
+</ol>
+<h3 id="String-类常用方法-Ⅱ"><a href="#String-类常用方法-Ⅱ" class="headerlink" title="String 类常用方法 Ⅱ"></a>String 类常用方法 Ⅱ</h3><p>继续来看 String 类常用的方法，如下代码所示：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/86.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/87.jpg" alt></p>
+<p><strong>“==” 和 equals() 的区别？</strong></p>
+<p>==: 判断两个字符串在内存中首地址是否相同，即判断是否是同一个字符串对象</p>
+<p>equals(): 比较存储在两个字符串对象中的内容是否一致</p>
+<p>PS：字节是计算机存储信息的基本单位，<strong>1 个字节等于 8 位</strong>， <strong>gbk 编码中 1 个汉字字符存储需要 2 个字节</strong>，<strong>1 个英文字符存储需要 1 个字节</strong>。所以我们看到上面的程序运行结果中，每个汉字对应两个字节值，如“学”对应 “-47 -89” ，而英文字母 “J” 对应 “74” 。同时，我们还发现汉字对应的字节值为负数，原因在于每个字节是 8 位，最大值不能超过 127，而<strong>汉字转换为字节后超过 127，如果超过就会溢出，以负数的形式显示。</strong></p>
+<h3 id="StringBuilder-类"><a href="#StringBuilder-类" class="headerlink" title="StringBuilder 类"></a>StringBuilder 类</h3><p>在Java中，除了可以使用 String 类来存储字符串，还可以使用 StringBuilder 类或 StringBuffer 类存储字符串</p>
+<p>String 类具有是不可变性。如</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/88.jpg" alt></p>
+<p>运行结果：  </p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/89.jpg" alt></p>
+<p>从运行结果中我们可以看到，程序运行时会额外创建一个对象，保存 “helloworld”。当频繁操作字符串时，就会额外产生很多临时变量。使用 StringBuilder 或 StringBuffer 就可以避免这个问题。至于 StringBuilder 和StringBuffer ，它们基本相似，不同之处，StringBuffer 是线程安全的，而 StringBuilder 则没有实现线程安全功能，所以性能略高。因此一般情况下，如果需要创建一个内容可变的字符串对象，应优先考虑使用 StringBuilder 类。</p>
+<p>如何定义 StringBuilder 类的对象：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/90.jpg" alt></p>
+<h3 id="StringBuilder-类的常用方法"><a href="#StringBuilder-类的常用方法" class="headerlink" title="StringBuilder 类的常用方法"></a>StringBuilder 类的常用方法</h3><p>StringBuilder 类提供了很多方法来操作字符串：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/91.jpg" alt></p>
+<p>例如：在下面的示例代码中，创建了 StringBuilder 对象，用来存储字符串，并对其做了追加和插入操作。这些操作修改了 str 对象的值，而没有创建新的对象，这就是 StringBuilder 和 String 最大的区别。</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/92.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/93.jpg" alt></p>
+<h2 id="第十章–包装类"><a href="#第十章–包装类" class="headerlink" title="第十章–包装类"></a>第十章–包装类</h2><p>基本数据类型如 int、float、double、boolean、char 等。基本数据类型是不具备对象的特性的，比如基本类型不能调用方法、功能简单。为了让基本数据类型也具备对象的特性， Java 为每个基本数据类型都提供了一个包装类，这样我们就可以像操作对象那样来操作基本数据类型。 </p>
+<p>基本类型和包装类之间的对应关系：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/94.jpg" alt></p>
+<p>包装类主要提供了两大类方法：</p>
+<ol>
+<li><p>将本类型和其他基本类型进行转换的方法</p>
+</li>
+<li><p>将字符串和本类型及包装类互相转换的方法</p>
+</li>
+</ol>
+<h3 id="Integer-包装类"><a href="#Integer-包装类" class="headerlink" title="Integer 包装类"></a>Integer 包装类</h3><p>我们以 Integer 包装类为例，来看下包装类的特性。</p>
+<p>Integer 包装类的构造方法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/95.jpg" alt></p>
+<p>如下代码所示：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/96.jpg" alt></p>
+<p>Integer包装类的常用方法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note/java%E5%9F%BA%E7%A1%80%E7%AF%87/97.jpg" alt></p>
+<p>public class HelloWorld {<br>    public static void main(String[] args) {</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义int类型变量，值为86</span></span><br><span class="line"><span class="keyword">int</span> score1 = <span class="number">86</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建Integer包装类对象，表示变量score1的值</span></span><br><span class="line">Integer score2=<span class="keyword">new</span> Integer(score1);</span><br><span class="line">   </span><br><span class="line"><span class="comment">// 将Integer包装类转换为double类型</span></span><br><span class="line"><span class="keyword">double</span> score3=score2.doubleValue();</span><br><span class="line">   </span><br><span class="line"><span class="comment">// 将Integer包装类转换为float类型</span></span><br><span class="line"><span class="keyword">float</span> score4=score2.floatValue();</span><br><span class="line">   </span><br><span class="line"><span class="comment">// 将Integer包装类转换为int类型</span></span><br><span class="line"><span class="keyword">int</span> score5 =score2.intValue();</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本类型和包装类之间的转换"><a href="#基本类型和包装类之间的转换" class="headerlink" title="基本类型和包装类之间的转换"></a>基本类型和包装类之间的转换</h3><p>基本类型和包装类之间经常需要互相转换，以 Integer 为例</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C98.jpg" alt></p>
+<p>在 JDK1.5 引入自动装箱和拆箱的机制后，包装类和基本类型之间的转换就更加轻松便利了。</p>
+<p><strong>装箱：</strong>把基本类型转换成包装类，使其具有对象的性质，又可分为手动装箱和自动装箱</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C99.jpg" alt></p>
+<p><strong>拆箱：</strong>和装箱相反，把包装类对象转换成基本类型的值，又可分为手动拆箱和自动拆箱</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C100.jpg" alt></p>
+<h3 id="基本类型和字符串之间的转换"><a href="#基本类型和字符串之间的转换" class="headerlink" title="基本类型和字符串之间的转换"></a>基本类型和字符串之间的转换</h3><p>在程序开发中，我们经常需要在基本数据类型和字符串之间进行转换。</p>
+<p>其中，基本类型转换为字符串有三种方法：</p>
+<ol>
+<li><p>使用包装类的 toString() 方法</p>
+</li>
+<li><p>使用String类的 valueOf() 方法</p>
+</li>
+<li><p>用一个空字符串加上基本类型，得到的就是基本类型数据对应的字符串</p>
+</li>
+</ol>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C101.jpg" alt></p>
+<p>再来看，将字符串转换成基本类型有两种方法：</p>
+<ol>
+<li><p>调用包装类的 parseXxx 静态方法</p>
+</li>
+<li><p>调用包装类的 valueOf() 方法转换为基本类型的包装类，会自动拆箱</p>
+</li>
+</ol>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C102.jpg" alt></p>
+<h3 id="Date-和-SimpleDateFormat-类表示时间"><a href="#Date-和-SimpleDateFormat-类表示时间" class="headerlink" title="Date 和 SimpleDateFormat 类表示时间"></a>Date 和 SimpleDateFormat 类表示时间</h3><p>使用的包</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br></pre></td></tr></table></figure>
+
+<p>在程序开发中，经常需要处理日期和时间的相关数据，此时我们可以使用 java.util 包中的 Date 类。这个类最主要的作用就是获取当前时间，我们来看下 Date 类的使用：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C103.jpg" alt></p>
+<p>使用 Date 类的<strong>默认无参构造方法</strong>创建出的对象就代表<strong>当前时间</strong>，我们可以直接输出 Date 对象显示当前的时间。显示的结果如下：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C104.jpg" alt></p>
+<p>其中， Wed 代表 Wednesday (星期三)， Jun 代表 June (六月)， 11 代表 11 号， CST 代表 China Standard Time (中国标准时间，也就是北京时间，东八区)。</p>
+<p>如果想要按指定的格式进行显示，如 2014-06-11 09:22:30 ，可以使用 SimpleDateFormat 来对日期时间进行格式化，如可以将日期转换为指定格式的文本，也可将文本转换为日期。</p>
+<ol>
+<li>使用 format() 方法将日期转换为指定格式的文本</li>
+</ol>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C105.jpg" alt></p>
+<p>运行结果：<strong>2014-06-11  09:55:48</strong>  </p>
+<ol start="2">
+<li>使用 parse() 方法将文本转换为日期</li>
+</ol>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C106.jpg" alt></p>
+<p>运行结果</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C107.jpg" alt></p>
+<h3 id="Calendar-类的应用"><a href="#Calendar-类的应用" class="headerlink" title="Calendar 类的应用"></a>Calendar 类的应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Calendar;</span><br></pre></td></tr></table></figure>
+
+<p>Date 类最主要的作用就是获得当前时间，同时这个类里面也具有设置时间以及一些其他的功能，但是由于本身设计的问题，这些方法却遭到众多批评，不建议使用，更推荐使用 Calendar 类进行时间和日期的处理。</p>
+<p>java.util.Calendar 类是一个抽象类，可以通过调用 getInstance() 静态方法获取一个 Calendar 对象，此对象已由当前日期时间初始化，即默认代表当前时间，如 Calendar c = Calendar.getInstance();</p>
+<p>那么如何使用 Calendar 获取年、月、日、时间等信息呢？我们来看下面的代码：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C108.jpg" alt></p>
+<p>其中，调用 Calendar 类的 getInstance() 方法获取一个实例，然后通过调用 get() 方法获取日期时间信息，参数为需要获得的字段的值， Calendar.Year 等为 Calendar 类中定义的静态常量。</p>
+<p>运行结果： </p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C109.jpg" alt></p>
+<p>Calendar 类提供了 getTime() 方法，用来获取 Date 对象，完成 Calendar 和 Date 的转换，还可通过 getTimeInMillis() 方法，获取此 Calendar 的时间值，以毫秒为单位。如下所示：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C110.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C111.jpg" alt></p>
+<h3 id="用-Math-类操作数据"><a href="#用-Math-类操作数据" class="headerlink" title="用 Math 类操作数据"></a>用 Math 类操作数据</h3><p>Math 类位于 java.lang 包中，包含用于执行基本数学运算的方法， Math 类的所有方法都是静态方法，所以使用该类中的方法时，可以直接使用类名.方法名，如： Math.round();</p>
+<p>常用的方法：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C112.jpg" alt></p>
+<p>代码</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C113.jpg" alt></p>
+<p>运行结果：</p>
+<p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C114.jpg" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckd8hgxtu0006j0vt1co8131w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          决策树与随机森林
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Scrapy&amp;Re--动态爬虫实例</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%BA%93/">数据分析库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习学习算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mini-Batch%E4%B8%8B%E9%99%8D/" rel="tag">Mini-Batch下降</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numpy/" rel="tag">Numpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Re/" rel="tag">Re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Request/" rel="tag">Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bs4/" rel="tag">bs4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" rel="tag">决策树与随机森林</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">动态爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" rel="tag">异常检测算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%AE%97%E6%B3%95/" rel="tag">推荐系统算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">无监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95K-means/" rel="tag">聚类算法K-means</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95PCA/" rel="tag">降维算法PCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" rel="tag">随机梯度下降</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">静态爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Matplotlib/" style="font-size: 10px;">Matplotlib</a> <a href="/tags/Mini-Batch%E4%B8%8B%E9%99%8D/" style="font-size: 10px;">Mini-Batch下降</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/Pandas/" style="font-size: 10px;">Pandas</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Request/" style="font-size: 10px;">Request</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/bs4/" style="font-size: 10px;">bs4</a> <a href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" style="font-size: 10px;">决策树与随机森林</a> <a href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">动态爬虫</a> <a href="/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" style="font-size: 10px;">异常检测算法</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">推荐系统算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">无监督学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 13.33px;">机器学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">监督学习</a> <a href="/tags/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95K-means/" style="font-size: 10px;">聚类算法K-means</a> <a href="/tags/%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95PCA/" style="font-size: 10px;">降维算法PCA</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" style="font-size: 10px;">随机梯度下降</a> <a href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">静态爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/">决策树与随机森林</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java基础篇学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/">Scrapy&amp;Re--动态爬虫实例</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习之监督学习算法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux操作学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>决策树与随机森林 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="决策树既能用于分类，也能用于回归。  算法步骤如何构造决策树是最重要的。   例子 选取根节点 先计算最初样本的熵  分别计算前四种划分后的熵  熵最小的那个特征就选为根节点（用信息增益以及信息增益率判断） 信息增益率表示为信息增益&#x2F;特征划分的样本的熵；越大说明这个特征作为节点越合适（例如添加一个特征ID编号从1到14，它的信息增益很大，然而这个特征是无用的）  继续以这种方式构造子节点，最终得到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="决策树与随机森林">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="决策树既能用于分类，也能用于回归。  算法步骤如何构造决策树是最重要的。   例子 选取根节点 先计算最初样本的熵  分别计算前四种划分后的熵  熵最小的那个特征就选为根节点（用信息增益以及信息增益率判断） 信息增益率表示为信息增益&#x2F;特征划分的样本的熵；越大说明这个特征作为节点越合适（例如添加一个特征ID编号从1到14，它的信息增益很大，然而这个特征是无用的）  继续以这种方式构造子节点，最终得到">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C1.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C7.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C4.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C5.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C8.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C9.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C10.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C11.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C12.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C13.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C14.png">
+<meta property="article:published_time" content="2020-07-30T06:54:09.000Z">
+<meta property="article:modified_time" content="2020-07-30T07:09:07.714Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="决策树与随机森林">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-决策树与随机森林" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" class="article-date">
+  <time datetime="2020-07-30T06:54:09.000Z" itemprop="datePublished">2020-07-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习学习算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      决策树与随机森林
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>既能用于分类，也能用于回归。</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C1.png" alt></p>
+<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p>如何构造决策树是最重要的。</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C7.png" alt></p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C2.png" alt></p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C4.png" alt></p>
+<h4 id="选取根节点"><a href="#选取根节点" class="headerlink" title="选取根节点"></a>选取根节点</h4><p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C5.png" alt></p>
+<p>先计算最初样本的熵</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C8.png" alt></p>
+<p>分别计算前四种划分后的熵</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C9.png" alt></p>
+<p>熵最小的那个特征就选为根节点（用信息增益以及信息增益率判断）</p>
+<p>信息增益率表示为信息增益/特征划分的样本的熵；越大说明这个特征作为节点越合适（例如添加一个特征ID编号从1到14，它的信息增益很大，然而这个特征是无用的）</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C10.png" alt></p>
+<p>继续以这种方式构造子节点，最终得到一个决策树</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C11.png" alt></p>
+<h4 id="熵与基尼系数"><a href="#熵与基尼系数" class="headerlink" title="熵与基尼系数"></a>熵与基尼系数</h4><p>熵指物体内部（这里我们可以指一个样本集）的混乱程度。因此一个集合中类别越多，熵就越大。</p>
+<p>下图熵的表达式中Pi指样本集中第i个类的的概率（比如有10个样本分为两个类别，其中有4个1类，6个0类，那么1类的概率为2/5）</p>
+<p>基尼系数（取值0-1）表达的含义与熵一样。</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C3.png" alt></p>
+<h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><p>Nt指当前这个叶子节点有几个样本，H(t)指节点的熵或基尼系数。</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C12.png" alt></p>
+<p>决策树太高太大分支太多会造成过拟合。我们要进行剪枝。</p>
+<p>预剪枝包括将深度设置为三即最多三层，或者当子节点的样本数小于一个阈值（例如50个）时就停止。</p>
+<p>后剪枝包括改变代价函数，|Tleaf|指叶子节点的个数。</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C13.png" alt></p>
+<p>很明显决策树分到最后是可以实现叶子节点熵为0的，但我们还要考虑这个树是否分的太细过拟合了，就无法对新样本进行预测。</p>
+<h2 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h2><p>随机选择一些样本（有放回采样）以及特征，构造出一个决策树，再随机选一些样本以及特征，再构造一个决策树…得到一些决策树后，将分类结果用简单投票法得到最终分类，提高分类准确率。</p>
+<p>随机森林属于集成学习（Ensemble Learning）中的bagging算法。<br>bagging的算法过程如下：</p>
+<p>从原始样本集中使用Bootstraping方法(自助法，是一种有放回的抽样方法)随机抽取n个训练样本，共进行k轮抽取，得到k个训练集。（k个训练集之间相互独立，元素可以有重复）</p>
+<p>对于k个训练集，我们训练k个模型（这k个模型可以根据具体问题而定，比如决策树，knn等）</p>
+<p>对于分类问题：由投票表决产生分类结果；对于回归问题：由k个模型预测结果的均值作为最后预测结果。（所有模型的重要性相同）</p>
+<p>Bagging的特点：</p>
+<p>样本选择上：Bagging采用的是Bootstrap随机有放回抽样；<br>样本权重：Bagging使用的是均匀取样，每个样本权重相等；<br>预测函数：Bagging所有的预测函数的权重相等；<br>并行计算：Bagging各个预测函数可以并行生成；</p>
+<h2 id="用python构造决策树"><a href="#用python构造决策树" class="headerlink" title="用python构造决策树"></a>用python构造决策树</h2><h3 id="决策树的参数"><a href="#决策树的参数" class="headerlink" title="决策树的参数"></a>决策树的参数</h3><p>criterion：<br>特征选择标准，【entropy, gini】。默认gini，即CART算法。</p>
+<p>splitter：<br>特征划分标准，【best, random】。best在特征的所有划分点中找出最优的划分点，random随机的在部分划分点中找局部最优的划分点。默认的‘best’适合样本量不大的时候，而如果样本数据量非常大，此时决策树构建推荐‘random’。</p>
+<p>max_depth：<br>决策树最大深度，【int,  None】。默认值是‘None’。一般数据比较少或者特征少的时候可以不用管这个值，如果模型样本数量多，特征也多时，推荐限制这个最大深度，具体取值取决于数据的分布。常用的可以取值10-100之间，常用来解决过拟合。</p>
+<p>min_samples_split：<br>内部节点（即判断条件）再划分所需最小样本数，【int, float】。默认值为2。如果是int，则取传入值本身作为最小样本数；如果是float，则取ceil(min_samples_split*样本数量)作为最小样本数。（向上取整）</p>
+<p>min_samples_leaf：<br>叶子节点（即分类）最少样本数。如果是int，则取传入值本身作为最小样本数；如果是float，则取ceil(min_samples_leaf*样本数量)的值作为最小样本数。这个值限制了叶子节点最少的样本数，如果某叶子节点数目小于样本数，则会和兄弟节点一起被剪枝。</p>
+<p>min_weight_fraction_leaf：<br>叶子节点（即分类）最小的样本权重和，【float】。这个值限制了叶子节点所有样本权重和的最小值，如果小于这个值，则会和兄弟节点一起被剪枝。默认是0，就是不考虑权重问题，所有样本的权重相同。</p>
+<p>一般来说如果我们有较多样本有缺失值或者分类树样本的分布类别偏差很大，就会引入样本权重，这时就要注意此值。</p>
+<p>max_features：<br>在划分数据集时考虑的最多的特征值数量，【int值】。在每次split时最大特征数；【float值】表示百分数，即（max_features*n_features）</p>
+<p>random_state：<br>【int, randomSate instance, None】，默认是None</p>
+<p>max_leaf_nodes：<br>最大叶子节点数。【int, None】，通过设置最大叶子节点数，可以防止过拟合。默认值None，默认情况下不设置最大叶子节点数。如果加了限制，算法会建立在最大叶子节点数内最优的决策树。如果特征不多，可以不考虑这个值，但是如果特征多，可以加限制，具体的值可以通过交叉验证得到。</p>
+<p>min_impurity_decrease：<br>节点划分最小不纯度，【float】。默认值为‘0’。限制决策树的增长，节点的不纯度（基尼系数，信息增益，均方差，绝对差）必须大于这个阈值，否则该节点不再生成子节点。</p>
+<p>min_impurity_split（已弃用）：<br>信息增益的阀值。决策树在创建分支时，信息增益必须大于这个阈值，否则不分裂。（从版本0.19开始不推荐使用：min_impurity_split已被弃用，以0.19版本中的min_impurity_decrease取代。 min_impurity_split的默认值将在0.23版本中从1e-7变为0，并且将在0.25版本中删除。 请改用min_impurity_decrease。）</p>
+<p>class_weight：<br>类别权重，【dict, list of dicts, balanced】，默认为None。（不适用于回归树，sklearn.tree.DecisionTreeRegressor）</p>
+<p>指定样本各类别的权重，主要是为了防止训练集某些类别的样本过多，导致训练的决策树过于偏向这些类别。balanced，算法自己计算权重，样本量少的类别所对应的样本权重会更高。如果样本类别分布没有明显的偏倚，则可以不管这个参数。</p>
+<p>presort：<br>bool，默认是False，表示在进行拟合之前，是否预分数据来加快树的构建。</p>
+<p>对于数据集非常庞大的分类，presort=true将导致整个分类变得缓慢；当数据集较小，且树的深度有限制，presort=true才会加速分类。</p>
+<h3 id="随机森林的参数"><a href="#随机森林的参数" class="headerlink" title="随机森林的参数"></a>随机森林的参数</h3><p>（1） 决策树的个数</p>
+<p>（2） 特征属性的个数</p>
+<p>（3） 递归次数（即决策树的深度）</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C14.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" data-id="ckd8hgxua000pj0vt40en6oq2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" rel="tag">决策树与随机森林</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java基础篇学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%BA%93/">数据分析库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习学习算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mini-Batch%E4%B8%8B%E9%99%8D/" rel="tag">Mini-Batch下降</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numpy/" rel="tag">Numpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Re/" rel="tag">Re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Request/" rel="tag">Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bs4/" rel="tag">bs4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" rel="tag">决策树与随机森林</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">动态爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" rel="tag">异常检测算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%AE%97%E6%B3%95/" rel="tag">推荐系统算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">无监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95K-means/" rel="tag">聚类算法K-means</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95PCA/" rel="tag">降维算法PCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" rel="tag">随机梯度下降</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">静态爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Matplotlib/" style="font-size: 10px;">Matplotlib</a> <a href="/tags/Mini-Batch%E4%B8%8B%E9%99%8D/" style="font-size: 10px;">Mini-Batch下降</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/Pandas/" style="font-size: 10px;">Pandas</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Request/" style="font-size: 10px;">Request</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/bs4/" style="font-size: 10px;">bs4</a> <a href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" style="font-size: 10px;">决策树与随机森林</a> <a href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">动态爬虫</a> <a href="/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" style="font-size: 10px;">异常检测算法</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">推荐系统算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">无监督学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 13.33px;">机器学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">监督学习</a> <a href="/tags/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95K-means/" style="font-size: 10px;">聚类算法K-means</a> <a href="/tags/%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95PCA/" style="font-size: 10px;">降维算法PCA</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" style="font-size: 10px;">随机梯度下降</a> <a href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">静态爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/">决策树与随机森林</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java基础篇学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/">Scrapy&amp;Re--动态爬虫实例</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习之监督学习算法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux操作学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
