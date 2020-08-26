@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/17.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/18.jpg">
 <meta property="article:published_time" content="2020-07-05T14:51:48.000Z">
-<meta property="article:modified_time" content="2020-07-30T07:26:07.706Z">
+<meta property="article:modified_time" content="2020-08-14T07:54:31.362Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Pandas">
@@ -158,10 +158,11 @@
 
 <h4 id="1-通过标签索引行数据-loc"><a href="#1-通过标签索引行数据-loc" class="headerlink" title="1.通过标签索引行数据 .loc"></a>1.通过标签索引行数据 .loc</h4><p>a3.loc[0,’age’]#用A.loc()方法可以行列一起取，这里我们用行索引和列索引取。</p>
 <p>a3.loc[0,’age’]#取第一行第age列，这里的0是行标签名</p>
-<p>a3.loc[1,’name’:’age’]#取第二行，第name到第age列<br><strong>a3.loc[:1,[‘name’,’age’]]#取前两行，第name，age列</strong></p>
+<p>a3.loc[1,’name’:’age’]#取第二行，第name到第age列<br>a3.loc[:1,[‘name’,’age’]]#取前两行，第name，age列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#标签索引里也可以添加布尔索引，下面两行效果相同</span><br><span class="line">dataset.loc[ dataset[&#39;Age&#39;] &lt;&#x3D; 16, &#39;Name&#39;]</span><br><span class="line">dataset[dataset[&#39;Age&#39;] &lt;&#x3D; 16][&#39;Name&#39;] </span><br><span class="line">#数据集中年龄小于16的人的名字</span><br><span class="line"></span><br><span class="line">#两个条件时用&amp;并起来</span><br><span class="line">dataset.loc[(dataset[&#39;Fare&#39;] &gt; 7.91) &amp; (dataset[&#39;Fare&#39;] &lt;&#x3D; 14.454), &#39;Fare&#39;] &#x3D; 1</span><br></pre></td></tr></table></figure>
+
 <p><strong>！注意，loc中：后的数据也会取到。</strong></p>
 <h4 id="2-通过位置索引-iloc"><a href="#2-通过位置索引-iloc" class="headerlink" title="2.通过位置索引 .iloc"></a>2.通过位置索引 .iloc</h4><p>a3.iloc[0,1],[1,2]]#取位置为第一行第二行，第二列第三列的数据</p>
-<p>a3.iloc[]#取位置为第一行第二行，第二列第三列的数据</p>
 <h4 id="3-更改数据"><a href="#3-更改数据" class="headerlink" title="3.更改数据"></a>3.更改数据</h4><p>A.log[‘a’,’age’]=50#将第a行age列的值更改为50。</p>
 <p>A.ilog[‘1’,’2’]=50#将第2行3列的值更改为50。</p>
 <p>A.ilog[‘1’,’2’]=np.nan#将第2行3列的值更改为nan。与numpy不同，这里不会报错，因为DataFrame会自动转换数据类型为float型。</p>
@@ -172,8 +173,10 @@
 <h3 id="DataFrame中缺失数据的处理"><a href="#DataFrame中缺失数据的处理" class="headerlink" title=".DataFrame中缺失数据的处理"></a>.DataFrame中缺失数据的处理</h3><p>1.用pd.isnull(A)或pd.notnull(A)判断A中有没有nan。</p>
 <p>2.若有nan：</p>
 <p>处理方式1：删除nan所在的行/列：A.dropna(axis=0,how=’any’,inplace=False)#any意为某行只要有一个nan就会被删除，inplace=Ture以为A会被永久性修改。A也可以只是某一列。</p>
-<p>处理方式2：填充nan：A.fillna(A.mean())#用每列的均值填充每一列的nan；</p>
-<p>​                                        A[‘age’].fillna(A[‘age’].mean())#只填充age这一列的nan。</p>
+<p>处理方式2：</p>
+<p>填充nan：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A.fillna(A.mean())<span class="comment">#用每列的均值填充每一列的nan；</span></span><br><span class="line"></span><br><span class="line">A[<span class="string">'age'</span>].fillna(A[<span class="string">'age'</span>].mean())<span class="comment">#只填充age这一列的nan。</span></span><br><span class="line"></span><br><span class="line">A[<span class="string">'Fare'</span>].fillna(A[<span class="string">'Fare'</span>].dropna().median(), inplace=<span class="literal">True</span>)<span class="comment">#用中值填充</span></span><br><span class="line"></span><br><span class="line">A[<span class="string">'Fare'</span>].fillna(A.Fare.dropna().mode()[<span class="number">0</span>], inplace=<span class="literal">True</span>)<span class="comment">#用最常出现的那个数填充</span></span><br><span class="line"></span><br><span class="line"> A[<span class="string">'Sex'</span>] = A[<span class="string">'Sex'</span>].map( &#123;<span class="string">'Male'</span>: <span class="number">0</span>, <span class="string">'Female'</span>: <span class="number">1</span> ).astype(int)<span class="comment">#映射</span></span><br></pre></td></tr></table></figure>
+
 <p>处理为0的数据：A[A==0]=np.nan</p>
 <p>当然并不是每次为0的数据都需要处理。计算平均值等时，nan不参与计算，但0会。</p>
 <h3 id="DataFrame中数据的合并和分组聚合"><a href="#DataFrame中数据的合并和分组聚合" class="headerlink" title=".DataFrame中数据的合并和分组聚合"></a>.DataFrame中数据的合并和分组聚合</h3><h4 id="1-实例1（特征提取）"><a href="#1-实例1（特征提取）" class="headerlink" title="1.实例1（特征提取）"></a>1.实例1（特征提取）</h4><p>对于一组电影数据(其中包含了name，genre，director等列），如果要统计电影分类(genre)这一列的情况：</p>
