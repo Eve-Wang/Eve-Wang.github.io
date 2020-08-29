@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/8.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/9.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/10.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/D:%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5Cpandas%5C3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C3.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/4.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/11.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/5.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/17.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/18.jpg">
 <meta property="article:published_time" content="2020-07-05T14:51:48.000Z">
-<meta property="article:modified_time" content="2020-08-14T07:54:31.362Z">
+<meta property="article:modified_time" content="2020-08-29T09:05:29.057Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Pandas">
@@ -135,12 +135,12 @@
 
 <h3 id="Pandas之Series的索引与值"><a href="#Pandas之Series的索引与值" class="headerlink" title="Pandas之Series的索引与值"></a>Pandas之Series的索引与值</h3><p>Series对象本质上由两个数组构成：</p>
 <p>一个数组构成对象的键（index，索引），一个数组构成对象的值（values）。</p>
-<p>ndarray的很多方法都可以用于series类型，比如argmax，clip。where方法与ndarray的太相同。</p>
+<p>ndarray的很多方法都可以用于series类型，比如argmax，clip，where方法与ndarray的太相同。</p>
 <h4 id="1-index"><a href="#1-index" class="headerlink" title="1.index"></a>1.index</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t4.index</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> t4.index:</span><br><span class="line">    print(i)<span class="comment">#获取index的数据，意味着index是可以遍历的。</span></span><br><span class="line">print(len(t4.index))<span class="comment">#获取index的长度</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="2-values"><a href="#2-values" class="headerlink" title="2.values"></a>2.values</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t4.values</span><br><span class="line">list(t4.values)[:<span class="number">2</span>]<span class="comment">#与index一样，也可以对值进行切片或者是遍历操作</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-values"><a href="#2-values" class="headerlink" title="2.values"></a>2.values</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t4.values</span><br><span class="line">list(t4.values)[:<span class="number">2</span>]<span class="comment">#与index一样，也可以对值进行切片或者是遍历操作，转换为列表类型前是ndarray类型，也可以直接进行切片操作</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="2-pandas之读取外部数据"><a href="#2-pandas之读取外部数据" class="headerlink" title="2.pandas之读取外部数据"></a>2.pandas之读取外部数据</h2><p>pd.read#tab补全可看到各种读取的方法。可以读取CSV,MYSQL,mangodb等的数据。</p>
 <h2 id="3-pandas的常用操作（DataFrame）"><a href="#3-pandas的常用操作（DataFrame）" class="headerlink" title="3.pandas的常用操作（DataFrame）"></a>3.pandas的常用操作（DataFrame）</h2><h3 id="DataFrame的创建"><a href="#DataFrame的创建" class="headerlink" title=".DataFrame的创建"></a>.DataFrame的创建</h3><p>DataFrame对象既有行索引，又有列索引。</p>
@@ -150,22 +150,26 @@
 
 <h4 id="2-通过字典创建-1"><a href="#2-通过字典创建-1" class="headerlink" title="2.通过字典创建"></a>2.通过字典创建</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a=&#123;<span class="string">'name'</span>:[<span class="string">'xiaohong'</span>,<span class="string">'xiaoming'</span>],<span class="string">'age'</span>:[<span class="number">22</span>,<span class="number">23</span>],<span class="string">'tel'</span>:[<span class="number">10010</span>,<span class="number">10086</span>]&#125;</span><br><span class="line">pd.DataFrame(a)</span><br><span class="line"></span><br><span class="line">|      |     name |  age |   tel |</span><br><span class="line">| ---: | -------: | ---: | ----: |</span><br><span class="line">|    <span class="number">0</span> | xiaohong |   <span class="number">22</span> | <span class="number">10010</span> |</span><br><span class="line">|    <span class="number">1</span> | xiaoming |   <span class="number">23</span> | <span class="number">10086</span> |</span><br><span class="line"></span><br><span class="line">a2=[&#123;<span class="string">'name'</span>:<span class="string">'xiaohong'</span>,<span class="string">'age'</span>:<span class="number">22</span>,<span class="string">'tel'</span>:<span class="number">10010</span>&#125;,&#123;<span class="string">'name'</span>:<span class="string">'xiaoming'</span>,<span class="string">'age'</span>:<span class="number">23</span>,<span class="string">'tel'</span>:<span class="number">10086</span>&#125;]<span class="comment">#列表中放字典</span></span><br><span class="line">pd.DataFrame(a2)</span><br><span class="line">     name	    age	  tel</span><br><span class="line"><span class="number">0</span>	xiaohong	<span class="number">22</span>	<span class="number">10010</span></span><br><span class="line"><span class="number">1</span>	xiaoming	<span class="number">23</span>	<span class="number">10086</span></span><br><span class="line">a3=pd.DataFrame(a2)</span><br></pre></td></tr></table></figure>
 
-<h3 id="DataFrame的基础属性操作"><a href="#DataFrame的基础属性操作" class="headerlink" title=".DataFrame的基础属性操作"></a>.DataFrame的基础属性操作</h3><p>A.index#行索引<br>A.columns#列索引<br>A.values#对象值，二维ndarray数组<br>A.shape#几行几列<br>A.dtypes#每一列的数据类型（int,object…）<br>A.ndim#维度</p>
+<h3 id="DataFrame的基础属性操作"><a href="#DataFrame的基础属性操作" class="headerlink" title=".DataFrame的基础属性操作"></a>.DataFrame的基础属性操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A.index#行索引</span><br><span class="line">A.columns#列索引</span><br><span class="line">A.values#对象值，二维ndarray数组</span><br><span class="line">A.shape#几行几列</span><br><span class="line">A.dtypes#每一列的数据类型（int,object...）</span><br><span class="line">A.ndim#维度</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="排序操作"><a href="#排序操作" class="headerlink" title="排序操作"></a>排序操作</h3><p>A.sort_value(by=’某一列索引名’，ascending=False)#按照某一列索引进行降序排序，ascending默认为True(升序)</p>
 <h3 id="DataFrame切片与索引"><a href="#DataFrame切片与索引" class="headerlink" title=".DataFrame切片与索引"></a>.DataFrame切片与索引</h3><p>a3[:2]#取前两行</p>
 <p>a3[‘age’]#取age这一列</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a3[:2][&#39;age&#39;]#取前两行第age列</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-通过标签索引行数据-loc"><a href="#1-通过标签索引行数据-loc" class="headerlink" title="1.通过标签索引行数据 .loc"></a>1.通过标签索引行数据 .loc</h4><p>a3.loc[0,’age’]#用A.loc()方法可以行列一起取，这里我们用行索引和列索引取。</p>
-<p>a3.loc[0,’age’]#取第一行第age列，这里的0是行标签名</p>
-<p>a3.loc[1,’name’:’age’]#取第二行，第name到第age列<br>a3.loc[:1,[‘name’,’age’]]#取前两行，第name，age列</p>
+<h4 id="1-通过标签索引行数据-loc"><a href="#1-通过标签索引行数据-loc" class="headerlink" title="1.通过标签索引行数据 .loc"></a>1.通过标签索引行数据 .loc</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a3.loc[0,&#39;age&#39;]#用A.loc()方法可以行列一起取，这里我们用行索引和列索引取。</span><br><span class="line"></span><br><span class="line">a3.loc[0,&#39;age&#39;]#取第一行第age列，这里的0是行标签名</span><br><span class="line"></span><br><span class="line">a3.loc[1,&#39;name&#39;:&#39;age&#39;]#取第二行，第name到第age列</span><br><span class="line">a3.loc[:1,[&#39;name&#39;,&#39;age&#39;]]#取前两行，第name，age列</span><br></pre></td></tr></table></figure>
+
+
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#标签索引里也可以添加布尔索引，下面两行效果相同</span><br><span class="line">dataset.loc[ dataset[&#39;Age&#39;] &lt;&#x3D; 16, &#39;Name&#39;]</span><br><span class="line">dataset[dataset[&#39;Age&#39;] &lt;&#x3D; 16][&#39;Name&#39;] </span><br><span class="line">#数据集中年龄小于16的人的名字</span><br><span class="line"></span><br><span class="line">#两个条件时用&amp;并起来</span><br><span class="line">dataset.loc[(dataset[&#39;Fare&#39;] &gt; 7.91) &amp; (dataset[&#39;Fare&#39;] &lt;&#x3D; 14.454), &#39;Fare&#39;] &#x3D; 1</span><br></pre></td></tr></table></figure>
 
 <p><strong>！注意，loc中：后的数据也会取到。</strong></p>
 <h4 id="2-通过位置索引-iloc"><a href="#2-通过位置索引-iloc" class="headerlink" title="2.通过位置索引 .iloc"></a>2.通过位置索引 .iloc</h4><p>a3.iloc[0,1],[1,2]]#取位置为第一行第二行，第二列第三列的数据</p>
-<h4 id="3-更改数据"><a href="#3-更改数据" class="headerlink" title="3.更改数据"></a>3.更改数据</h4><p>A.log[‘a’,’age’]=50#将第a行age列的值更改为50。</p>
-<p>A.ilog[‘1’,’2’]=50#将第2行3列的值更改为50。</p>
-<p>A.ilog[‘1’,’2’]=np.nan#将第2行3列的值更改为nan。与numpy不同，这里不会报错，因为DataFrame会自动转换数据类型为float型。</p>
+<h4 id="3-更改数据"><a href="#3-更改数据" class="headerlink" title="3.更改数据"></a>3.更改数据</h4><p>A.loc[‘a’,’age’]=50#将第a行age列的值更改为50。</p>
+<p>A.iloc[1,2]=50#将第2行3列的值更改为50。</p>
+<p>A.iloc[1,2]=np.nan#将第2行3列的值更改为nan。与numpy不同，这里不会报错，因为DataFrame会自动转换数据类型为float型。</p>
 <h4 id="4-bool布尔索引"><a href="#4-bool布尔索引" class="headerlink" title="4.bool布尔索引"></a>4.bool布尔索引</h4><p>a3[a3[‘age’]&gt;20]#取a3对象中age&gt;20的行。</p>
 <p>a3[(a3[‘age’]&gt;20)&amp;(a3[‘age’]&lt;30)]#取a3对象中30&gt;age&gt;20的行。</p>
 <h3 id="DataFrame整体情况查询操作"><a href="#DataFrame整体情况查询操作" class="headerlink" title=".DataFrame整体情况查询操作"></a>.DataFrame整体情况查询操作</h3><p>A.head()#默认显示前五行<br>A.tail()#默认显示后五行<br>A.info()#相关信息概览：行数，列数，列索引，列非空值个数，行类型，列类型，内存占用<br>A.describe()#显示有数字的那些列的最大值，最小值，均值，25%中位数等</p>
@@ -223,7 +227,7 @@
 
 <h4 id="3-数据合并之merge"><a href="#3-数据合并之merge" class="headerlink" title="3.数据合并之merge"></a>3.数据合并之merge</h4><p>pandas中的merge()函数类似于SQL中join的用法，可以将不同数据集依照某些字段（属性）进行合并操作，得到一个新的数据集。</p>
 <h5 id="1-用法"><a href="#1-用法" class="headerlink" title="1.用法"></a>1.用法</h5><p>DataFrame1.merge(DataFrame2, how=‘inner’, on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False, suffixes=(’_x’, ‘_y’))</p>
-<h5 id="2-参数说明"><a href="#2-参数说明" class="headerlink" title="2.参数说明"></a>2.参数说明</h5><p><img src="/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/D:%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5C%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0note%5Cpandas%5C3.png" alt></p>
+<h5 id="2-参数说明"><a href="#2-参数说明" class="headerlink" title="2.参数说明"></a>2.参数说明</h5><p><img src="/2020/07/05/Pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C3.png" alt></p>
 <h5 id="3-代码展示"><a href="#3-代码展示" class="headerlink" title="3.代码展示"></a>3.代码展示</h5><p>print(a)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    E   F   G   H   I</span><br><span class="line">A   0   1   2   3   4</span><br><span class="line">B   5   6   7   8   9</span><br><span class="line">C  10  11  12  13  14</span><br><span class="line">D  15  16  17  18  19</span><br></pre></td></tr></table></figure>
 
@@ -242,7 +246,7 @@
 <p>print(a.merge(c,on=’E’,how=’right’))#右链接(Right)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   E    F    G    H    I  Y</span><br><span class="line">0  0  1.0  2.0  3.0  4.0  1</span><br><span class="line">1  2  NaN  NaN  NaN  NaN  3</span><br></pre></td></tr></table></figure>
 
-<p>print(a.merge(c,left_on=’F’,right_on=’Y’)) #列名可以不同，但要有值相同。</p>
+<p>print(a.merge(c,left_on=’F’,right_on=’Y’)) #列名可以不同，但要有值相同。取值相同的那一行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   E_x  F  G  H  I  E_y  Y</span><br><span class="line">0    0  1  2  3  4    0  1</span><br></pre></td></tr></table></figure>
 
 <h4 id="4-数据分组之groupby"><a href="#4-数据分组之groupby" class="headerlink" title="4.数据分组之groupby"></a>4.数据分组之groupby</h4><p>t.groupby(by=’columns_name’) #得到的结果是一个DataFrameGroupBy对象</p>
@@ -287,7 +291,7 @@
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   a  b    c  d</span><br><span class="line">0  0  7  one  h</span><br><span class="line">1  1  6  one  j</span><br><span class="line">2  2  5  one  k</span><br><span class="line">3  3  4  two  l</span><br><span class="line">4  4  3  two  m</span><br><span class="line">5  5  2  two  n</span><br><span class="line">6  6  1  two  o</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改索引</span></span><br><span class="line">a.index=list(<span class="string">'ABCDEFG'</span>)</span><br><span class="line">print(a)</span><br><span class="line"><span class="comment">#重新设置index</span></span><br><span class="line">b=a.reindex([<span class="string">'A'</span>,<span class="string">'E'</span>,<span class="string">'a'</span>])</span><br><span class="line">print(b)<span class="comment">#若索引不存在则赋值nan</span></span><br><span class="line"><span class="comment">#把某一列作为索引</span></span><br><span class="line">c=a.set_index(<span class="string">'a'</span>,drop=<span class="literal">True</span>)<span class="comment">#把a列作为索引,当drop=True时a列只作为索引</span></span><br><span class="line">print(c)</span><br><span class="line"><span class="comment">#返回索引的唯一值</span></span><br><span class="line">print(a[<span class="string">'c'</span>].unique())</span><br><span class="line"><span class="comment">#设置复合索引</span></span><br><span class="line">d=a.set_index([<span class="string">'c'</span>,<span class="string">'a'</span>],drop=<span class="literal">False</span>)</span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改索引</span></span><br><span class="line">a.index=list(<span class="string">'ABCDEFG'</span>)</span><br><span class="line">print(a)</span><br><span class="line"><span class="comment">#重新设置index</span></span><br><span class="line">b=a.reindex([<span class="string">'A'</span>,<span class="string">'E'</span>,<span class="string">'a'</span>])</span><br><span class="line">print(b)<span class="comment">#若索引不存在则赋值nan</span></span><br><span class="line"><span class="comment">#把某一列作为索引</span></span><br><span class="line">c=a.set_index(<span class="string">'a'</span>,drop=<span class="literal">True</span>)<span class="comment">#把a列作为索引,当drop=True时a列只作为索引</span></span><br><span class="line">print(c)</span><br><span class="line"><span class="comment">#返回索引c列的唯一值</span></span><br><span class="line">print(a[<span class="string">'c'</span>].unique())</span><br><span class="line"><span class="comment">#设置复合索引</span></span><br><span class="line">d=a.set_index([<span class="string">'c'</span>,<span class="string">'a'</span>],drop=<span class="literal">False</span>)</span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
 
 
 
