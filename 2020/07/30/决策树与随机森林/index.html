@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C13.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C14.png">
 <meta property="article:published_time" content="2020-07-30T06:54:09.000Z">
-<meta property="article:modified_time" content="2020-07-30T07:37:10.911Z">
+<meta property="article:modified_time" content="2020-08-31T08:37:46.954Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="决策树与随机森林">
 <meta name="twitter:card" content="summary">
@@ -130,7 +130,7 @@
 <h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><p>Nt指当前这个叶子节点有几个样本，H(t)指节点的熵或基尼系数。</p>
 <p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C12.png" alt></p>
 <p>决策树太高太大分支太多会造成过拟合。我们要进行剪枝。</p>
-<p>预剪枝包括将深度设置为三即最多三层，或者当子节点的样本数小于一个阈值（例如50个）时就停止。</p>
+<p>预剪枝包括将深度设置为三即最多三层，或者当叶子节点的样本数小于一个阈值（例如50个）时就停止。</p>
 <p>后剪枝包括改变代价函数，|Tleaf|指叶子节点的个数。</p>
 <p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C13.png" alt></p>
 <p>很明显决策树分到最后是可以实现叶子节点熵为0的，但我们还要考虑这个树是否分的太细过拟合了，就无法对新样本进行预测。</p>
