@@ -92,6 +92,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C72.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C73.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C74.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C115.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/75.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/76.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/77.png">
@@ -133,7 +134,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C113.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C114.jpg">
 <meta property="article:published_time" content="2020-07-30T06:48:46.000Z">
-<meta property="article:modified_time" content="2020-08-28T07:25:35.192Z">
+<meta property="article:modified_time" content="2021-02-11T06:16:41.895Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -265,6 +266,10 @@
 <h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>所谓常量，我们可以理解为是一种特殊的变量，它的值被设定后，在<strong>程序运行过程中不允许改变</strong>。常量名一般使用<strong>大写字符</strong></p>
 <p>语法：<strong>final 常量名 = 值;</strong></p>
 <p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C5.jpg" alt></p>
+<h4 id="枚举变量"><a href="#枚举变量" class="headerlink" title="枚举变量"></a>枚举变量</h4><p>枚举类型是一种特殊的数据类型（特殊的类），它允许变量成为一组变量中的一个。<br>预定义常量<br>常见示例：<br>指南针方向（北，南，东，西）<br>星期几，一年中的月份等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public enum Day &#123;</span><br><span class="line">SUNDAY, MONDAY, TUESDAY, WEDNESDAY,</span><br><span class="line">THURSDAY, FRIDAY, SATURDAY,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它有方法<br>内置的静态方法values（）返回所有值的数组<br>内置的静态方法valueOf（）将字符串解析为枚举常量<br>compareTo（），equals（），hashCode（），toString（）的适当定义<br>其他方法：<br>ordinal（）-返回此常量在列表中的位置<br>name（）-返回此常量的名称</p>
 <h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><p>a=1</p>
 <p>b=++a表示将a+1后再赋值给b。</p>
 <p>b=a++表示先将a赋值给b再+1。</p>
@@ -282,6 +287,8 @@
 <p>if(条件){</p>
 <p>条件成立时执行的代码</p>
 <p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String[] fruits &#x3D; new String[] &#123; “apple”, “banana”, “cherry” ];</span><br><span class="line">Standard Java idiom: for loop</span><br><span class="line">for (int i &#x3D; 0; i &lt; fruits.length; i++) &#123;</span><br><span class="line">System.out.println(fruits[i]);</span><br><span class="line">&#125;</span><br><span class="line">More efficient option: for-each loop (since Java 1.5) – similar to Python’s for loop</span><br><span class="line">for (String fruit : fruits) &#123;</span><br><span class="line">System.out.println (fruit);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>注意：如果 if 条件成立时的执行语句只有一条，是可以省略大括号的。但如果执行语句有多条，那么大括号不可或缺。</p>
 <h4 id="if…else-语句"><a href="#if…else-语句" class="headerlink" title="if…else 语句"></a><strong>if…else</strong> 语句</h4><p><strong>if…else</strong> 语句的操作比 if 语句多了一步:  当条件成立时，则执行 if 部分的代码块； 条件不成立时，则进入 else 部分。</p>
 <p>语法：</p>
@@ -442,8 +449,11 @@
 <p>一般情况下，定义一个方法的语法是：</p>
 <p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C43.jpg" alt></p>
 <p>其中：</p>
-<h4 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h4><p>1、 访问修饰符：方法允许被访问的权限范围， 可以是 public、protected、private 甚至可以省略 ，其中 public 表示该方法或变量可以被其他任何代码调用。</p>
+<h4 id="1、-访问修饰符"><a href="#1、-访问修饰符" class="headerlink" title="1、 访问修饰符"></a>1、 访问修饰符</h4><p><strong>1.访问控制修饰符</strong></p>
+<p> 访问修饰符：方法允许被访问的权限范围， 可以是 public、protected、private 甚至可以省略 ，其中 public 表示该方法或变量可以被其他任何代码调用。</p>
 <p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C64.png" alt></p>
+<p><strong>2.非访问控制修饰符</strong></p>
+<p>   抽象方法控制符<strong>abstract</strong> 、静态方法控制符<strong>static</strong> 、最终方法控制符<strong>final</strong> 、本地方法控制符<strong>native</strong> 、同步方法控制符<strong>synchronized</strong></p>
 <p>2、 返回值类型：方法返回值的类型，如果方法不返回任何值，则返回值类型指定为 void ；如果方法具有返回值，则需要指定返回值的类型，并且在方法体中使用 return 语句返回值</p>
 <p>3、 方法名：定义的方法的名字，必须使用合法的标识符</p>
 <p>4、 参数列表：传递给方法的参数列表，参数可以有多个，多个参数间以逗号隔开，每个参数由参数类型和参数名组成，以空格隔开 </p>
@@ -493,6 +503,13 @@
 <p>3、 方法参数的个数、顺序或类型不同</p>
 <p>4、 与方法的修饰符或返回值没有关系</p>
 <h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h3><p><strong>类</strong>：类是一个模板，它描述一类对象的行为（方法）和状态（属性），比如把狗作为一类，把猫作为另一类。</p>
+<h3 id="类修饰符"><a href="#类修饰符" class="headerlink" title="类修饰符"></a>类修饰符</h3><p><strong><em>\</em>1.访问修饰符：公共类修饰符public**</strong></p>
+<p>  公共类修饰符 public ： Java 语言中类的访问控制符只有 public 即公共的。每个 Java 程序的有且只有一个类是 public，它被称为主类 ，其他外部类无访问控制修饰符，具有包访问性。注意：一个类的内部类可以被其他访问控制修饰符protected、缺省默认(default、friendly)、private修饰，相当于类的成员。</p>
+<p> 注意：Java类或属性如果缺省访问控制修饰符，就属于default/friendly类型修饰符，但是实际上Java中并没有名为default或者friendly的访问修饰符(即不能使用default或者friendly定义类或变量)，只是为了方便标识缺省访问控制符的情况。</p>
+<p><strong><em>\</em>2.非访问控制符：抽象类修饰符 abstract 、最终类修饰符 final**</strong></p>
+<p>  （1）抽象类修饰符 abstract ：用 abstract 修饰符修饰的类，被称为抽象类。</p>
+<p>  （2）最终类修饰符 final ：当一个类不能被继承时可用修饰符 final修饰为最终类。被定义为 final 的类通常是一些有固定作用、用来完成某种标准功能的类。</p>
+<p>  （3）类缺省访问控制符：如果一个类没有访问控制符，说明它具有缺省的访问控制符特性。此时，这个类只能被同一个包中的类访问或引用。这一访问特性又称为包访问性。</p>
 <p>定义类的的步骤</p>
 <p>a.定义类名</p>
 <p>b.编写类的属性</p>
@@ -699,11 +716,13 @@
 <p>1.在某些情况下，某个父类只是知道其子类应该包含怎样的方法，但无法准确知道这些子类如何实现这些方法。抽象类用来约束子类有哪些方法，但不关注具体实现。</p>
 <p>2.从多个具有相同特征的类中抽象出一个抽象类，以这个抽象类作为子类的模板，从而避免了子类设计的随意性。</p>
 <p>使用规则</p>
-<p>用abstract修饰符定义抽象类。</p>
+<p>用abstract修饰符定义抽象类。抽象类依然可以有构造函数，属性，非抽象类方法，静态属性和静态方法。</p>
 <p>用abstract修饰符定义抽象方法，只有声明，不需要实现。</p>
 <p>包含抽象方法的类是抽象类。</p>
 <p>抽象类中可以包含普通的方法，也可以没有抽象方法。</p>
 <p>抽象方法没有方法体以;结束。</p>
+<p>If a subclass does not implement all abstract methods, it must also be marked abstract.</p>
+<p>You cannot create instances of abstract classes – only concrete subclasses</p>
 <p>例子</p>
 <p>创建一个抽象Telphone父类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Telphone</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">message</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bigscreen</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -714,7 +733,8 @@
 <p>现在我们可以在子类的两个方法体里添加代码了。比如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CellPhone</span> <span class="keyword">extends</span> <span class="title">Telphone</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘拨打电话"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">message</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘发短信"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>接口可以理解为一种特殊的类，由全局常量和公共的抽象方法所组成。</p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>接口可以理解为一种特殊的类，由全局常量和公共的抽象方法所组成。You cannot directly create an instance of an interface.</p>
+<p>Similar to a class, but : Declared with interface keyword ,All (non-static) methods are implicitly public abstract ,All fields are implicitly public static final</p>
 <p>类是一种具体实现体，而接口定义了某一批类所需要遵守的规范，接口不关心这些类的内部数据，也不关心这些类里方法的实现细节，它只规定这些类里必须提供某些方法。</p>
 <h4 id="定义接口"><a href="#定义接口" class="headerlink" title="定义接口"></a>定义接口</h4><p>基本语法：</p>
 <p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C70.png" alt></p>
@@ -729,7 +749,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IPlayGame</span> </span>&#123; <span class="comment">//接口可以不显式显现abstract关键字</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playgame</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>让CellPhone类接入这个接口，CellPhone类就必须添加playgame那个方法。之后可以在这个方法中添加代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmartPhone</span> <span class="keyword">extends</span> <span class="title">Telphone</span> <span class="keyword">implements</span> <span class="title">IPlayGame</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘拨打电话"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">message</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘发短信"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playgame</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘玩游戏"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CellPhone</span> <span class="keyword">extends</span> <span class="title">Telphone</span> <span class="keyword">implements</span> <span class="title">IPlayGame</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘拨打电话"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">message</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘发短信"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playgame</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"用键盘玩游戏"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>调用时</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    CellPhone phone1=<span class="keyword">new</span> CellPhone();</span><br><span class="line">    phone1.playgame();</span><br><span class="line">    IPlayGame phone2=<span class="keyword">new</span> CellPhone();</span><br><span class="line">    phone2.playgame();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -744,6 +764,7 @@
 <p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C73.png" alt></p>
 <p>执行结果为：</p>
 <p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C74.png" alt></p>
+<h4 id="接口与抽象类对比"><a href="#接口与抽象类对比" class="headerlink" title="接口与抽象类对比"></a>接口与抽象类对比</h4><p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5C115.png" alt></p>
 <h2 id="第八章–异常"><a href="#第八章–异常" class="headerlink" title="第八章–异常"></a>第八章–异常</h2><p>异常包括：</p>
 <p><img src="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/75.png" alt></p>
 <p>检查异常包括文件异常和SQL异常。</p>
@@ -898,7 +919,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckeidjuk7000078vtcftx9udj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckn1t0idj0002rgvtgugkboje" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
@@ -966,7 +987,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
     </div>
   </div>
 
@@ -979,23 +1000,23 @@
       <ul>
         
           <li>
+            <a href="/2020/11/03/kaggle%E4%B9%8B%E6%88%BF%E4%BB%B7%E9%A2%84%E6%B5%8B%E9%A1%B9%E7%9B%AE/">kaggle之房价预测项目</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/">YOLOv5--口罩与帽子识别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/Kaggle%E4%B9%8B%E7%8C%AB%E7%8B%97%E8%AF%86%E5%88%AB%E9%A1%B9%E7%9B%AE(%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C)/">Kaggle之猫狗识别项目(神经网络)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/10/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">PyTorch学习笔记</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/">决策树与随机森林</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java基础篇学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/">Scrapy&amp;Re--动态爬虫实例</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习之监督学习算法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux操作学习笔记</a>
           </li>
         
       </ul>
@@ -1010,7 +1031,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2021 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

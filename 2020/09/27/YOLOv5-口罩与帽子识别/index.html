@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>YOLOv5--口罩与帽子识别 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前期准备yolov5的官方地址：https:&#x2F;&#x2F;github.com&#x2F;ultralytics&#x2F;yolov5  ，其中包含了yolov5的使用教程。下载yolov5相关文件保存到D:\yolov5-master yolov5根据用户的需求提供不同size的模型，将这些模型下载下来，放到models目录下。  打开conda prompter，为这个项目创建一个新conda环境(yolov5要求pyt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOLOv5--口罩与帽子识别">
+<meta property="og:url" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前期准备yolov5的官方地址：https:&#x2F;&#x2F;github.com&#x2F;ultralytics&#x2F;yolov5  ，其中包含了yolov5的使用教程。下载yolov5相关文件保存到D:\yolov5-master yolov5根据用户的需求提供不同size的模型，将这些模型下载下来，放到models目录下。  打开conda prompter，为这个项目创建一个新conda环境(yolov5要求pyt">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C3.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C2.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C4.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C6.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C5.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C7.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C2.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C8.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C9.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C10.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C13.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C11.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C12.png">
+<meta property="article:published_time" content="2020-09-27T06:35:46.000Z">
+<meta property="article:modified_time" content="2020-10-27T07:30:08.113Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C3.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-YOLOv5-口罩与帽子识别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/" class="article-date">
+  <time datetime="2020-09-27T06:35:46.000Z" itemprop="datePublished">2020-09-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      YOLOv5--口罩与帽子识别
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>yolov5的官方地址：<a href="https://github.com/ultralytics/yolov5" target="_blank" rel="noopener">https://github.com/ultralytics/yolov5</a>  ，其中包含了yolov5的使用教程。下载yolov5相关文件保存到D:\yolov5-master</p>
+<p>yolov5根据用户的需求提供不同size的模型，将这些模型下载下来，放到models目录下。</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C3.png" alt></p>
+<p>打开conda prompter，为这个项目创建一个新conda环境(yolov5要求python版本为3.8及以上)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n yolov5 python&#x3D;&#x3D;3.8</span><br></pre></td></tr></table></figure>
+
+<p>等待一段时间后基础Python环境搭建完成，此时可以进入该环境继续安装依赖库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate yolov5</span><br></pre></td></tr></table></figure>
+
+<p>安装依赖库</p>
+<p>根据<a href="https://github.com/ultralytics/yolov5" target="_blank" rel="noopener">YOLOv5 github</a>中的介绍，requirements.txt文件(存放在yolov5-master文件)中为所需要安装的依赖库。进入该文件路径D:\yolov5-master后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(yolov5) D:\yolov5-master&gt;pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>输入pip install -r requirements.txt 安装yolo所需要的库。</p>
+<p>（注意如果下载过程中出现pytorch版本问题则先去pytorch官网复制命令安装适合的pytorch）</p>
+<p>放一张狗的图片在images目录下</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C2.png" alt></p>
+<p>运行detect.py（只单独输出这一张，若要输出所有图片则直接python detect.py）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --source inference&#x2F;images&#x2F;dog.jpg</span><br></pre></td></tr></table></figure>
+
+<p>在output下查看输出</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C1.jpg" alt></p>
+<p>能识别出人和狗，可以看到大神们开发的yolov5效果不错。</p>
+<h2 id="训练自己的数据集"><a href="#训练自己的数据集" class="headerlink" title="训练自己的数据集"></a>训练自己的数据集</h2><p>目标–能够识别人脸，口罩和帽子</p>
+<p>收集一些有口罩和帽子的照片，下载labelmage进行标注，标注时我将0,1,2分别代表mask,hat,face，生成txt格式（注意要切换到yolo模式，否则会生成xml格式的标签）的标签存放到指定路径（标签生成后可以看到还自动生成了一个名为class的txt，里面表明了三个类别，删掉即可）。训练集测试集交叉验证集可以按照6：2：2的比例存放（it’s up to you）。</p>
+<p>三种样本存放在yolov5-master，新建一个名为MaskHatFace的文件夹中。</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C4.png" alt></p>
+<p>设置data.yaml里的路径，类别数和类别名。</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C6.png" alt></p>
+<p>标签与图片分开，标签名要与图片名一致。我这里顺序也一一对应了，避免麻烦。（可以试试顺序不一样能不能训练）</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C5.png" alt></p>
+<p>先用小模型训练看看，由于有三类，在对应的yolo5s.yaml文件中将nc参数修改为3。</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C7.png" alt></p>
+<p>现在可以开始训练了。</p>
+<p>由于我的小破电脑显卡只有2G，batchsize我只设置了5个。yolov5的官方GitHub里提到可以用谷歌的colab或者kaggle平台的GPU，都是免费的。</p>
+<p>训练时运行train.py,其他的一些如epochs参数如下可以在运行时写上，也可以在train.py中修改。关于有哪些参数可以修改网上有很多介绍，不再累述。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py --img 640 --batch 5 --epochs 300 --data .&#x2F;MaskHatFace&#x2F;data.yaml --cfg models&#x2F;yolov5s.yaml --weights &#39;&#39;</span><br></pre></td></tr></table></figure>
+
+<p>训练中…</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C2.jpg" alt></p>
+<p>训练结束后，在runs文件中生成结果，weights文件保存best.pt和last.pt，分别代表最好的一次模型和最后一次生成的模型。</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C8.png" alt></p>
+<p>测试</p>
+<p>用生成的那个最好模型进行测试。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --weight .&#x2F;runs&#x2F;exp27&#x2F;weights&#x2F;best.pt --source .&#x2F;MaskHatFace&#x2F;test&#x2F;images&#x2F;onlyfortest.jpg</span><br></pre></td></tr></table></figure>
+
+<p>输出结果保存在inference的output中。</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C3.jpg" alt></p>
+<p>可以看到帽子和口罩都被识别出来了，但有识别错误。原因我的训练样本量很小，只有100多张。模型选择了一个小模型，复杂度低（非主要原因）。</p>
+<h2 id="在服务器上训练帽子识别模型"><a href="#在服务器上训练帽子识别模型" class="headerlink" title="在服务器上训练帽子识别模型"></a>在服务器上训练帽子识别模型</h2><p>由于自己的笔记本无法带起大batch的训练，用了别人的服务器训练模型。训练的步骤如下：</p>
+<p>把官方压缩包yolov5-master上传到服务器，命名一个wy文件夹存放（<a href="http://10.0.77.98:8888/tree/wy），在wy文件中新建一个python文档，输入以下代码进行解压" target="_blank" rel="noopener">http://10.0.77.98:8888/tree/wy），在wy文件中新建一个python文档，输入以下代码进行解压</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import zipfile</span><br><span class="line">import os</span><br><span class="line">files &#x3D; zipfile.ZipFile(&#39;yolov5-master.zip&#39;,&#39;r&#39;)</span><br><span class="line">files.extractall(os.getcwd())</span><br></pre></td></tr></table></figure>
+
+<p>把安全帽的样本数据（网上下载，有1w张左右的照片）放到yolov5-master中</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C9.png" alt></p>
+<p>按照之前的格式存放样本和标签。</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C10.png" alt></p>
+<p>在yolov5-master文件中新建一个python文档</p>
+<p>训练前打开terminal，查看服务器运行状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch -n 1 nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C13.png" alt></p>
+<p>开始训练(如果要使用第二张显卡)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!python train.py --img 640 --batch 20 --epochs 300 --data .&#x2F;hat&#x2F;data.yaml --cfg models&#x2F;yolov5s.yaml --weights &#39;&#39;--device 1</span><br></pre></td></tr></table></figure>
+
+<p>训练中：</p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C11.png" alt></p>
+<p><img src="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB%5C12.png" alt></p>
+<p>训练之后进行测试发现有些场景识别帽子的准确度低，我有针对性的再标记了一些图片，注意标注数据时0，1对应的类别名需与之前的数据一致（0:no-hat  1:hat）。此后可以在原来的模型基础上进行训练，训练时添加一句weights信息，如之前的模型存在当前目录下，名为hat.pt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!python train.py  --weights &#39;.&#x2F;hat.pt&#39;</span><br></pre></td></tr></table></figure>
+
+<p>还有一个点需要注意的是之前的模型是用1w多张图片训练出来的，我后面只标了近200张图片，第二次训练的epoch可以增加到400代这样模型修改的效果会明显些。事实证明确实如此。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/" data-id="ckn1t0igg001jrgvtako9d5hn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/03/kaggle%E4%B9%8B%E6%88%BF%E4%BB%B7%E9%A2%84%E6%B5%8B%E9%A1%B9%E7%9B%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          kaggle之房价预测项目
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/16/Kaggle%E4%B9%8B%E7%8C%AB%E7%8B%97%E8%AF%86%E5%88%AB%E9%A1%B9%E7%9B%AE(%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Kaggle之猫狗识别项目(神经网络)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%BA%93/">数据分析库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mini-Batch%E4%B8%8B%E9%99%8D/" rel="tag">Mini-Batch下降</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Numpy/" rel="tag">Numpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Re/" rel="tag">Re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Request/" rel="tag">Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrapy/" rel="tag">Scrapy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bs4/" rel="tag">bs4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" rel="tag">决策树与随机森林</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">动态爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" rel="tag">异常检测算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%AE%97%E6%B3%95/" rel="tag">推荐系统算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/" rel="tag">支持向量机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">无监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" rel="tag">监督学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" rel="tag">线性回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95K-means/" rel="tag">聚类算法K-means</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/" rel="tag">逻辑回归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95PCA/" rel="tag">降维算法PCA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" rel="tag">随机梯度下降</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" rel="tag">静态爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Matplotlib/" style="font-size: 10px;">Matplotlib</a> <a href="/tags/Mini-Batch%E4%B8%8B%E9%99%8D/" style="font-size: 10px;">Mini-Batch下降</a> <a href="/tags/Numpy/" style="font-size: 10px;">Numpy</a> <a href="/tags/Pandas/" style="font-size: 10px;">Pandas</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Request/" style="font-size: 10px;">Request</a> <a href="/tags/Scrapy/" style="font-size: 16.67px;">Scrapy</a> <a href="/tags/bs4/" style="font-size: 10px;">bs4</a> <a href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" style="font-size: 10px;">决策树与随机森林</a> <a href="/tags/%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">动态爬虫</a> <a href="/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" style="font-size: 10px;">异常检测算法</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">推荐系统算法</a> <a href="/tags/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/" style="font-size: 10px;">支持向量机</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">无监督学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 13.33px;">机器学习</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">监督学习</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" style="font-size: 10px;">线性回归</a> <a href="/tags/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95K-means/" style="font-size: 10px;">聚类算法K-means</a> <a href="/tags/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/" style="font-size: 10px;">逻辑回归</a> <a href="/tags/%E9%99%8D%E7%BB%B4%E7%AE%97%E6%B3%95PCA/" style="font-size: 10px;">降维算法PCA</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" style="font-size: 10px;">随机梯度下降</a> <a href="/tags/%E9%9D%99%E6%80%81%E7%88%AC%E8%99%AB/" style="font-size: 10px;">静态爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/03/kaggle%E4%B9%8B%E6%88%BF%E4%BB%B7%E9%A2%84%E6%B5%8B%E9%A1%B9%E7%9B%AE/">kaggle之房价预测项目</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/">YOLOv5--口罩与帽子识别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/Kaggle%E4%B9%8B%E7%8C%AB%E7%8B%97%E8%AF%86%E5%88%AB%E9%A1%B9%E7%9B%AE(%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C)/">Kaggle之猫狗识别项目(神经网络)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/10/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">PyTorch学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/">决策树与随机森林</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -7,32 +7,35 @@
   
   <title>决策树与随机森林 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="决策树既能用于分类，也能用于回归。  算法步骤如何构造决策树是最重要的。   例子 选取根节点 先计算最初样本的熵  分别计算前四种划分后的熵  熵最小的那个特征就选为根节点（用信息增益以及信息增益率判断） 信息增益率表示为信息增益&#x2F;特征划分的样本的熵；越大说明这个特征作为节点越合适（例如添加一个特征ID编号从1到14，它的信息增益很大，然而这个特征是无用的）  继续以这种方式构造子节点，最终得到">
+  <meta name="description" content="决策树既能用于分类，也能用于回归。这里是用于分类。   算法步骤如何构造决策树是最重要的。    例子  选取根节点  先计算最初样本的熵   分别计算前四种划分后的熵   熵最小的那个特征就选为根节点（用信息增益以及信息增益率判断） 信息增益率表示为信息增益&#x2F;特征划分的样本的熵；越大说明这个特征作为节点越合适（例如添加一个特征ID编号从1到14，它的信息增益很大，然而这个特征是无用的）   继续">
 <meta property="og:type" content="article">
 <meta property="og:title" content="决策树与随机森林">
 <meta property="og:url" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="决策树既能用于分类，也能用于回归。  算法步骤如何构造决策树是最重要的。   例子 选取根节点 先计算最初样本的熵  分别计算前四种划分后的熵  熵最小的那个特征就选为根节点（用信息增益以及信息增益率判断） 信息增益率表示为信息增益&#x2F;特征划分的样本的熵；越大说明这个特征作为节点越合适（例如添加一个特征ID编号从1到14，它的信息增益很大，然而这个特征是无用的）  继续以这种方式构造子节点，最终得到">
+<meta property="og:description" content="决策树既能用于分类，也能用于回归。这里是用于分类。   算法步骤如何构造决策树是最重要的。    例子  选取根节点  先计算最初样本的熵   分别计算前四种划分后的熵   熵最小的那个特征就选为根节点（用信息增益以及信息增益率判断） 信息增益率表示为信息增益&#x2F;特征划分的样本的熵；越大说明这个特征作为节点越合适（例如添加一个特征ID编号从1到14，它的信息增益很大，然而这个特征是无用的）   继续">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C1.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/1.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C7.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C2.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C4.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C5.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C8.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C9.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C10.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C11.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C3.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C12.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C13.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C14.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/8.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/9.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/10.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/11.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/12.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/13.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/14.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5Cc.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5Ca.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5Cb.jpg">
 <meta property="article:published_time" content="2020-07-30T06:54:09.000Z">
-<meta property="article:modified_time" content="2020-08-31T10:20:42.398Z">
+<meta property="article:modified_time" content="2020-12-03T09:02:20.722Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="决策树与随机森林">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C1.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/1.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -107,32 +110,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>既能用于分类，也能用于回归。</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C1.png" alt></p>
+        <h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>既能用于分类，也能用于回归。这里是用于分类。</p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/1.png" style="zoom:67%;">
+
 <h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p>如何构造决策树是最重要的。</p>
 <p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C7.png" alt></p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C2.png" alt></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C4.png" alt></p>
-<h4 id="选取根节点"><a href="#选取根节点" class="headerlink" title="选取根节点"></a>选取根节点</h4><p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C5.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/2.png" style="zoom:67%;">
+
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/4.png" style="zoom:67%;">
+
+<h4 id="选取根节点"><a href="#选取根节点" class="headerlink" title="选取根节点"></a>选取根节点</h4><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/5.png" style="zoom:67%;">
+
 <p>先计算最初样本的熵</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C8.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/8.png" style="zoom:67%;">
+
 <p>分别计算前四种划分后的熵</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C9.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/9.png" style="zoom:67%;">
+
 <p>熵最小的那个特征就选为根节点（用信息增益以及信息增益率判断）</p>
 <p>信息增益率表示为信息增益/特征划分的样本的熵；越大说明这个特征作为节点越合适（例如添加一个特征ID编号从1到14，它的信息增益很大，然而这个特征是无用的）</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C10.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/10.png" style="zoom:67%;">
+
 <p>继续以这种方式构造子节点，最终得到一个决策树</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C11.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/11.png" style="zoom:67%;">
+
 <h4 id="熵与基尼系数"><a href="#熵与基尼系数" class="headerlink" title="熵与基尼系数"></a>熵与基尼系数</h4><p>熵指物体内部（这里我们可以指一个样本集）的混乱程度。因此一个集合中类别越多，熵就越大。</p>
 <p>下图熵的表达式中Pi指样本集中第i个类的的概率（比如有10个样本分为两个类别，其中有4个1类，6个0类，那么1类的概率为2/5）</p>
 <p>基尼系数（取值0-1）表达的含义与熵一样。</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C3.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/3.png" style="zoom:67%;">
+
+
+
 <h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><p>Nt指当前这个叶子节点有几个样本，H(t)指节点的熵或基尼系数。</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C12.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/12.png" style="zoom:67%;">
+
 <p>决策树太高太大分支太多会造成过拟合。我们要进行剪枝。</p>
 <p>预剪枝包括将深度设置为三即最多三层，或者当叶子节点的样本数小于一个阈值（例如50个）时就停止。</p>
 <p>后剪枝包括改变代价函数，|Tleaf|指叶子节点的个数。</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C13.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/13.png" style="zoom:67%;">
+
 <p>很明显决策树分到最后是可以实现叶子节点熵为0的，但我们还要考虑这个树是否分的太细过拟合了，就无法对新样本进行预测。</p>
 <h2 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h2><p>随机选择一些样本（有放回采样）以及特征，构造出一个决策树，再随机选一些样本以及特征，再构造一个决策树…得到一些决策树后，将分类结果用简单投票法得到最终分类，提高分类准确率。</p>
 <p>随机森林属于集成学习（Ensemble Learning）中的bagging算法。<br>bagging的算法过程如下：</p>
@@ -160,12 +176,49 @@
 <h3 id="随机森林的参数"><a href="#随机森林的参数" class="headerlink" title="随机森林的参数"></a>随机森林的参数</h3><p>（1） 决策树的个数</p>
 <p>（2） 特征属性的个数</p>
 <p>（3） 递归次数（即决策树的深度）</p>
-<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5C14.png" alt></p>
+<img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/14.png" style="zoom:67%;">
+
+
+
+<p>对于回归问题：</p>
+<h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>GBDT(Gradient Boosting Decision Tree) 又叫 MART（Multiple Additive Regression Tree)，是一种迭代的决策树算法，该算法由多棵决策树组成，所有树的结论累加起来做最终答案。它在被提出之初就和SVM一起被认为是泛化能力较强的算法。<br>  GBDT中的树是回归树（不是分类树），GBDT用来做回归预测，调整后也可以用于分类。<br>  GBDT的思想使其具有天然优势可以发现多种有区分性的特征以及特征组合。业界中，Facebook使用其来自动发现有效的特征、特征组合，来作为LR模型中的特征，以提高 CTR预估（Click-Through Rate Prediction）的准确性；GBDT在淘宝的搜索及预测业务上也发挥了重要作用。</p>
+<h3 id="Regression-Decision-Tree：回归树"><a href="#Regression-Decision-Tree：回归树" class="headerlink" title="Regression Decision Tree：回归树"></a>Regression Decision Tree：回归树</h3><p>回归树总体流程类似于分类树，区别在于，回归树的每一个节点都会得一个预测值，以年龄为例，该预测值等于属于这个节点的所有人年龄的平均值。分枝时穷举每一个feature的每个阈值找最好的分割点，但衡量最好的标准不再是最大熵，而是最小化平方误差。也就是被预测出错的人数越多，错的越离谱，平方误差就越大，通过最小化平方误差能够找到最可靠的分枝依据。分枝直到每个叶子节点上人的年龄都唯一或者达到预设的终止条件(如叶子个数上限)，若最终叶子节点上人的年龄不唯一，则以该节点上所有人的平均年龄做为该叶子节点的预测年龄。</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5Cc.jpg" alt></p>
+<h3 id="Boosting-Decision-Tree：提升树算法"><a href="#Boosting-Decision-Tree：提升树算法" class="headerlink" title="Boosting Decision Tree：提升树算法"></a>Boosting Decision Tree：提升树算法</h3><p>提升树是迭代多棵回归树来共同决策。当采用平方误差损失函数时，每一棵回归树学习的是之前所有树的结论和残差，拟合得到一个当前的残差回归树，残差的意义如公式：残差 = 真实值 - 预测值 。提升树即是整个迭代过程生成的回归树的累加。</p>
+<p>例子：训练一个提升树模型来预测年龄：<br>  训练集是4个人，A，B，C，D年龄分别是14，16，24，26。样本中有购物金额、上网时长、经常到百度知道提问等特征。提升树的过程如下：</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5Ca.jpg" alt></p>
+<h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>XGBoost是Exterme Gradient Boosting（极限梯度提升）的缩写，它是基于决策树的集成机器学习算法，它以梯度提升（Gradient Boost）为框架。XGBoost是由由GBDT发展而来，同样是利用加法模型与前向分步算法实现学习的优化过程，但与GBDT是有区别的。主要区别包括以下几点：</p>
+<ul>
+<li>目标函数：XGBoost的损失函数添加了正则化项，使用正则用以控制模型的复杂度，正则项里包含了树的叶子节点个数、每个叶子节点权重（叶结点的socre值）的平方和。</li>
+<li>优化方法：GBDT在优化时只使用了一阶导数信息，XGBoost在优化时使用了一、二介导数信息。</li>
+<li>缺失值处理：XBGoost对缺失值进行了处理，通过学习模型自动选择最优的缺失值默认切分方向。</li>
+<li>防止过拟合: XGBoost除了增加了正则项来防止过拟合,还支持行列采样的方式来防止过拟合。</li>
+<li>结果：它可以在最短时间内用更少的计算资源得到更好的结果。</li>
+</ul>
+<p>XGBoost的可以使用Regression Tree（CART）作为基学习器，也可以使用线性分类器作为基学习器。以CART作为基学习器时，其决策规则和决策树是一样的，但CART的每一个叶节点具有一个权重，也就是叶节点的得分或者说是叶节点的预测值。CART的示例如下图：</p>
+<p><img src="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%5Cb.jpg" alt></p>
+<p>图中为两颗回归树（左右两个），其中树下方的输出值即为叶节点的权重（得分），当输出一个样本进行预测时，根据每个内部节点的决策条件进行划分节点，最终被划分到的叶节点的权重即为该样本的预测输出值。例如对于小男孩的预测结果为2+0.9=2.9</p>
+<h2 id="LightGBM"><a href="#LightGBM" class="headerlink" title="LightGBM"></a><strong>LightGBM</strong></h2><p>常用的机器学习算法，例如神经网络等算法，都可以以mini-batch的方式训练，训练数据的大小不会受到内存限制。而GBDT在每一次迭代的时候，都需要遍历整个训练数据多次。如果把整个训练数据装进内存则会限制训练数据的大小；如果不装进内存，反复地读写训练数据又会消耗非常大的时间。尤其面对工业级海量的数据，普通的GBDT算法是不能满足其需求的。</p>
+<p>LightGBM提出的主要原因就是为了解决GBDT在海量数据遇到的问题，让GBDT可以更好更快地用于工业实践。</p>
+<p><strong>（1）XGBoost的缺点</strong></p>
+<p>在LightGBM提出之前，最有名的GBDT工具就是XGBoost了，它是基于预排序方法的决策树算法。这种构建决策树的算法基本思想是：首先，对所有特征都按照特征的数值进行预排序。其次，在遍历分割点的时候用O(#data)的代价找到一个特征上的最好分割点。最后，在找到一个特征的最好分割点后，将数据分裂成左右子节点。</p>
+<p>这样的预排序算法的优点是能精确地找到分割点。但是缺点也很明显：首先，空间消耗大。这样的算法需要保存数据的特征值，还保存了特征排序的结果（例如，为了后续快速的计算分割点，保存了排序后的索引），这就需要消耗训练数据两倍的内存。其次，时间上也有较大的开销，在遍历每一个分割点的时候，都需要进行分裂增益的计算，消耗的代价大。最后，对cache优化不友好。在预排序后，特征对梯度的访问是一种随机访问，并且不同的特征访问的顺序不一样，无法对cache进行优化。同时，在每一层长树的时候，需要随机访问一个行索引到叶子索引的数组，并且不同特征访问的顺序也不一样，也会造成较大的cache miss。</p>
+<p><strong>（2）LightGBM的优化</strong></p>
+<p>为了避免上述XGBoost的缺陷，并且能够在不损害准确率的条件下加快GBDT模型的训练速度，lightGBM在传统的GBDT算法上进行了如下优化：</p>
+<ul>
+<li>基于Histogram的决策树算法。</li>
+<li>单边梯度采样 Gradient-based One-Side Sampling(GOSS)：使用GOSS可以减少大量只具有小梯度的数据实例，这样在计算信息增益的时候只利用剩下的具有高梯度的数据就可以了，相比XGBoost遍历所有特征值节省了不少时间和空间上的开销。</li>
+<li>互斥特征捆绑 Exclusive Feature Bundling(EFB)：使用EFB可以将许多互斥的特征绑定为一个特征，这样达到了降维的目的。</li>
+<li>带深度限制的Leaf-wise的叶子生长策略：大多数GBDT工具使用低效的按层生长 (level-wise) 的决策树生长策略，因为它不加区分的对待同一层的叶子，带来了很多没必要的开销。实际上很多叶子的分裂增益较低，没必要进行搜索和分裂。LightGBM使用了带有深度限制的按叶子生长 (leaf-wise) 算法。</li>
+<li>直接支持类别特征(Categorical Feature)</li>
+<li>支持高效并行</li>
+<li>Cache命中率优化</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" data-id="ckeidjumu000z78vtbh01gz2g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" data-id="ckn1t0igj001krgvtf3gt0uvk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/" rel="tag">决策树与随机森林</a></li></ul>
@@ -175,6 +228,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/09/10/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PyTorch学习笔记
+        
+      </div>
+    </a>
   
   
     <a href="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
@@ -224,7 +286,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
     </div>
   </div>
 
@@ -237,23 +299,23 @@
       <ul>
         
           <li>
+            <a href="/2020/11/03/kaggle%E4%B9%8B%E6%88%BF%E4%BB%B7%E9%A2%84%E6%B5%8B%E9%A1%B9%E7%9B%AE/">kaggle之房价预测项目</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/27/YOLOv5-%E5%8F%A3%E7%BD%A9%E4%B8%8E%E5%B8%BD%E5%AD%90%E8%AF%86%E5%88%AB/">YOLOv5--口罩与帽子识别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/Kaggle%E4%B9%8B%E7%8C%AB%E7%8B%97%E8%AF%86%E5%88%AB%E9%A1%B9%E7%9B%AE(%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C)/">Kaggle之猫狗识别项目(神经网络)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/10/PyTorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">PyTorch学习笔记</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/30/%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97/">决策树与随机森林</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/30/Java%E5%9F%BA%E7%A1%80%E7%AF%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java基础篇学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/06/Scrapy-Re-%E5%8A%A8%E6%80%81%E7%88%AC%E8%99%AB%E5%AE%9E%E4%BE%8B/">Scrapy&amp;Re--动态爬虫实例</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/">机器学习之监督学习算法</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/05/Linux%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Linux操作学习笔记</a>
           </li>
         
       </ul>
@@ -268,7 +330,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2021 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
